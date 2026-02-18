@@ -25052,7 +25052,7 @@
 				)
 			)
 		)
-		(property "MFR" "YXC Crystal Oscillators"
+		(property "MFR" "Shenzhen SCTF Elec"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -25065,7 +25065,7 @@
 				)
 			)
 		)
-		(property "MPN" "ABM8-272-T3"
+		(property "MPN" "SX3B12.000F1010F30"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -25078,7 +25078,7 @@
 				)
 			)
 		)
-		(property "LCSC_PART" "C20625731"
+		(property "LCSC_PART" "C2901649"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")

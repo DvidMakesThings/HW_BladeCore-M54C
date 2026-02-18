@@ -935,7 +935,7 @@
 					(hide yes)
 				)
 			)
-			(property "MFR" "YXC Crystal Oscillators"
+			(property "MFR" "Shenzhen SCTF Elec"
 				(at 1.778 -7.112 0)
 				(show_name)
 				(effects
@@ -946,7 +946,7 @@
 					(hide yes)
 				)
 			)
-			(property "MPN" "ABM8-272-T3"
+			(property "MPN" "SX3B12.000F1010F30"
 				(at 1.778 -11.176 0)
 				(show_name)
 				(effects
@@ -957,7 +957,7 @@
 					(hide yes)
 				)
 			)
-			(property "LCSC_PART" "C20625731"
+			(property "LCSC_PART" "C2901649"
 				(at 1.778 -13.462 0)
 				(show_name)
 				(effects
@@ -16830,7 +16830,7 @@
 				(hide yes)
 			)
 		)
-		(property "MFR" "YXC Crystal Oscillators"
+		(property "MFR" "Shenzhen SCTF Elec"
 			(at 296.418 127.762 0)
 			(show_name yes)
 			(effects
@@ -16841,7 +16841,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "ABM8-272-T3"
+		(property "MPN" "SX3B12.000F1010F30"
 			(at 296.418 131.826 0)
 			(show_name yes)
 			(effects
@@ -16852,7 +16852,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC_PART" "C20625731"
+		(property "LCSC_PART" "C2901649"
 			(at 296.418 134.112 0)
 			(show_name yes)
 			(effects
