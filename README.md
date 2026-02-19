@@ -145,6 +145,89 @@ This allows the module to be normally operated via a carrier board USB connectio
 *   USB VBUS sensing routed to ADC
 *   Optional USB‑powered operation depending on component population (as noted in schematics)
 
+### M.2 Connector Pinout
+
+#### Left Side (Odd Pins)
+
+| Pin | Name | F0 | F1 | F2 | F3 | F4 | F5 | F6 | F7 | F8 | F9 |
+|----:|------|----|----|----|----|----|----|----|----|----|----| 
+| 1 | GND | | | | | | | | | | |
+| 3 | GPIO24 | SPI0 TX | UART1 RTS | I2C1 SCL | PWM3 B | SIO | PIO0 | PIO1 | PIO2 | | CLOCK GPOUT1 |
+| 5 | GPIO23 | SPI0 TX | UART1 RTS | I2C1 SCL | PWM3 B | SIO | PIO0 | PIO1 | PIO2 | | CLOCK GPOUT1 |
+| 7 | GPIO22 | SPI0 SCK | UART1 CTS | I2C1 SDA | PWM3 A | SIO | PIO0 | PIO1 | PIO2 | | CLOCK GPIN1 |
+| 9 | GPIO21 | SPI0 CSn | UART1 RX | **I2C0 SCL | PWM2 B | SIO | PIO0 | PIO1 | PIO2 | | CLOCK GPOUT0 |
+| 11 | GND | | | | | | | | | | |
+| 13 | GPIO20 | SPI0 RX | UART1 TX | **I2C0 SDA | PWM2 A | SIO | PIO0 | PIO1 | PIO2 | | CLOCK GPIN0 |
+| 15 | GPIO19 | SPI0 TX | UART0 RTS | I2C1 SCL | PWM1 B | SIO | PIO0 | PIO1 | PIO2 | | QMI CS1n |
+| 17 | GPIO18 | SPI0 SCK | UART0 CTS | I2C1 SDA | PWM1 A | SIO | PIO0 | PIO1 | PIO2 | | |
+| 19 | GPIO17 | SPI0 CSn | UART0 RX | **I2C0 SCL | PWM0 B | SIO | PIO0 | PIO1 | PIO2 | | |
+| 21 | GPIO16 | SPI0 RX | UART0 TX | **I2C0 SDA | PWM0 A | SIO | PIO0 | PIO1 | PIO2 | | |
+| 23 | GND | | | | | | | | | | |
+| 25 | GPIO15 | *SPI1 TX | UART0 RTS | I2C1 SCL | PWM7 B | SIO | PIO0 | PIO1 | PIO2 | | CLOCK GPOUT1 |
+| 27 | GPIO14 | *SPI1 SCK | UART0 CTS | I2C1 SDA | PWM7 A | SIO | PIO0 | PIO1 | PIO2 | | CLOCK GPIN1 |
+| 29 | GPIO13 | *SPI1 CSn | UART0 RX | **I2C0 SCL | PWM6 B | SIO | PIO0 | PIO1 | PIO2 | | CLOCK GPOUT0 |
+| 31 | GPIO12 | *SPI1 RX | UART0 TX | **I2C0 SDA | PWM6 A | SIO | PIO0 | PIO1 | PIO2 | | CLOCK GPIN0 |
+| 33 | GPIO11 | *SPI1 TX | UART1 RTS | I2C1 SCL | PWM5 B | SIO | PIO0 | PIO1 | PIO2 | | |
+| 35 | GPIO10 | *SPI1 SCK | UART1 CTS | I2C1 SDA | PWM5 A | SIO | PIO0 | PIO1 | PIO2 | | |
+| 37 | GPIO9 | *SPI1 CSn | UART1 RX | **I2C0 SCL | PWM4 B | SIO | PIO0 | PIO1 | PIO2 | | |
+| 39 | GPIO8 | *SPI1 RX | UART1 TX | **I2C0 SDA | PWM4 A | SIO | PIO0 | PIO1 | PIO2 | | QMI CS1n |
+| 41 | GND | | | | | | | | | | |
+| 43 | GPIO7 | SPI0 TX | UART1 RTS | I2C1 SCL | PWM3 B | SIO | PIO0 | PIO1 | PIO2 | | |
+| 45 | GPIO6 | SPI0 SCK | UART1 CTS | I2C1 SDA | PWM3 A | SIO | PIO0 | PIO1 | PIO2 | | |
+| 47 | GPIO5 | SPI0 CSn | UART1 RX | **I2C0 SCL | PWM2 B | SIO | PIO0 | PIO1 | PIO2 | | |
+| 49 | GPIO4 | SPI0 RX | UART1 TX | **I2C0 SDA | PWM2 A | SIO | PIO0 | PIO1 | PIO2 | | |
+| 51 | GPIO3 | SPI0 TX | UART0 RTS | I2C1 SCL | PWM1 B | SIO | PIO0 | PIO1 | PIO2 | | |
+| 53 | GPIO2 | SPI0 SCK | UART0 CTS | I2C1 SDA | PWM1 A | SIO | PIO0 | PIO1 | PIO2 | | |
+| 55 | GPIO1 | SPI0 CSn | UART0 RX | **I2C0 SCL | PWM0 B | SIO | PIO0 | PIO1 | PIO2 | | TRACECLK |
+| 57 | GPIO0 | SPI0 RX | UART0 TX | **I2C0 SDA | PWM0 A | SIO | PIO0 | PIO1 | PIO2 | | QMI CS1n |
+| 67 | GND | | | | | | | | | | |
+| 69 | USB_D+ | | | | | | | | | | |
+| 71 | USB_D- | | | | | | | | | | |
+| 73 | GND | | | | | | | | | | |
+| 75 | VBUS | | | | | | | | | | |
+
+#### Right Side (Even Pins)
+
+| Pin | Name | F0 | F1 | F2 | F3 | F4 | F5 | F6 | F7 | F8 | F9 |
+|----:|------|----|----|----|----|----|----|----|----|----|----| 
+| 2 | GND | | | | | | | | | | |
+| 4 | GPIO27 | *SPI1 TX | UART1 RTS | I2C1 SCL | PWM5 B | SIO | PIO0 | PIO1 | PIO2 | | |
+| 6 | GPIO26 | *SPI1 SCK | UART1 CTS | I2C1 SDA | PWM5 A | SIO | PIO0 | PIO1 | PIO2 | | |
+| 8 | GPIO25 | *SPI1 CSn | UART1 RX | **I2C0 SCL | PWM4 B | SIO | PIO0 | PIO1 | PIO2 | | CLOCK GPOUT3 |
+| 10 | PWR | | | | | | | | | | |
+| 12 | PWR | | | | | | | | | | |
+| 14 | PWR | | | | | | | | | | |
+| 16 | PWR | | | | | | | | | | |
+| 18 | GND | | | | | | | | | | |
+| 20 | GND | | | | | | | | | | |
+| 22 | GND | | | | | | | | | | |
+| 24 | GND | | | | | | | | | | |
+| 26 | GND | | | | | | | | | | |
+| 28 | CAN_P | | | | | | | | | | |
+| 30 | CAN_N | | | | | | | | | | |
+| 32 | GND | | | | | | | | | | |
+| 34 | GPIO37 |  | SPI0 CSn | UART1 RX | **I2C0 SCL | PWM10 B | SIO | PIO0 | PIO1 | PIO2 |  |
+| 36 | GPIO38 |  | SPI0 SCK | UART1 CTS | I2C1 SDA | PWM11 A | SIO | PIO0 | PIO1 | PIO2 |  |
+| 38 | GND | | | | | | | | | | |
+| 40 | GPIO39 |  | SPI0 TX | UART1 RTS | I2C1 SCL | PWM11 B | SIO | PIO0 | PIO1 | PIO2 |  |
+| 42 | GND | | | | | | | | | | |
+| 44 | GND | | | | | | | | | | |
+| 46 | ADC0/GPIO40 |  | *SPI1 RX | UART1 TX | **I2C0 SDA | PWM8 A | SIO | PIO0 | PIO1 | PIO2 |  |
+| 48 | ADC1/GPIO41 |  | *SPI1 CSn | UART1 RX | **I2C0 SCL | PWM8 B | SIO | PIO0 | PIO1 | PIO2 |  |
+| 50 | ADC2/GPIO42 |  | *SPI1 SCK | UART1 CTS | I2C1 SDA | PWM9 A | SIO | PIO0 | PIO1 | PIO2 |  |
+| 52 | ADC3/GPIO43 |  | *SPI1 TX | UART1 RTS | I2C1 SCL | PWM9 B | SIO | PIO0 | PIO1 | PIO2 |  |
+| 54 | ADC4/GPIO44 |  | *SPI1 RX | UART0 TX | **I2C0 SDA | PWM10 A | SIO | PIO0 | PIO1 | PIO2 |  |
+| 56 | ADC5/GPIO45 |  | *SPI1 CSn | UART0 RX | **I2C0 SCL | PWM10 B | SIO | PIO0 | PIO1 | PIO2 |  |
+| 58 | GND | | | | | | | | | | |
+| 68 | GND | | | | | | | | | | |
+| 70 | GND | | | | | | | | | | |
+| 72 | VBUS | | | | | | | | | | |
+| 74 | VBUS | | | | | | | | | | |
+| SH1 | SHIELD | | | | | | | | | | |
+
+*SPI1 is used for the onboard CAN controller (MCP2515T)
+
+**I2C0 is used for the onboard EEPROM (AT24C256)
 
 ## Revision History
 
