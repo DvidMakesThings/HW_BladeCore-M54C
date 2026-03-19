@@ -39,21 +39,19 @@
       "footprint_values",
       "footprint_references",
       "tracks",
-      "drc_errors",
       "drawing_sheet",
       "bitmaps",
       "pads",
       "zones",
-      "drc_warnings",
-      "drc_exclusions",
       "locked_item_shadows",
       "conflict_shadows",
       "shapes"
     ],
-    "visible_layers": "ffffffff_ffffffff_ffffd575_575555ff",
+    "visible_layers": "ffffffff_ffffffff_ffffd575_5755508e",
     "zone_display_mode": 0
   },
   "git": {
+    "integration_disabled": false,
     "repo_type": "",
     "repo_username": "",
     "ssh_key": ""

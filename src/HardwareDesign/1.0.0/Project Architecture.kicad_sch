@@ -5675,7 +5675,7 @@
 			(uuid "b73c900e-f60d-4d55-b2f1-1e8fd2af17fe")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
 					(reference "#PWR093")
 					(unit 1)
@@ -5741,7 +5741,7 @@
 			(uuid "5f7e1c50-26a5-4576-b024-23e6aa267a91")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
 					(reference "#PWR083")
 					(unit 1)
@@ -5807,7 +5807,7 @@
 			(uuid "efbba1d7-7138-47bc-ad41-f475ec19031b")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
 					(reference "#FLG04")
 					(unit 1)
@@ -5874,7 +5874,7 @@
 			(uuid "ff879a00-8047-43a8-b46e-a4aa6695a7f9")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
 					(reference "#PWR0100")
 					(unit 1)
@@ -5945,7 +5945,7 @@
 			(uuid "79914828-3457-4196-8bfe-aa9948eeaf7d")
 		)
 		(instances
-			(project ""
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
 					(reference "JP1")
 					(unit 1)
@@ -6012,7 +6012,7 @@
 			(uuid "86b34d56-57e8-4b0e-ad4a-b5afcd301d63")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
 					(reference "#PWR0103")
 					(unit 1)
@@ -6126,7 +6126,7 @@
 			(uuid "c3ea697f-2e73-456b-91d6-f7f80c19614d")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
 					(reference "R51")
 					(unit 1)
@@ -6252,7 +6252,7 @@
 			(uuid "2f1890b0-1c0c-4001-afd6-f2e6f9565366")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
 					(reference "D5")
 					(unit 1)
@@ -6579,7 +6579,7 @@
 			(uuid "7fbaf496-c28b-4b7c-a9a4-15ba9218baf4")
 		)
 		(instances
-			(project ""
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
 					(reference "J1")
 					(unit 1)
@@ -6645,7 +6645,7 @@
 			(uuid "97c2c623-437c-47a6-8e93-f07447a30878")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
 					(reference "#PWR046")
 					(unit 1)
@@ -6711,7 +6711,7 @@
 			(uuid "0c2f19f6-d3bd-472d-8b92-986889423784")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
 					(reference "#PWR050")
 					(unit 1)
@@ -6778,7 +6778,7 @@
 			(uuid "b346533f-05dc-460c-8a93-2c4e888c9e55")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
 					(reference "#PWR092")
 					(unit 1)
@@ -6844,7 +6844,7 @@
 			(uuid "7d02cdf8-03c1-4fa2-b8a6-c116514b59a9")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
 					(reference "#PWR091")
 					(unit 1)
@@ -6911,7 +6911,7 @@
 			(uuid "6ef8c477-2386-454e-a22a-60fc8a71aea0")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
 					(reference "#FLG07")
 					(unit 1)
@@ -6977,7 +6977,7 @@
 			(uuid "1dfe061d-e29c-4ede-998c-c712861653f5")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
 					(reference "#FLG03")
 					(unit 1)

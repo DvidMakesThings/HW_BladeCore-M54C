@@ -3478,6 +3478,17 @@
 		)
 		(uuid "43ece7c7-841e-43d8-9fbc-821df32878b6")
 	)
+	(text "Populate R39 and R40 and\nremove L3, if the CMC\ndegrades signal integrity"
+		(exclude_from_sim no)
+		(at 266.954 105.918 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "4a177e29-5d3f-49e7-a597-b640a01065ca")
+	)
 	(text "R35 = 60.4 Ω from CANH to the midpoint\nR36 = 60.4 Ω from CANL to the midpoint\nSo differential termination is ~120.8 Ω total"
 		(exclude_from_sim no)
 		(at 318.008 158.75 0)
@@ -3502,7 +3513,7 @@
 	)
 	(text "CAN uses a 120 Ω termination at each end, which means \nthe cable is roughly a 100-120 Ω differential \ntransmission line. Choosing ~100 Ω differential \nrouting keeps the PCB section close to the \ncable/termination impedance, minimizing reflections \nand improving edge quality/EMI (especially for CAN-FD)."
 		(exclude_from_sim no)
-		(at 219.71 109.728 0)
+		(at 204.724 111.252 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3514,7 +3525,7 @@
 	)
 	(text "C34 and C35 can also be an EMC trick, but they \ndirectly load each line to ground and can mess \nwith signal integrity depending on layout and bitrate.\n47 pF is small, so it might be fine, but it's not \n\"standard CAN termination.\" If the ground they \nreturn to is noisy (digital ground), they can inject junk.\n\nOnly keep them if there's a measured EMC reason. Otherwise DNI."
 		(exclude_from_sim no)
-		(at 292.354 101.092 0)
+		(at 299.72 99.822 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3590,6 +3601,12 @@
 		(uuid "232132fe-84e2-4801-80ac-31240a176e16")
 	)
 	(junction
+		(at 271.78 138.43)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "42c57b33-f2ef-4bd1-b0c4-cd0b245a7dab")
+	)
+	(junction
 		(at 76.2 137.16)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3644,6 +3661,12 @@
 		(uuid "a4f6bf7b-ac95-432f-b16c-d2bf6d3eb65e")
 	)
 	(junction
+		(at 289.56 121.92)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ac96bc0b-a471-4502-b49b-0e5815e2be83")
+	)
+	(junction
 		(at 302.26 137.16)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3654,6 +3677,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "bd6d9bca-c3b4-4ee2-bacf-c5c93e8e9108")
+	)
+	(junction
+		(at 289.56 143.51)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d370ca73-9824-4540-b97c-0d21802f13e1")
 	)
 	(junction
 		(at 207.01 146.05)
@@ -3692,6 +3721,26 @@
 	(no_connect
 		(at 124.46 121.92)
 		(uuid "fd7c6c77-a157-4cb8-988b-fa23cfe13e8a")
+	)
+	(wire
+		(pts
+			(xy 261.62 121.92) (xy 261.62 135.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "11c8bcf5-e928-4665-8044-983b30020141")
+	)
+	(wire
+		(pts
+			(xy 271.78 143.51) (xy 271.78 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "139d35f8-04e3-4798-a729-0edbef64ba50")
 	)
 	(wire
 		(pts
@@ -3745,7 +3794,7 @@
 	)
 	(wire
 		(pts
-			(xy 266.7 138.43) (xy 275.59 138.43)
+			(xy 266.7 138.43) (xy 271.78 138.43)
 		)
 		(stroke
 			(width 0)
@@ -3925,6 +3974,16 @@
 	)
 	(wire
 		(pts
+			(xy 289.56 143.51) (xy 289.56 152.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "488f1c36-71ed-4633-8409-3a622305de7c")
+	)
+	(wire
+		(pts
 			(xy 207.01 146.05) (xy 210.82 146.05)
 		)
 		(stroke
@@ -4035,6 +4094,16 @@
 	)
 	(wire
 		(pts
+			(xy 271.78 138.43) (xy 275.59 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "73e55716-b93d-49f3-bd28-66b56019222d")
+	)
+	(wire
+		(pts
 			(xy 342.9 121.92) (xy 355.6 121.92)
 		)
 		(stroke
@@ -4115,6 +4184,16 @@
 	)
 	(wire
 		(pts
+			(xy 275.59 143.51) (xy 271.78 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7f993acc-81cf-443e-849e-6caf9b0b233b")
+	)
+	(wire
+		(pts
 			(xy 320.04 152.4) (xy 335.28 152.4)
 		)
 		(stroke
@@ -4122,6 +4201,16 @@
 			(type default)
 		)
 		(uuid "7faf5c38-7b6a-442c-9db2-80409792ef8d")
+	)
+	(wire
+		(pts
+			(xy 283.21 121.92) (xy 289.56 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7fd5b99d-febd-44fa-ab56-36190af73ac3")
 	)
 	(wire
 		(pts
@@ -4262,6 +4351,16 @@
 			(type default)
 		)
 		(uuid "ba1afeae-06a1-401b-be50-dbb31236bf4f")
+	)
+	(wire
+		(pts
+			(xy 283.21 143.51) (xy 289.56 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bb0e1fe1-9d73-4113-99e1-af5d6236f8ae")
 	)
 	(wire
 		(pts
@@ -4465,7 +4564,17 @@
 	)
 	(wire
 		(pts
-			(xy 289.56 138.43) (xy 289.56 152.4)
+			(xy 275.59 121.92) (xy 261.62 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e4933009-8b3b-4433-b495-b2b587692f82")
+	)
+	(wire
+		(pts
+			(xy 289.56 138.43) (xy 289.56 143.51)
 		)
 		(stroke
 			(width 0)
@@ -5867,6 +5976,131 @@
 			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/95dbce03-f6ae-4759-a74f-d844ccfad803"
 					(reference "#PWR0204")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "DS_Resistor_0402:1R 1% 0402")
+		(at 279.4 121.92 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp yes)
+		(fields_autoplaced yes)
+		(uuid "79679ae8-863d-4bb2-96d9-f7426e2aedaf")
+		(property "Reference" "R39"
+			(at 279.4 113.03 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1R 1%"
+			(at 279.4 115.57 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 283.464 119.888 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8588903265874956288"
+			(at 294.386 119.888 0)
+			(show_name yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" "Chip Resistors 0402 1Ω ±1% 1/16W ±200ppm/℃"
+			(at 287.782 119.888 0)
+			(show_name yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC_PART" "C185446"
+			(at 292.354 119.888 0)
+			(show_name yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ROHS" "YES"
+			(at 285.75 119.888 0)
+			(show_name yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "FOOTPRINT_SHORT" "0402"
+			(at 279.4 118.11 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MFR" "RALEC"
+			(at 290.068 119.888 0)
+			(show_name yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "MPN" "RC0402FR-071RL"
+			(at 296.418 119.888 0)
+			(show_name yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a654c4be-ee44-4767-9bd6-51f2b64a74e7")
+		)
+		(pin "2"
+			(uuid "acc26006-f0b4-43d9-b5be-1989ecac5133")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/95dbce03-f6ae-4759-a74f-d844ccfad803"
+					(reference "R39")
 					(unit 1)
 				)
 			)
@@ -8174,6 +8408,131 @@
 			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/95dbce03-f6ae-4759-a74f-d844ccfad803"
 					(reference "X2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "DS_Resistor_0402:1R 1% 0402")
+		(at 279.4 143.51 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp yes)
+		(uuid "fab0fff3-dd39-4ba0-854a-c75ba16f60c6")
+		(property "Reference" "R40"
+			(at 279.4 152.4 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1R 1%"
+			(at 279.4 149.86 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 275.336 141.478 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8588903265874956288"
+			(at 264.414 141.478 0)
+			(show_name yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" "Chip Resistors 0402 1Ω ±1% 1/16W ±200ppm/℃"
+			(at 271.018 141.478 0)
+			(show_name yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "LCSC_PART" "C185446"
+			(at 266.446 141.478 0)
+			(show_name yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "ROHS" "YES"
+			(at 273.05 141.478 0)
+			(show_name yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "FOOTPRINT_SHORT" "0402"
+			(at 279.4 147.32 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MFR" "RALEC"
+			(at 268.732 141.478 0)
+			(show_name yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "MPN" "RC0402FR-071RL"
+			(at 262.382 141.478 0)
+			(show_name yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "89cc0c0b-0648-4495-bc9f-ff544c9fbe02")
+		)
+		(pin "2"
+			(uuid "be703b44-cd24-459b-81b5-5ed9f84fee07")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/95dbce03-f6ae-4759-a74f-d844ccfad803"
+					(reference "R40")
 					(unit 1)
 				)
 			)

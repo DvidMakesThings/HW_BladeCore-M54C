@@ -7106,7 +7106,7 @@
 			(uuid "14535905-659b-42fa-8ee8-af375effc62e")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR0118")
 					(unit 1)
@@ -7172,7 +7172,7 @@
 			(uuid "7fa25e54-4d91-48af-b7c1-0308d6624549")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR0112")
 					(unit 1)
@@ -7240,7 +7240,7 @@
 			(uuid "6c6a6fd0-c75f-4a77-a6a2-181c284ef299")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "D8")
 					(unit 1)
@@ -7354,7 +7354,7 @@
 			(uuid "bc39b814-9dfb-4122-9616-fe0e97b87428")
 		)
 		(instances
-			(project ""
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "C59")
 					(unit 1)
@@ -7480,7 +7480,7 @@
 			(uuid "89dc6beb-3a12-4083-9b41-a13182e431e2")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "D7")
 					(unit 1)
@@ -7608,7 +7608,7 @@
 			(uuid "b2df04b1-ae6b-47fc-b4bf-98742fabfb92")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "C56")
 					(unit 1)
@@ -7725,7 +7725,7 @@
 			(uuid "81f48a0e-3251-4d6f-a1ac-3e46c0eef454")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "R54")
 					(unit 1)
@@ -7791,7 +7791,7 @@
 			(uuid "baab9cc4-9184-43cc-825c-8832fcd8a3b4")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR098")
 					(unit 1)
@@ -7861,7 +7861,7 @@
 			(uuid "9a8bbdfd-2a93-4909-9a07-0175197f1a04")
 		)
 		(instances
-			(project ""
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "D4")
 					(unit 1)
@@ -7979,7 +7979,7 @@
 			(uuid "95ca2f8c-579c-4431-a84e-cd1004962289")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "C54")
 					(unit 1)
@@ -8046,7 +8046,7 @@
 			(uuid "cb1db9a8-57e9-4b53-a668-5028726c2b9a")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR0107")
 					(unit 1)
@@ -8173,7 +8173,7 @@
 			(uuid "524d89a8-f5da-4acc-8dbe-d958c9b8c130")
 		)
 		(instances
-			(project ""
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "D2")
 					(unit 1)
@@ -8290,7 +8290,7 @@
 			(uuid "f2abf11a-343f-477a-8279-ea21a922f02c")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "R19")
 					(unit 1)
@@ -8355,7 +8355,7 @@
 			(uuid "f8ad498d-af7a-4a92-a621-1dffa683a72a")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR0105")
 					(unit 1)
@@ -8422,7 +8422,7 @@
 			(uuid "70866265-7211-40df-9724-43fc84b3cdd2")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR0108")
 					(unit 1)
@@ -8549,7 +8549,7 @@
 			(uuid "4b5d4af2-7f60-4b9e-9966-44d81e20037c")
 		)
 		(instances
-			(project ""
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "D6")
 					(unit 1)
@@ -8615,7 +8615,7 @@
 			(uuid "edd94e0e-2204-4a31-b85b-0b805a4f702e")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR090")
 					(unit 1)
@@ -8732,7 +8732,7 @@
 			(uuid "4829bb22-cf80-4376-a815-1c05179bc30a")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "R52")
 					(unit 1)
@@ -8798,7 +8798,7 @@
 			(uuid "9f84a94e-f5a0-4113-998b-3b396aa33d30")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR085")
 					(unit 1)
@@ -8916,7 +8916,7 @@
 			(uuid "0607a2ce-c166-4a81-bde5-b392a5e02a0b")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "C57")
 					(unit 1)
@@ -9056,7 +9056,7 @@
 			(uuid "01cd02d4-1551-4dd9-b6e3-7e32898dbf9f")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "IC8")
 					(unit 1)
@@ -9122,7 +9122,7 @@
 			(uuid "02a03f98-aa5b-4331-87b3-1b2d0f839b70")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR095")
 					(unit 1)
@@ -9275,7 +9275,7 @@
 			(uuid "8ba3fc82-096c-45b8-a74f-a30852ff1072")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "IC9")
 					(unit 1)
@@ -9341,7 +9341,7 @@
 			(uuid "bc447e64-d610-4565-a3fe-383cc286606a")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR089")
 					(unit 1)
@@ -9459,7 +9459,7 @@
 			(uuid "b5261074-7632-4839-9189-fb3c7e53454c")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "C51")
 					(unit 1)
@@ -9576,7 +9576,7 @@
 			(uuid "6265bc38-4a9d-44f3-9dca-47f57341d63b")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "R55")
 					(unit 1)
@@ -9642,7 +9642,7 @@
 			(uuid "b8985f5f-ea11-46f6-a8e6-80964993b632")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR099")
 					(unit 1)
@@ -9759,7 +9759,7 @@
 			(uuid "a0b17454-82b8-43ea-8805-1ae4706c96a5")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "C58")
 					(unit 1)
@@ -9825,7 +9825,7 @@
 			(uuid "5fbd3ab0-81c6-4a0e-84f4-8459896cf256")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR0114")
 					(unit 1)
@@ -9891,7 +9891,7 @@
 			(uuid "1812c28e-c9d9-4829-b76e-f1e169fdde27")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR088")
 					(unit 1)
@@ -9957,7 +9957,7 @@
 			(uuid "45979450-4e37-41b7-86aa-d7a499cecdf1")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR0102")
 					(unit 1)
@@ -10023,7 +10023,7 @@
 			(uuid "d645784f-5124-4b0f-b7e3-6453d5b9feb3")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR0116")
 					(unit 1)
@@ -10141,7 +10141,7 @@
 			(uuid "14f4efcd-1a73-4ace-b88f-5b508115d7cf")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "C50")
 					(unit 1)
@@ -10308,7 +10308,7 @@
 			(uuid "bc3ecd03-f86a-4a54-96ec-720781029baf")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "IC7")
 					(unit 1)
@@ -10425,7 +10425,7 @@
 			(uuid "f3c63de5-3865-403f-9740-49d90bbaf600")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "R53")
 					(unit 1)
@@ -10491,7 +10491,7 @@
 			(uuid "2a260c21-f95e-442d-a4e3-dac84d412d33")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR084")
 					(unit 1)
@@ -10557,7 +10557,7 @@
 			(uuid "8442585e-21ff-49a4-bfec-a2391d885e99")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#FLG06")
 					(unit 1)
@@ -10720,7 +10720,7 @@
 			(uuid "f460c14c-cf63-47b0-9d60-b67d49879a04")
 		)
 		(instances
-			(project ""
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "J3")
 					(unit 1)
@@ -10786,7 +10786,7 @@
 			(uuid "6af73308-696f-4c0c-92ca-d611943a5fae")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR0111")
 					(unit 1)
@@ -10904,7 +10904,7 @@
 			(uuid "16019ae4-b727-44a6-bb52-7dba652b0d45")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "C52")
 					(unit 1)
@@ -10970,7 +10970,7 @@
 			(uuid "d8e31ec0-6afb-4c7d-8864-e4bf363a4110")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR096")
 					(unit 1)
@@ -11086,7 +11086,7 @@
 			(uuid "1e528967-85f1-48e5-8989-bcb9cc733d88")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "R62")
 					(unit 1)
@@ -11203,7 +11203,7 @@
 			(uuid "c3e2a25b-cd53-4027-97eb-a5ed06841c23")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "R20")
 					(unit 1)
@@ -11269,7 +11269,7 @@
 			(uuid "f52d8950-97a9-4b50-9ae4-8d364c7b6b78")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR081")
 					(unit 1)
@@ -11335,7 +11335,7 @@
 			(uuid "dc0f9aec-e78f-48f4-bf4e-d5a412bf75fe")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR094")
 					(unit 1)
@@ -11401,7 +11401,7 @@
 			(uuid "953c629e-ec73-46d4-8e41-100fb8184899")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR097")
 					(unit 1)
@@ -11468,7 +11468,7 @@
 			(uuid "bb88c554-0bf4-428d-9791-ebd0d8db52bb")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR02")
 					(unit 1)
@@ -11582,7 +11582,7 @@
 			(uuid "28321f0b-5ee5-4711-a36b-e48dbd70078a")
 		)
 		(instances
-			(project ""
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "R57")
 					(unit 1)
@@ -11648,7 +11648,7 @@
 			(uuid "bb3cce9b-9770-40ce-a303-8353ce2d0e2f")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR0106")
 					(unit 1)
@@ -11765,7 +11765,7 @@
 			(uuid "bddc9123-1a7d-4458-946f-13e175fe04a9")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "R59")
 					(unit 1)
@@ -11831,7 +11831,7 @@
 			(uuid "d7366770-a346-4669-acb9-b1a0e54397cc")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR0115")
 					(unit 1)
@@ -11897,7 +11897,7 @@
 			(uuid "02f60a50-953b-4384-bfe4-92c684961228")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR0113")
 					(unit 1)
@@ -11963,7 +11963,7 @@
 			(uuid "a8eb6ca6-7d2b-4f7f-a11e-f0c8431c829c")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR086")
 					(unit 1)
@@ -12030,7 +12030,7 @@
 			(uuid "206f08a4-7ca9-468f-a104-bae31c5794f9")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR0117")
 					(unit 1)
@@ -12096,7 +12096,7 @@
 			(uuid "27032cfe-2eba-46ca-890e-3170858f6eba")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR0110")
 					(unit 1)
@@ -12163,7 +12163,7 @@
 			(uuid "10122544-6da0-4a78-bc9d-179e82945fd2")
 		)
 		(instances
-			(project ""
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#SHIELD01")
 					(unit 1)
@@ -12277,7 +12277,7 @@
 			(uuid "bf0cfc98-ea79-4187-83d1-886d100f3f22")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "R60")
 					(unit 1)
@@ -12344,7 +12344,7 @@
 			(uuid "fc31b57b-5fac-44fb-a292-c523a88a7a11")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR0109")
 					(unit 1)
@@ -12471,7 +12471,7 @@
 			(uuid "f911b92e-0e5c-4a16-953c-b785bb34ab68")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "C55")
 					(unit 1)
@@ -12537,7 +12537,7 @@
 			(uuid "3909819d-4306-43bf-8ae0-83a14ba0d7b1")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR082")
 					(unit 1)
@@ -12602,7 +12602,7 @@
 			(uuid "8ef08a52-f9dd-459c-a1f2-5cd113d40c34")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR0104")
 					(unit 1)
@@ -12669,7 +12669,7 @@
 			(uuid "d7e0e80b-191c-41fd-a5fa-d26fd5f588a5")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR0101")
 					(unit 1)
@@ -12787,7 +12787,7 @@
 			(uuid "1e5ae66b-6131-4bf9-8bb4-acf76dd4ae09")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "C53")
 					(unit 1)
@@ -12903,7 +12903,7 @@
 			(uuid "16c4ad28-1140-4a8b-921d-f0400bdbfd6a")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "R56")
 					(unit 1)
@@ -13021,7 +13021,7 @@
 			(uuid "2879bb1d-9ca8-427a-8694-5c2a76966d9f")
 		)
 		(instances
-			(project "BladeCore-M54"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "C49")
 					(unit 1)
@@ -13087,7 +13087,7 @@
 			(uuid "663bc303-dbc2-448e-a2d6-26e07c4c5e59")
 		)
 		(instances
-			(project "PDNode_Baseboard"
+			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR087")
 					(unit 1)
