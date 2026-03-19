@@ -5895,7 +5895,7 @@
 		)
 		(uuid "fefcbc1c-2b9f-4b49-8371-a9a156f6f474")
 	)
-	(label "USB_IND"
+	(label "HB_IND"
 		(at 121.92 254 0)
 		(effects
 			(font

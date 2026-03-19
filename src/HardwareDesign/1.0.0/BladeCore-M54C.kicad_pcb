@@ -245,7 +245,7 @@
 	(net 24 "QSPI_SD2")
 	(net 25 "QSPI_SD1")
 	(net 26 "/Project Architecture/USB Interface and Power/USB_IND")
-	(net 27 "/Project Architecture/Microcontroller/USB_IND")
+	(net 27 "/Project Architecture/Microcontroller/HB_IND")
 	(net 28 "QSPI_SS")
 	(net 29 "/Project Architecture/Microcontroller Peripherals/RP_D-")
 	(net 30 "QSPI_SD3")
@@ -1320,19 +1320,6 @@
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "LCSC_PART" "C26178"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "392f990d-7736-403e-8f4d-d85882aeaa7f")
-			(effects
-				(font
-					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -6303,7 +6290,7 @@
 		(path "/c5103ceb-5325-4a84-a025-9638a412984e/7d1670e8-0876-4971-81a5-f16f3da13dc7")
 		(sheetname "/Project Architecture/")
 		(sheetfile "Project Architecture.kicad_sch")
-		(attr smd)
+		(attr smd exclude_from_bom dnp)
 		(fp_line
 			(start -0.727064 0.91)
 			(end 0.727064 0.91)
@@ -10360,7 +10347,7 @@
 			(size 0.54 0.64)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 27 "/Project Architecture/Microcontroller/USB_IND")
+			(net 27 "/Project Architecture/Microcontroller/HB_IND")
 			(pintype "passive")
 			(uuid "a62cd7d6-fffb-419d-ae30-4206619eb792")
 		)
@@ -20669,7 +20656,7 @@
 			(size 0.59 0.64)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 27 "/Project Architecture/Microcontroller/USB_IND")
+			(net 27 "/Project Architecture/Microcontroller/HB_IND")
 			(pintype "passive")
 			(uuid "c2fc6bd8-2abf-4856-8f6a-784193363ace")
 		)
@@ -32156,25 +32143,11 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC_PART" "C26178"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "9e44d7f0-3d6c-4ea4-848d-e49fbc0cf29c")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-				(justify mirror)
-			)
-		)
 		(property ki_fp_filters "D*SMA*")
 		(path "/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2/0ff43bb7-2707-4b12-bbdb-4821f2ec7ba2")
 		(sheetname "/Project Architecture/USB Interface and Power/")
 		(sheetfile "usb_interface.kicad_sch")
-		(attr smd)
+		(attr smd exclude_from_bom dnp)
 		(fp_line
 			(start -3.51 1.65)
 			(end 2 1.65)
