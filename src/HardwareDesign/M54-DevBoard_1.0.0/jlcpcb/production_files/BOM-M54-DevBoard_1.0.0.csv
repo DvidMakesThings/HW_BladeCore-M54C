@@ -30,26 +30,3 @@ SP0503BAHTG,D7,SOT143,C3040626,1
 SQJ459EP-T1_GE3,T1,PowerPAK SO-8,C3289501,1
 TXS0108EPWR,"IC1,IC2,IC3,IC4",TSSOP-20_4.4x6.5_P0.65mm,C17206,4
 USB-B-S-F-B-TH,J8,USB_B_Lumberg_2411_02_Horizontal,C5714571,1
-~,TP1,TestPoint_0.6mm,,1
-~,TP12,TestPoint_0.6mm,,1
-~,TP11,TestPoint_0.6mm,,1
-~,TP10,TestPoint_0.6mm,,1
-~,TP9,TestPoint_0.6mm,,1
-~,TP8,TestPoint_0.6mm,,1
-~,TP7,TestPoint_0.6mm,,1
-~,TP6,TestPoint_0.6mm,,1
-~,TP5,TestPoint_0.6mm,,1
-~,TP4,TestPoint_0.6mm,,1
-~,TP3,TestPoint_0.6mm,,1
-~,TP2,TestPoint_0.6mm,,1
-~,D16,SMA,,1
-PINHD_1x10_Female,J7,PinSocket_1x10_P2.54mm_Vertical,,1
-PINHD_1x10_Female,J6,PinSocket_1x10_P2.54mm_Vertical,,1
-PINHD_1x10_Female,J5,PinSocket_1x10_P2.54mm_Vertical,,1
-PINHD_1x10_Female,J4,PinSocket_1x10_P2.54mm_Vertical,,1
-PINHD_1x10_Female,J3,PinSocket_1x10_P2.54mm_Vertical,,1
-PINHD_1x10_Female,J2,PinSocket_1x10_P2.54mm_Vertical,,1
-PINHD_1x3_Male,J11,PinHeader_1x03_P2.54mm_Vertical,,1
-1888687,J10,"TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal",,1
-LM397,IC6,SOT-23-5,,1
-DE9_Socket_MountingHoles,J12,DSUB-9_Socket_Horizontal_P2.77x2.84mm_EdgePinOffset4.94mm_Housed_MountingHolesOffset4.94mm,,1
