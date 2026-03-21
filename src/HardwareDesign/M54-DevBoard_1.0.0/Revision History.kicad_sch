@@ -1,0 +1,129 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "ea8c4f5e-7a49-4faf-a994-dbc85ed86b0a")
+	(paper "A3")
+	(title_block
+		(title "Revision History")
+		(date "2025-01-12")
+		(rev "${REVISION}")
+		(company "${COMPANY}")
+	)
+	(lib_symbols)
+	(text_box "[${#}] ${TITLE}"
+		(exclude_from_sim no)
+		(at 12.7 15.24 0)
+		(size 394.97 12.7)
+		(margins 4.4999 4.4999 4.4999 4.4999)
+		(stroke
+			(width -0.0001)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(face "Times New Roman")
+				(size 8 8)
+				(thickness 1.2)
+				(bold yes)
+				(color 43 49 168 1)
+			)
+		)
+		(uuid "20a0a094-ac98-46df-bdac-21d5721f7697")
+	)
+	(text_box "${RELEASE_TITLE_1.0.2}"
+		(exclude_from_sim no)
+		(at 152.4 31.75 0)
+		(size 57.15 7.62)
+		(margins 1.4287 1.4287 1.4287 1.4287)
+		(stroke
+			(width -0.0001)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(face "Arial")
+				(size 1.905 1.905)
+				(thickness 0.254)
+				(bold yes)
+			)
+			(justify left top)
+		)
+		(uuid "61447e65-3862-4ca7-a61e-5d8506cb38bb")
+	)
+	(text_box "${RELEASE_TITLE_1.0.0}"
+		(exclude_from_sim no)
+		(at 20.32 31.75 0)
+		(size 57.15 7.62)
+		(margins 1.4287 1.4287 1.4287 1.4287)
+		(stroke
+			(width -0.0001)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(face "Arial")
+				(size 1.905 1.905)
+				(thickness 0.254)
+				(bold yes)
+			)
+			(justify left top)
+		)
+		(uuid "d183a6b7-e8a2-46ec-8c3c-ec3041423bc1")
+	)
+	(text_box "${RELEASE_TITLE_1.0.1}"
+		(exclude_from_sim no)
+		(at 86.36 31.75 0)
+		(size 57.15 7.62)
+		(margins 1.4287 1.4287 1.4287 1.4287)
+		(stroke
+			(width -0.0001)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(face "Arial")
+				(size 1.905 1.905)
+				(thickness 0.254)
+				(bold yes)
+			)
+			(justify left top)
+		)
+		(uuid "ed7f1ff6-56f6-4427-ab7f-2ffe27717c3d")
+	)
+	(text_box "${RELEASE_TITLE_1.1.0}"
+		(exclude_from_sim no)
+		(at 218.44 31.75 0)
+		(size 57.15 7.62)
+		(margins 1.4287 1.4287 1.4287 1.4287)
+		(stroke
+			(width -0.0001)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(face "Arial")
+				(size 1.905 1.905)
+				(thickness 0.254)
+				(bold yes)
+			)
+			(justify left top)
+		)
+		(uuid "f47af890-f55a-44bf-b54f-b7df3adde008")
+	)
+)

@@ -4111,6 +4111,88 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "DS_Test:Test_Point"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "TP"
+				(at 0 4.064 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "DS_Test:TestPoint_0.6mm"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Test_Point_0_1"
+				(circle
+					(center 0 2.032)
+					(radius 0.762)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "Test_Point_1_1"
+				(pin passive line
+					(at 0 -1.27 90)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "DS_Vreg:TPS74801DRCT"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -5111,6 +5193,18 @@
 		)
 		(uuid "55f9788d-4754-4827-94e1-1ca7131d3cfc")
 	)
+	(text "VBUS_ONBOARD: +5V from the onboard USB-C\nVBUS_ISO: USB +5V from the M.2 connector\n+5V: Supply voltage from external source\n     from M.2 connector"
+		(exclude_from_sim no)
+		(at 84.582 66.802 0)
+		(effects
+			(font
+				(face "Consolas")
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "602ad5f6-1183-4bdd-9bd4-bb8169ab7beb")
+	)
 	(text "No need for external VBUS,\nR36 is DNI. Only USB data"
 		(exclude_from_sim no)
 		(at 184.404 162.052 0)
@@ -5181,17 +5275,6 @@
 			(justify left)
 		)
 		(uuid "a3a92b4e-0c15-427b-8fe0-0179276bfcdc")
-	)
-	(text "If PGOOD AND PGOOD_3V3 are both 1, Y = 1"
-		(exclude_from_sim no)
-		(at 320.802 81.534 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "a703ca65-f7eb-4930-9e15-88993aa8ce3e")
 	)
 	(text "+5V INDICATOR LED"
 		(exclude_from_sim no)
@@ -5287,6 +5370,12 @@
 		(uuid "f2579d24-a7e3-4ff2-880d-f20be135eb70")
 	)
 	(junction
+		(at 40.64 71.12)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0bd73098-ed72-4e92-a54a-c9a289934f19")
+	)
+	(junction
 		(at 120.65 90.17)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5317,6 +5406,12 @@
 		(uuid "2fa9baef-e83d-4b90-9ac1-2376783e5591")
 	)
 	(junction
+		(at 40.64 85.09)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "2feb2ce7-d8f9-4195-9fb7-b6aa93251486")
+	)
+	(junction
 		(at 266.7 193.04)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5341,10 +5436,22 @@
 		(uuid "4e6fe138-924d-4b03-8965-2da3f7a05eb4")
 	)
 	(junction
+		(at 30.48 85.09)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4eabd66a-d20f-4d25-8478-bdf6ed30ee98")
+	)
+	(junction
 		(at 76.2 85.09)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "5be6cac3-a755-4696-960a-a26c9fc3c7b8")
+	)
+	(junction
+		(at 76.2 70.9658)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "5c7fd2fc-4020-4d3f-937b-1c560c244cf1")
 	)
 	(junction
 		(at 153.67 97.79)
@@ -5399,6 +5506,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "960c5ca2-e963-4534-8569-7cfb75ef90f3")
+	)
+	(junction
+		(at 58.42 71.0512)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "98162603-5817-481f-8e1f-ced5db8ae3ba")
 	)
 	(junction
 		(at 307.34 93.98)
@@ -5461,6 +5574,12 @@
 		(uuid "ec9c56ec-3350-49d5-bdac-484e8cefcfd6")
 	)
 	(junction
+		(at 198.12 97.79)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f0b97fef-fe0a-4055-903d-94c4458ed77c")
+	)
+	(junction
 		(at 120.65 85.09)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5483,16 +5602,6 @@
 			(type default)
 		)
 		(uuid "03d5f910-1073-48b7-bb72-c558c221abef")
-	)
-	(wire
-		(pts
-			(xy 167.64 264.16) (xy 167.64 260.35)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "049d006d-06c3-4bda-8d4e-9fea80654d89")
 	)
 	(wire
 		(pts
@@ -5536,6 +5645,16 @@
 	)
 	(wire
 		(pts
+			(xy 199.39 191.77) (xy 196.85 191.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0b178313-d3ae-431a-8e8f-7710121576b5")
+	)
+	(wire
+		(pts
 			(xy 102.87 182.88) (xy 102.87 203.2)
 		)
 		(stroke
@@ -5543,6 +5662,16 @@
 			(type default)
 		)
 		(uuid "0bee13e9-7f1f-48b1-883d-dea640fe69a8")
+	)
+	(wire
+		(pts
+			(xy 76.2 68.58) (xy 76.2 70.9658)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0c96c781-8f3b-4915-8140-0e970aac4762")
 	)
 	(wire
 		(pts
@@ -5676,6 +5805,16 @@
 	)
 	(wire
 		(pts
+			(xy 40.64 68.58) (xy 40.64 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "20100b23-d144-49b8-b33e-213540d1d861")
+	)
+	(wire
+		(pts
 			(xy 38.1 213.36) (xy 38.1 223.52)
 		)
 		(stroke
@@ -5726,13 +5865,13 @@
 	)
 	(wire
 		(pts
-			(xy 76.2 78.74) (xy 76.2 85.09)
+			(xy 76.2 81.28) (xy 76.2 85.09)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "2b7a65b3-9360-4bd7-be67-5593af9d6cfe")
+		(uuid "2980359e-77fe-46e3-9625-7b3b10ba6179")
 	)
 	(wire
 		(pts
@@ -5753,6 +5892,16 @@
 			(type default)
 		)
 		(uuid "2f7a01c7-5a00-4771-9cc5-2c44f50a6b95")
+	)
+	(wire
+		(pts
+			(xy 160.02 82.55) (xy 157.48 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3271748d-c404-46f6-93a1-7320bd32328a")
 	)
 	(wire
 		(pts
@@ -5906,7 +6055,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 68.58) (xy 58.42 73.66)
+			(xy 58.42 68.58) (xy 58.42 71.0512)
 		)
 		(stroke
 			(width 0)
@@ -5976,16 +6125,6 @@
 	)
 	(wire
 		(pts
-			(xy 39.37 68.58) (xy 39.37 85.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "55a27dd0-8373-4f47-ad75-8d4d6c59f18d")
-	)
-	(wire
-		(pts
 			(xy 143.51 167.64) (xy 143.51 172.72)
 		)
 		(stroke
@@ -6033,6 +6172,16 @@
 			(type default)
 		)
 		(uuid "5ffd6c01-f719-4d35-8142-8ee41b7aec7d")
+	)
+	(wire
+		(pts
+			(xy 76.2 70.9658) (xy 76.2 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "64447f73-408e-4c92-bdf6-2fedd5899adf")
 	)
 	(wire
 		(pts
@@ -6216,6 +6365,16 @@
 	)
 	(wire
 		(pts
+			(xy 40.64 81.28) (xy 40.64 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "892bab36-9249-429b-bbfe-b84bd84f735f")
+	)
+	(wire
+		(pts
 			(xy 161.29 217.17) (xy 161.29 199.39)
 		)
 		(stroke
@@ -6233,16 +6392,6 @@
 			(type default)
 		)
 		(uuid "8ca5fea0-6b07-44f6-bb03-06e0c4811507")
-	)
-	(wire
-		(pts
-			(xy 54.61 85.09) (xy 58.42 85.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8efa0a37-53f7-4b36-b783-bf2237f90fe9")
 	)
 	(wire
 		(pts
@@ -6396,6 +6545,16 @@
 	)
 	(wire
 		(pts
+			(xy 30.48 85.09) (xy 30.48 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a3d42b55-288b-4907-a68e-a875e16790ef")
+	)
+	(wire
+		(pts
 			(xy 120.65 95.25) (xy 124.46 95.25)
 		)
 		(stroke
@@ -6496,6 +6655,16 @@
 	)
 	(wire
 		(pts
+			(xy 30.48 85.09) (xy 40.64 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b5dfa411-3048-40da-94af-7ef82dabd02d")
+	)
+	(wire
+		(pts
 			(xy 118.11 217.17) (xy 118.11 207.01)
 		)
 		(stroke
@@ -6576,6 +6745,16 @@
 	)
 	(wire
 		(pts
+			(xy 196.85 191.77) (xy 196.85 195.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c5d08bfe-a037-47cb-becc-b60341cfffde")
+	)
+	(wire
+		(pts
 			(xy 280.67 205.74) (xy 316.23 205.74)
 		)
 		(stroke
@@ -6626,6 +6805,26 @@
 	)
 	(wire
 		(pts
+			(xy 40.64 85.09) (xy 58.42 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d14ceab7-ae6e-4353-b285-70b1d7eb9d7e")
+	)
+	(wire
+		(pts
+			(xy 58.42 71.0512) (xy 58.42 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d397da09-095c-49c6-822b-f6a287090e35")
+	)
+	(wire
+		(pts
 			(xy 76.2 119.38) (xy 76.2 113.03)
 		)
 		(stroke
@@ -6653,6 +6852,16 @@
 			(type default)
 		)
 		(uuid "d7bb2ef2-75fa-4c71-8362-31968025ecdb")
+	)
+	(wire
+		(pts
+			(xy 157.48 82.55) (xy 157.48 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d8fee2cf-b1c3-4695-8e3f-337e8379dfe7")
 	)
 	(wire
 		(pts
@@ -6686,16 +6895,6 @@
 	)
 	(wire
 		(pts
-			(xy 39.37 85.09) (xy 46.99 85.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dcf33b13-347a-4987-bc1d-dd04bde08e3f")
-	)
-	(wire
-		(pts
 			(xy 71.12 177.8) (xy 73.66 177.8)
 		)
 		(stroke
@@ -6706,6 +6905,16 @@
 	)
 	(wire
 		(pts
+			(xy 29.21 85.09) (xy 30.48 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e1b2e175-5024-4a4f-83e4-d78fe46d20f2")
+	)
+	(wire
+		(pts
 			(xy 151.13 85.09) (xy 157.48 85.09)
 		)
 		(stroke
@@ -6713,6 +6922,16 @@
 			(type default)
 		)
 		(uuid "e2385c12-dad8-4e42-a8be-b9abb04b865f")
+	)
+	(wire
+		(pts
+			(xy 40.64 71.12) (xy 40.64 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e4238e14-cb61-47d8-99a7-4e09df600b24")
 	)
 	(wire
 		(pts
@@ -7145,7 +7364,7 @@
 	)
 	(symbol
 		(lib_id "power:VBUS")
-		(at 39.37 68.58 0)
+		(at 40.64 68.58 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7154,7 +7373,7 @@
 		(fields_autoplaced yes)
 		(uuid "0856569e-67c4-4501-8633-333971757a7a")
 		(property "Reference" "#PWR0118"
-			(at 39.37 72.39 0)
+			(at 40.64 72.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7163,7 +7382,7 @@
 			)
 		)
 		(property "Value" "VBUS_ONBOARD"
-			(at 39.37 63.5 0)
+			(at 40.64 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7171,7 +7390,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 39.37 68.58 0)
+			(at 40.64 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7180,7 +7399,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 39.37 68.58 0)
+			(at 40.64 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7189,7 +7408,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"VBUS\""
-			(at 39.37 68.58 0)
+			(at 40.64 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7210,99 +7429,35 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 167.64 260.35 0)
+		(lib_id "Diode:SS13")
+		(at 40.64 77.47 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "0aa6df29-8d57-4eb9-a28e-fe45067bdb00")
-		(property "Reference" "#PWR059"
-			(at 167.64 264.16 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 167.64 255.27 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 167.64 260.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 167.64 260.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 167.64 260.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b561ac32-78a5-4ec7-b189-216a060c50a0")
-		)
-		(instances
-			(project "BladeCore-M54C"
-				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
-					(reference "#PWR059")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Diode:SS13")
-		(at 50.8 85.09 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(dnp yes)
-		(fields_autoplaced yes)
 		(uuid "0ff43bb7-2707-4b12-bbdb-4821f2ec7ba2")
 		(property "Reference" "D8"
-			(at 51.1175 78.74 0)
+			(at 43.18 76.5174 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 		(property "Value" "SS13"
-			(at 51.1175 81.28 0)
+			(at 43.18 79.0574 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_SMA"
-			(at 50.8 80.645 0)
+			(at 45.085 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7311,7 +7466,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.vishay.com/docs/88746/ss12.pdf"
-			(at 50.8 85.09 0)
+			(at 40.64 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7320,7 +7475,7 @@
 			)
 		)
 		(property "Description" "30V 1A Schottky Diode, SMA"
-			(at 50.8 85.09 0)
+			(at 40.64 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7452,6 +7607,73 @@
 			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "C59")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "DS_Test:Test_Point")
+		(at 27.94 85.09 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "19365d1b-17ba-4329-8a78-2039982a0348")
+		(property "Reference" "TP1"
+			(at 24.384 85.09 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "~"
+			(at 27.1779 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "DS_Test:TestPoint_0.6mm"
+			(at 27.94 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 27.94 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 27.94 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "21736396-0997-40b5-b599-74ec68c956b0")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
+					(reference "TP1")
 					(unit 1)
 				)
 			)
@@ -7895,6 +8117,142 @@
 		)
 	)
 	(symbol
+		(lib_id "DS_Test:Test_Point")
+		(at 161.29 82.55 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "29a9e440-ce1b-4cc4-a453-1a6b9e8e1b02")
+		(property "Reference" "TP7"
+			(at 164.846 82.55 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "~"
+			(at 162.0521 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "DS_Test:TestPoint_0.6mm"
+			(at 161.29 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 161.29 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 161.29 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fd2078fe-5025-496e-8523-71ae368096eb")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
+					(reference "TP7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "DS_Test:Test_Point")
+		(at 158.75 110.49 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "326948d6-02d7-4ecf-9ed2-dff2de68e1f5")
+		(property "Reference" "TP6"
+			(at 162.306 110.49 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "~"
+			(at 159.5121 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "DS_Test:TestPoint_0.6mm"
+			(at 158.75 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 158.75 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 158.75 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0a07641b-2955-4723-82bf-502a99a06e5d")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
+					(reference "TP6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Diode:SS13")
 		(at 58.42 77.47 90)
 		(unit 1)
@@ -7959,6 +8317,74 @@
 			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "D4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "DS_Test:Test_Point")
+		(at 77.47 70.9658 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "39daaad8-9de1-4b70-8374-2baab3072a4b")
+		(property "Reference" "TP4"
+			(at 81.026 70.9658 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "~"
+			(at 78.2321 68.4258 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "DS_Test:TestPoint_0.6mm"
+			(at 77.47 70.9658 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 77.47 70.9658 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 77.47 70.9658 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9336d9b8-55f3-4d97-ab13-99ce129fdecf")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
+					(reference "TP4")
 					(unit 1)
 				)
 			)
@@ -8902,6 +9328,74 @@
 		)
 	)
 	(symbol
+		(lib_id "DS_Test:Test_Point")
+		(at 200.66 191.77 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5dba6fd2-3566-4503-83bc-67a33fc406df")
+		(property "Reference" "TP8"
+			(at 204.216 191.77 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "~"
+			(at 201.4221 189.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "DS_Test:TestPoint_0.6mm"
+			(at 200.66 191.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 200.66 191.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 200.66 191.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3e9b4a7e-5dec-4d29-b7bd-0351bda31950")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
+					(reference "TP8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "DS_Peripherals:SN74LVC1G97QDCKRQ1")
 		(at 322.58 99.06 0)
 		(unit 1)
@@ -9036,6 +9530,74 @@
 			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "IC8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "DS_Test:Test_Point")
+		(at 41.91 71.12 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "62aac376-1ad6-4660-9edb-ae5729d999d0")
+		(property "Reference" "TP2"
+			(at 45.466 71.12 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "~"
+			(at 42.6721 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "DS_Test:TestPoint_0.6mm"
+			(at 41.91 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 41.91 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 41.91 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0d9571b3-3406-48e8-81f9-1a95e09aecbe")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
+					(reference "TP2")
 					(unit 1)
 				)
 			)
@@ -9811,6 +10373,73 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+5V")
+		(at 167.64 264.16 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "78ee2b14-3fe4-49e2-8abd-59cf5ef9d68d")
+		(property "Reference" "#PWR062"
+			(at 171.45 264.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "VIN_PWR"
+			(at 163.83 264.1599 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 167.64 264.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 167.64 264.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 167.64 264.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5d109092-925e-486e-bfb5-7a4fa0ad2417")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
+					(reference "#PWR062")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "DS_Supply:GND")
 		(at 74.93 226.06 0)
 		(unit 1)
@@ -10009,6 +10638,74 @@
 		)
 	)
 	(symbol
+		(lib_id "DS_Test:Test_Point")
+		(at 199.39 97.79 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "82db9104-8d77-4b73-a00f-628140b19dd8")
+		(property "Reference" "TP5"
+			(at 202.946 97.79 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "~"
+			(at 200.1521 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "DS_Test:TestPoint_0.6mm"
+			(at 199.39 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 199.39 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 199.39 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8507343b-a98e-40eb-8d58-6bce12192407")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
+					(reference "TP5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:VBUS")
 		(at 280.67 182.88 0)
 		(unit 1)
@@ -10069,6 +10766,72 @@
 			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR0116")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 30.48 80.01 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8a9d1ce9-7717-4cb0-8dc3-2cbd5a2fbbb4")
+		(property "Reference" "#PWR059"
+			(at 30.48 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "VIN_PWR"
+			(at 30.48 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 30.48 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 30.48 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 30.48 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d174e1d3-47fc-4b11-9f0a-2d1554f1709f")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
+					(reference "#PWR059")
 					(unit 1)
 				)
 			)
@@ -10478,7 +11241,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 76.2 78.74 0)
+		(at 76.2 68.58 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -10487,7 +11250,7 @@
 		(fields_autoplaced yes)
 		(uuid "97790394-1d21-42c1-8d25-c05c2b7993f2")
 		(property "Reference" "#PWR084"
-			(at 76.2 82.55 0)
+			(at 76.2 72.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10496,7 +11259,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 76.2 73.66 0)
+			(at 76.2 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10504,7 +11267,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 76.2 78.74 0)
+			(at 76.2 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10513,7 +11276,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 76.2 78.74 0)
+			(at 76.2 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10522,7 +11285,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 76.2 78.74 0)
+			(at 76.2 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11016,6 +11779,76 @@
 			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR096")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:SS13")
+		(at 76.2 77.47 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a9afc202-5acd-4c4b-80b4-86f8c2b4d412")
+		(property "Reference" "D11"
+			(at 78.74 76.5174 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "SS13"
+			(at 78.74 79.0574 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SMA"
+			(at 80.645 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/88746/ss12.pdf"
+			(at 76.2 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "30V 1A Schottky Diode, SMA"
+			(at 76.2 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "0e1d10ed-5106-4eab-b774-c67f7b2b6cff")
+		)
+		(pin "1"
+			(uuid "0d68693c-9434-49ae-aafb-e318bf9bc60a")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
+					(reference "D11")
 					(unit 1)
 				)
 			)
@@ -12957,6 +13790,74 @@
 			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
 					(reference "#PWR0104")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "DS_Test:Test_Point")
+		(at 59.69 71.0512 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e8a2f5dc-7752-41d6-b88f-d7c9593e2ba4")
+		(property "Reference" "TP3"
+			(at 63.246 71.0512 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "~"
+			(at 60.4521 68.5112 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "DS_Test:TestPoint_0.6mm"
+			(at 59.69 71.0512 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 59.69 71.0512 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 59.69 71.0512 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4149fca8-df19-4151-bcde-5a5b87fe8a90")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/2613c462-ed55-40aa-a079-4e429685a0a2"
+					(reference "TP3")
 					(unit 1)
 				)
 			)

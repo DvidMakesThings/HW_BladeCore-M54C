@@ -3339,6 +3339,88 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "DS_Test:Test_Point"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "TP"
+				(at 0 4.064 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "DS_Test:TestPoint_0.6mm"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Test_Point_0_1"
+				(circle
+					(center 0 2.032)
+					(radius 0.762)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "Test_Point_1_1"
+				(pin passive line
+					(at 0 -1.27 90)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:+3.3V"
 			(power)
 			(pin_numbers
@@ -3464,6 +3546,131 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "power:+5V"
+			(power)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "+5V"
+				(at 0 3.556 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+5V\""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "+5V_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+5V_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 	)
 	(text "MCP2515 CAN CONTROLLER"
 		(exclude_from_sim no)
@@ -3491,7 +3698,7 @@
 	)
 	(text "R35 = 60.4 Ω from CANH to the midpoint\nR36 = 60.4 Ω from CANL to the midpoint\nSo differential termination is ~120.8 Ω total"
 		(exclude_from_sim no)
-		(at 318.008 158.75 0)
+		(at 318.262 161.544 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3536,7 +3743,7 @@
 	)
 	(text "If this is a mid-bus node, this \ntermination should not be populated."
 		(exclude_from_sim no)
-		(at 318.262 164.592 0)
+		(at 318.516 167.386 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3589,16 +3796,16 @@
 		(uuid "138ccf00-3852-4331-95d6-3c4e102a1cb2")
 	)
 	(junction
-		(at 334.01 135.89)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "20845de9-04ea-4aa6-af1c-c54c335ce544")
-	)
-	(junction
 		(at 266.7 138.43)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "232132fe-84e2-4801-80ac-31240a176e16")
+	)
+	(junction
+		(at 90.17 119.38)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "39275548-f227-48fd-9fa2-1c0941817c04")
 	)
 	(junction
 		(at 271.78 138.43)
@@ -3623,6 +3830,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "72063b79-2486-4503-b5db-afa2be20d767")
+	)
+	(junction
+		(at 90.17 114.3)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7333e142-b2a0-40f1-aa5c-b7cd2980166f")
 	)
 	(junction
 		(at 302.26 121.92)
@@ -3724,6 +3937,16 @@
 	)
 	(wire
 		(pts
+			(xy 90.17 116.84) (xy 90.17 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "09c1e377-bd5a-49cc-ab17-d2e4097e162d")
+	)
+	(wire
+		(pts
 			(xy 261.62 121.92) (xy 261.62 135.89)
 		)
 		(stroke
@@ -3771,6 +3994,16 @@
 			(type default)
 		)
 		(uuid "1827b16f-1539-44f5-a53f-3ee11904d194")
+	)
+	(wire
+		(pts
+			(xy 320.04 119.38) (xy 320.04 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1879cbba-6d40-4c7b-bdb8-38c37a148222")
 	)
 	(wire
 		(pts
@@ -3874,7 +4107,7 @@
 	)
 	(wire
 		(pts
-			(xy 334.01 135.89) (xy 320.04 135.89)
+			(xy 320.04 135.89) (xy 335.28 135.89)
 		)
 		(stroke
 			(width 0)
@@ -3951,6 +4184,16 @@
 			(type default)
 		)
 		(uuid "405ba00d-f796-4af1-aa37-68b0f0c5d0e3")
+	)
+	(wire
+		(pts
+			(xy 88.9 116.84) (xy 90.17 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "42f2c57b-0680-40d7-a10a-c15c83f84934")
 	)
 	(wire
 		(pts
@@ -4074,6 +4317,16 @@
 	)
 	(wire
 		(pts
+			(xy 90.17 114.3) (xy 101.6 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "666a9b09-d66d-4621-b2fa-5c9583fb0594")
+	)
+	(wire
+		(pts
 			(xy 148.59 139.7) (xy 179.07 139.7)
 		)
 		(stroke
@@ -4081,16 +4334,6 @@
 			(type default)
 		)
 		(uuid "66bb4a5b-e795-4d96-b409-3d7e96e26857")
-	)
-	(wire
-		(pts
-			(xy 335.28 135.89) (xy 334.01 135.89)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6cdf4124-dbc1-4af3-a9d8-64834a13febe")
 	)
 	(wire
 		(pts
@@ -4264,6 +4507,26 @@
 	)
 	(wire
 		(pts
+			(xy 88.9 111.76) (xy 90.17 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "92d49691-f2f0-4fb9-898f-5ad9d8438c09")
+	)
+	(wire
+		(pts
+			(xy 320.04 154.94) (xy 320.04 152.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "94cc5cb8-b901-4084-bf5d-e13e88d0fdea")
+	)
+	(wire
+		(pts
 			(xy 76.2 151.13) (xy 76.2 147.32)
 		)
 		(stroke
@@ -4274,6 +4537,16 @@
 	)
 	(wire
 		(pts
+			(xy 321.31 154.94) (xy 320.04 154.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "973f33a9-945b-4902-af65-212f64f17484")
+	)
+	(wire
+		(pts
 			(xy 207.01 146.05) (xy 207.01 143.51)
 		)
 		(stroke
@@ -4281,6 +4554,16 @@
 			(type default)
 		)
 		(uuid "99c60d3a-0bf4-4e37-bfdb-ee3f1807050a")
+	)
+	(wire
+		(pts
+			(xy 90.17 119.38) (xy 101.6 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9b298218-9313-4ddf-b718-f48826bad821")
 	)
 	(wire
 		(pts
@@ -4454,7 +4737,7 @@
 	)
 	(wire
 		(pts
-			(xy 77.47 114.3) (xy 101.6 114.3)
+			(xy 77.47 114.3) (xy 90.17 114.3)
 		)
 		(stroke
 			(width 0)
@@ -4464,7 +4747,7 @@
 	)
 	(wire
 		(pts
-			(xy 345.44 135.89) (xy 341.63 135.89)
+			(xy 345.44 135.89) (xy 342.9 135.89)
 		)
 		(stroke
 			(width 0)
@@ -4574,6 +4857,16 @@
 	)
 	(wire
 		(pts
+			(xy 321.31 119.38) (xy 320.04 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e5d714be-50b7-4e06-9853-44be78fbc557")
+	)
+	(wire
+		(pts
 			(xy 289.56 138.43) (xy 289.56 143.51)
 		)
 		(stroke
@@ -4581,6 +4874,16 @@
 			(type default)
 		)
 		(uuid "e83d2d65-f4e4-4db7-889a-3ab71df92947")
+	)
+	(wire
+		(pts
+			(xy 90.17 111.76) (xy 90.17 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e9057908-396d-4a63-b065-81e6fcca6817")
 	)
 	(wire
 		(pts
@@ -4604,7 +4907,7 @@
 	)
 	(wire
 		(pts
-			(xy 77.47 119.38) (xy 101.6 119.38)
+			(xy 77.47 119.38) (xy 90.17 119.38)
 		)
 		(stroke
 			(width 0)
@@ -4850,6 +5153,140 @@
 			(justify right)
 		)
 		(uuid "f7012bf7-b0f0-4d1b-8c57-88231c2aad5a")
+	)
+	(symbol
+		(lib_id "DS_Test:Test_Point")
+		(at 87.63 111.76 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0ade7ff2-23e5-4e9d-9fbc-918375df08d4")
+		(property "Reference" "TP13"
+			(at 84.074 111.76 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "~"
+			(at 86.8679 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "DS_Test:TestPoint_0.6mm"
+			(at 87.63 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 87.63 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 87.63 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5429af3c-adc7-4889-9703-63914f8747f9")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/95dbce03-f6ae-4759-a74f-d844ccfad803"
+					(reference "TP13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "DS_Test:Test_Point")
+		(at 87.63 116.84 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0d8acf76-f367-495d-aa6a-e596e921a8e8")
+		(property "Reference" "TP12"
+			(at 84.074 116.84 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "~"
+			(at 86.8679 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "DS_Test:TestPoint_0.6mm"
+			(at 87.63 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 87.63 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 87.63 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "235ad08e-ccdf-4b85-b481-dab60681cd11")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/95dbce03-f6ae-4759-a74f-d844ccfad803"
+					(reference "TP12")
+					(unit 1)
+				)
+			)
+		)
 	)
 	(symbol
 		(lib_id "DS_Supply:GND")
@@ -5485,6 +5922,74 @@
 		)
 	)
 	(symbol
+		(lib_id "DS_Test:Test_Point")
+		(at 322.58 119.38 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "37c92b84-43ce-48a2-ad58-2d0c53b7ec10")
+		(property "Reference" "TP10"
+			(at 326.136 119.38 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "~"
+			(at 323.3421 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "DS_Test:TestPoint_0.6mm"
+			(at 322.58 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 322.58 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 322.58 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7ffed087-b732-4b5c-a9f8-2d1ef5ed3419")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/95dbce03-f6ae-4759-a74f-d844ccfad803"
+					(reference "TP10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "DS_Supply:GND")
 		(at 198.12 157.48 0)
 		(unit 1)
@@ -5795,6 +6300,72 @@
 			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/95dbce03-f6ae-4759-a74f-d844ccfad803"
 					(reference "#PWR0209")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 184.15 123.19 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "571ed439-bd64-4ca5-a162-614989238efc")
+		(property "Reference" "#PWR063"
+			(at 184.15 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "VIN_PWR"
+			(at 184.15 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 184.15 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 184.15 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 184.15 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e799a2cb-aa84-4853-8a8b-11cfbff3b193")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/95dbce03-f6ae-4759-a74f-d844ccfad803"
+					(reference "#PWR063")
 					(unit 1)
 				)
 			)
@@ -6592,7 +7163,7 @@
 	)
 	(symbol
 		(lib_id "DS_Capacitor_0402:4.7nF 50V 0402")
-		(at 337.82 135.89 90)
+		(at 339.09 135.89 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6601,7 +7172,7 @@
 		(fields_autoplaced yes)
 		(uuid "9aa3beae-b592-4f61-a4bb-a532eba54bda")
 		(property "Reference" "C33"
-			(at 337.82 125.73 90)
+			(at 339.09 125.73 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6609,7 +7180,7 @@
 			)
 		)
 		(property "Value" "4.7nF 50V"
-			(at 337.82 128.27 90)
+			(at 339.09 128.27 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6617,7 +7188,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 341.884 132.08 0)
+			(at 343.154 132.08 0)
 			(show_name yes)
 			(effects
 				(font
@@ -6628,7 +7199,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 345.948 132.08 0)
+			(at 347.218 132.08 0)
 			(show_name yes)
 			(effects
 				(font
@@ -6639,7 +7210,7 @@
 			)
 		)
 		(property "Description" "50V 4.7nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS"
-			(at 350.012 132.08 0)
+			(at 351.282 132.08 0)
 			(show_name yes)
 			(effects
 				(font
@@ -6650,7 +7221,7 @@
 			)
 		)
 		(property "FOOTPRINT_SHORT" "0402"
-			(at 337.82 130.81 90)
+			(at 339.09 130.81 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6658,7 +7229,7 @@
 			)
 		)
 		(property "ROHS" "YES"
-			(at 352.044 132.08 0)
+			(at 353.314 132.08 0)
 			(show_name yes)
 			(effects
 				(font
@@ -6669,7 +7240,7 @@
 			)
 		)
 		(property "LCSC_PART" "C1538"
-			(at 343.916 132.08 0)
+			(at 345.186 132.08 0)
 			(show_name yes)
 			(effects
 				(font
@@ -6680,7 +7251,7 @@
 			)
 		)
 		(property "MFR" "Walsin"
-			(at 347.98 132.08 0)
+			(at 349.25 132.08 0)
 			(show_name yes)
 			(effects
 				(font
@@ -7511,72 +8082,6 @@
 			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/95dbce03-f6ae-4759-a74f-d844ccfad803"
 					(reference "R38")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3.3V")
-		(at 184.15 123.19 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "cf8d7742-dae8-4690-a3c6-679ffe7e5739")
-		(property "Reference" "#PWR0210"
-			(at 184.15 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3.3V"
-			(at 184.15 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 184.15 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 184.15 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 184.15 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "71c175af-11cd-40f1-bfab-eb992615b7f4")
-		)
-		(instances
-			(project "BladeCore-M54C"
-				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/95dbce03-f6ae-4759-a74f-d844ccfad803"
-					(reference "#PWR0210")
 					(unit 1)
 				)
 			)
@@ -8784,6 +9289,74 @@
 			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/95dbce03-f6ae-4759-a74f-d844ccfad803"
 					(reference "C34")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "DS_Test:Test_Point")
+		(at 322.58 154.94 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "fe79e14c-b152-4939-93fe-cfbb7c5c99cf")
+		(property "Reference" "TP11"
+			(at 326.136 154.94 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "~"
+			(at 323.3421 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "DS_Test:TestPoint_0.6mm"
+			(at 322.58 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 322.58 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 322.58 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b2436dcd-5c3a-4eda-a1ae-65458fc45900")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/95dbce03-f6ae-4759-a74f-d844ccfad803"
+					(reference "TP11")
 					(unit 1)
 				)
 			)

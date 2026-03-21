@@ -14,7 +14,7 @@
 				)
 			)
 		)
-		(property "Value" "MDT320M03001"
+		(property "Value" "MDT580M01001"
 			(at 0 50.8 0)
 			(effects
 				(font
@@ -44,7 +44,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "67 Position Female Connector M.2 (NGFF) Mini Card Gold 0.020\" (0.50mm) Black M-Key"
+		(property "Description" "67 Position Female Connector M.2 (NGFF) Mini Card Gold 0.020\" (0.50mm) Black, 58mm"
 			(at -9.652 -56.134 0)
 			(show_name)
 			(effects
@@ -55,7 +55,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC_PART" "C5086252"
+		(property "LCSC_PART" "C5177196"
 			(at -9.652 -65.278 0)
 			(show_name)
 			(effects
@@ -66,7 +66,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "MDT320M03001"
+		(property "MPN" "MDT580M01001"
 			(at -9.652 -70.104 0)
 			(show_name)
 			(effects
@@ -99,7 +99,7 @@
 				(hide yes)
 			)
 		)
-		(property "DIST1" "https://www.digikey.at/en/products/detail/amphenol-icc-fci/mdt320m03001/5810349"
+		(property "DIST1" "https://www.digikey.de/en/products/detail/amphenol-icc-fci/mdt580m01001/22525925"
 			(at -9.398 -72.898 0)
 			(show_name)
 			(effects
@@ -296,78 +296,6 @@
 					)
 				)
 				(number "2"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-			)
-			(pin power_in line
-				(at 26.67 35.56 180)
-				(length 5.08)
-				(name "PWR"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-				(number "10"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-			)
-			(pin power_in line
-				(at 26.67 33.02 180)
-				(length 5.08)
-				(name "PWR"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-				(number "12"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-			)
-			(pin power_in line
-				(at 26.67 30.48 180)
-				(length 5.08)
-				(name "PWR"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-				(number "14"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-			)
-			(pin power_in line
-				(at 26.67 27.94 180)
-				(length 5.08)
-				(name "PWR"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-				(number "16"
 					(effects
 						(font
 							(size 1.016 1.016)
@@ -1573,6 +1501,78 @@
 				)
 			)
 			(pin power_in line
+				(at 26.67 35.56 180)
+				(length 5.08)
+				(name "3V3_OUT"
+					(effects
+						(font
+							(size 1.016 1.016)
+						)
+					)
+				)
+				(number "10"
+					(effects
+						(font
+							(size 1.016 1.016)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at 26.67 33.02 180)
+				(length 5.08)
+				(name "3V3_OUT"
+					(effects
+						(font
+							(size 1.016 1.016)
+						)
+					)
+				)
+				(number "12"
+					(effects
+						(font
+							(size 1.016 1.016)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at 26.67 30.48 180)
+				(length 5.08)
+				(name "5VIN"
+					(effects
+						(font
+							(size 1.016 1.016)
+						)
+					)
+				)
+				(number "14"
+					(effects
+						(font
+							(size 1.016 1.016)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at 26.67 27.94 180)
+				(length 5.08)
+				(name "5VIN"
+					(effects
+						(font
+							(size 1.016 1.016)
+						)
+					)
+				)
+				(number "16"
+					(effects
+						(font
+							(size 1.016 1.016)
+						)
+					)
+				)
+			)
+			(pin power_in line
 				(at 26.67 25.4 180)
 				(length 5.08)
 				(name "GND"
@@ -1629,7 +1629,7 @@
 			(pin input line
 				(at 26.67 12.7 180)
 				(length 5.08)
-				(name "CAN_P"
+				(name "CAN_H"
 					(effects
 						(font
 							(size 1.016 1.016)
@@ -1647,7 +1647,7 @@
 			(pin input line
 				(at 26.67 10.16 180)
 				(length 5.08)
-				(name "CAN_N"
+				(name "CAN_L"
 					(effects
 						(font
 							(size 1.016 1.016)

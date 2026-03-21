@@ -194,10 +194,10 @@ This allows the module to be normally operated via a carrier board USB connectio
 | 4 | GPIO27 | *SPI1 TX | UART1 RTS | I2C1 SCL | PWM5 B | SIO | PIO0 | PIO1 | PIO2 | | |
 | 6 | GPIO26 | *SPI1 SCK | UART1 CTS | I2C1 SDA | PWM5 A | SIO | PIO0 | PIO1 | PIO2 | | |
 | 8 | GPIO25 | *SPI1 CSn | UART1 RX | **I2C0 SCL | PWM4 B | SIO | PIO0 | PIO1 | PIO2 | | CLOCK GPOUT3 |
-| 10 | PWR | | | | | | | | | | |
-| 12 | PWR | | | | | | | | | | |
-| 14 | PWR | | | | | | | | | | |
-| 16 | PWR | | | | | | | | | | |
+| 10 | 3V3_OUT | | | | | | | | | | |
+| 12 | 3V3_OUT | | | | | | | | | | |
+| 14 | +5V_IN | | | | | | | | | | |
+| 16 | +5V_IN | | | | | | | | | | |
 | 18 | GND | | | | | | | | | | |
 | 20 | GND | | | | | | | | | | |
 | 22 | GND | | | | | | | | | | |

@@ -4788,6 +4788,88 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "DS_Test:Test_Point"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "TP"
+				(at 0 4.064 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "DS_Test:TestPoint_0.6mm"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Test_Point_0_1"
+				(circle
+					(center 0 2.032)
+					(radius 0.762)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "Test_Point_1_1"
+				(pin passive line
+					(at 0 -1.27 90)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "DS_Vreg:LM4040B30FTA"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -5770,6 +5852,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d2717673-cca0-471d-8623-5dee26567cb4")
+	)
+	(junction
+		(at 182.88 223.52)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d3ccaa08-f071-48b1-9124-70b20ccbe6d0")
 	)
 	(junction
 		(at 140.97 63.5)
@@ -7221,7 +7309,7 @@
 	)
 	(wire
 		(pts
-			(xy 156.21 241.3) (xy 162.56 241.3)
+			(xy 156.21 241.3) (xy 160.02 241.3)
 		)
 		(stroke
 			(width 0)
@@ -8121,7 +8209,7 @@
 	)
 	(global_label "VREF_OUT"
 		(shape input)
-		(at 162.56 241.3 0)
+		(at 160.02 241.3 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -8131,7 +8219,7 @@
 		)
 		(uuid "0c422429-5d4d-443c-b440-436ad01c0002")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 174.7376 241.3 0)
+			(at 172.1976 241.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9737,6 +9825,73 @@
 		)
 	)
 	(symbol
+		(lib_id "DS_Test:Test_Point")
+		(at 67.31 127 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2ae39bb3-8088-4287-8e46-627281ac8f9c")
+		(property "Reference" "TP17"
+			(at 63.754 127 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "~"
+			(at 66.5479 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "DS_Test:TestPoint_0.6mm"
+			(at 67.31 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 67.31 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 67.31 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7ccdce84-d702-4438-ade5-35c623182f73")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f7b2be89-429e-4d2e-8374-4bafaede0ad1"
+					(reference "TP17")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "DS_Supply:GND")
 		(at 111.76 250.19 0)
 		(unit 1)
@@ -9863,6 +10018,73 @@
 			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f7b2be89-429e-4d2e-8374-4bafaede0ad1"
 					(reference "#PWR07")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "DS_Test:Test_Point")
+		(at 181.61 241.3 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2dc6417c-431d-489c-9266-4305530bc9f4")
+		(property "Reference" "TP14"
+			(at 178.054 241.3 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "~"
+			(at 180.8479 238.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "DS_Test:TestPoint_0.6mm"
+			(at 181.61 241.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 181.61 241.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 181.61 241.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c35bf4a8-c05f-4180-8871-8701b72de4e7")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f7b2be89-429e-4d2e-8374-4bafaede0ad1"
+					(reference "TP14")
 					(unit 1)
 				)
 			)
@@ -10796,6 +11018,73 @@
 			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f7b2be89-429e-4d2e-8374-4bafaede0ad1"
 					(reference "C17")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "DS_Test:Test_Point")
+		(at 181.61 223.52 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5a0172a5-f8c5-4b9d-8eb5-60f8526ca5f4")
+		(property "Reference" "TP15"
+			(at 178.054 223.52 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "~"
+			(at 180.8479 220.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "DS_Test:TestPoint_0.6mm"
+			(at 181.61 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 181.61 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 181.61 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b077a1aa-2123-42aa-afde-304efaffc5f8")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f7b2be89-429e-4d2e-8374-4bafaede0ad1"
+					(reference "TP15")
 					(unit 1)
 				)
 			)
@@ -17005,6 +17294,73 @@
 			(project "BladeCore-M54C"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f7b2be89-429e-4d2e-8374-4bafaede0ad1"
 					(reference "C24")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "DS_Test:Test_Point")
+		(at 40.64 238.76 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "fb75430c-ca85-4260-8747-c7153e0513f1")
+		(property "Reference" "TP16"
+			(at 37.084 238.76 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "~"
+			(at 39.8779 236.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "DS_Test:TestPoint_0.6mm"
+			(at 40.64 238.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 40.64 238.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 40.64 238.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "05cef6e4-8b04-48e4-b40d-84f26fb8cd40")
+		)
+		(instances
+			(project "BladeCore-M54C"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f7b2be89-429e-4d2e-8374-4bafaede0ad1"
+					(reference "TP16")
 					(unit 1)
 				)
 			)
