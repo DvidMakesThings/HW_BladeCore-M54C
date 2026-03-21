@@ -3,7 +3,7 @@
 BladeCore‑M54C is part of the **BladeCore** modular controller series.  
 Each BladeCore variant is implemented as a standalone hardware repository, sharing a common architectural philosophy while targeting different microcontrollers and interfaces.
 
-This repository documents the **BladeCore‑M54C** hardware, which is based on the **RP2354B** microcontroller and integrates **CAN (FD) connectivity**.
+This repository documents the **BladeCore-M54C** hardware, which is based on the **RP2354B** microcontroller and integrates **CAN 2.0B connectivity**.
 
 
 ## BladeCore Series Overview
@@ -16,8 +16,8 @@ The BladeCore series consists of the following hardware variants:
 | [BladeCore‑M40E](#) | RP2040  | Ethernet | -          | Work in progress |
 | [BladeCore‑M40C](#) | RP2040  | CAN      | -          | Work in progress |
 | [BladeCore‑M54](#)  | RP2354B | —        | -          | Work in progress |
-| [BladeCore‑M54E](https://github.com/DvidMakesThings/HW_BladeCore-M54E) | RP2354B | Ethernet | 2280       | Available |
-| [BladeCore‑M54C](https://github.com/DvidMakesThings/HW_BladeCore-M54C) | RP2354B | CAN      | 2280       | Available |
+| [BladeCore-M54E](https://github.com/DvidMakesThings/HW_BladeCore-M54E) | RP2354B | Ethernet | 2980       | Available |
+| [BladeCore-M54C](https://github.com/DvidMakesThings/HW_BladeCore-M54C) | RP2354B | CAN      | 2980       | Available |
 
 ### Naming Scheme Explanation
 
@@ -35,15 +35,15 @@ Each BladeCore variant is implemented as a **separate hardware design and reposi
 
 ## Description
 
-BladeCore‑M54C is a compact controller module built around the **RP2354B** microcontroller, combined with a **MCP2515T-I/ML CAN controller** and the **TCAN1044AVDRBR-Q1** CAN Transciever.  
-The module is designed as a **2280‑size M.2 M‑Key card**, intended to be embedded into a carrier board or system that provides power through the M.2 edge connector.
+BladeCore-M54C is a compact controller module built around the **RP2354B** microcontroller, combined with a **MCP2515T-I/ML CAN controller** and the **TCAN1044AVDRBRQ1** CAN transceiver.  
+The module is designed as a **2980-size M.2 M-Key card**, intended to be embedded into a carrier board or system that provides power through the M.2 edge connector.
 
 The design integrates:
 
 *   RP2354B microcontroller
 *   External QSPI flash memory
 *   External I²C EEPROM
-*   Onboard CAN controller and transciever with 120 Ohm termination
+*   Onboard CAN controller and transceiver with 120 Ohm termination
 *   Dual‑path USB connectivity with automatic source selection
 *   Onboard power regulation and defined power‑up sequencing
 
@@ -80,7 +80,7 @@ This repository contains the schematics and documentation.
 
 ### Form Factor
 
-*   **M.2 2280**
+*   **M.2 2980**
 *   **M‑Key**
 *   Power and I/O routed through the M.2 edge connector
 
@@ -101,7 +101,7 @@ This repository contains the schematics and documentation.
     *   Capacity: **2 MB**
 *   **External QSPI Flash**
     *   W25Q128JVPIQ
-    *   Capacity: **8 MB**
+    *   Capacity: **16 MB**
 *   **External I²C EEPROM**
     *   AT24C256
     *   Capacity: **256 kbit**
@@ -111,7 +111,7 @@ This repository contains the schematics and documentation.
 ### CAN
 
 *   **MCP2515T-I/ML CAN controller**
-*   **TCAN1044AVDRBR-Q1** CAN Transciever
+*   **TCAN1044AVDRBRQ1** CAN transceiver
 *   Interface to MCU via **SPI**
 *   Onboard 120 Ohm termination
 *   Dedicated reset and interrupt signals
