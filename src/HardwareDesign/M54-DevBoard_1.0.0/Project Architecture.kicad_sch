@@ -1,7 +1,7 @@
 (kicad_sch
-	(version 20250114)
+	(version 20260306)
 	(generator "eeschema")
-	(generator_version "9.0")
+	(generator_version "10.0")
 	(uuid "07236397-3ba4-47af-9809-3faac3a2aa49")
 	(paper "A3")
 	(title_block
@@ -21,7 +21,7 @@
 		(fill
 			(type none)
 		)
-		(uuid 09d142d3-8c92-4890-a6aa-d2921f6936c8)
+		(uuid "09d142d3-8c92-4890-a6aa-d2921f6936c8")
 	)
 	(circle
 		(center 128.9153 159.991)
@@ -33,7 +33,7 @@
 		(fill
 			(type none)
 		)
-		(uuid 16679006-c5ae-42dc-bfb1-13214d3974e4)
+		(uuid "16679006-c5ae-42dc-bfb1-13214d3974e4")
 	)
 	(rectangle
 		(start 130.175 138.43)
@@ -46,7 +46,7 @@
 			(type color)
 			(color 0 0 0 0)
 		)
-		(uuid 294f9951-27f6-48db-aace-8bc0efac4c46)
+		(uuid "294f9951-27f6-48db-aace-8bc0efac4c46")
 	)
 	(circle
 		(center 127 158.75)
@@ -58,7 +58,7 @@
 		(fill
 			(type none)
 		)
-		(uuid 476fddc8-57ff-4e35-915b-dbc53774900e)
+		(uuid "476fddc8-57ff-4e35-915b-dbc53774900e")
 	)
 	(circle
 		(center 127.6453 159.991)
@@ -70,7 +70,7 @@
 		(fill
 			(type none)
 		)
-		(uuid 57135388-90d2-4442-9eb7-d803f5ced666)
+		(uuid "57135388-90d2-4442-9eb7-d803f5ced666")
 	)
 	(circle
 		(center 130.1853 159.991)
@@ -82,7 +82,7 @@
 		(fill
 			(type none)
 		)
-		(uuid 73eef83a-08f5-443f-83ed-d580b478fd12)
+		(uuid "73eef83a-08f5-443f-83ed-d580b478fd12")
 	)
 	(circle
 		(center 129.5502 158.7437)
@@ -94,7 +94,7 @@
 		(fill
 			(type none)
 		)
-		(uuid 82adea49-1fe5-47be-b167-f232cbfc6760)
+		(uuid "82adea49-1fe5-47be-b167-f232cbfc6760")
 	)
 	(circle
 		(center 128.27 158.75)
@@ -106,7 +106,7 @@
 		(fill
 			(type none)
 		)
-		(uuid ab60c486-0fc7-47c4-ac7e-a346b8be3a80)
+		(uuid "ab60c486-0fc7-47c4-ac7e-a346b8be3a80")
 	)
 	(circle
 		(center 131.4553 159.991)
@@ -118,7 +118,7 @@
 		(fill
 			(type none)
 		)
-		(uuid bc85a660-2312-4159-ad1b-2a425d08bf9c)
+		(uuid "bc85a660-2312-4159-ad1b-2a425d08bf9c")
 	)
 	(rectangle
 		(start 91.44 119.38)
@@ -132,7 +132,7 @@
 			(type color)
 			(color 255 0 30 1)
 		)
-		(uuid cc2de1ee-cd8d-45f1-a1bc-8a2e0b05b6de)
+		(uuid "cc2de1ee-cd8d-45f1-a1bc-8a2e0b05b6de")
 	)
 	(circle
 		(center 127 139.7)
@@ -145,7 +145,7 @@
 			(type color)
 			(color 0 0 0 0)
 		)
-		(uuid d4368c5b-7134-401e-942d-00178fa69003)
+		(uuid "d4368c5b-7134-401e-942d-00178fa69003")
 	)
 	(circle
 		(center 128.905 146.05)
@@ -158,7 +158,7 @@
 			(type color)
 			(color 0 0 0 0)
 		)
-		(uuid ed8f90e7-e124-4a1c-a3dd-1f5714d05843)
+		(uuid "ed8f90e7-e124-4a1c-a3dd-1f5714d05843")
 	)
 	(circle
 		(center 130.81 158.75)
@@ -170,7 +170,7 @@
 		(fill
 			(type none)
 		)
-		(uuid fbd0144b-c05e-44d9-a83e-a81aaa1a24db)
+		(uuid "fbd0144b-c05e-44d9-a83e-a81aaa1a24db")
 	)
 	(text "VIN = 10V to 20V"
 		(exclude_from_sim no)
@@ -599,11 +599,13 @@
 			(type solid)
 		)
 		(fill
-			(color 94 142 255 1.0000)
+			(color 94 142 255 1)
 		)
 		(uuid "157745df-d6ee-4465-8ac8-b3dd68161d14")
 		(property "Sheetname" "Output Interfaces"
 			(at 226.06 125.0184 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -613,6 +615,8 @@
 		)
 		(property "Sheetfile" "Output_interfaces.kicad_sch"
 			(at 226.06 160.6046 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -623,7 +627,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
-					(page "6")
+					(page "4")
 				)
 			)
 		)
@@ -641,11 +645,13 @@
 			(type solid)
 		)
 		(fill
-			(color 255 178 98 1.0000)
+			(color 255 178 98 1)
 		)
 		(uuid "43e2093a-4d28-4ac5-bf7b-d54773a532e2")
 		(property "Sheetname" "USB and Power"
 			(at 115.57 112.3184 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -655,6 +661,8 @@
 		)
 		(property "Sheetfile" "USB_and_Power.kicad_sch"
 			(at 115.57 172.0346 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -685,7 +693,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
-					(page "7")
+					(page "5")
 				)
 			)
 		)
@@ -703,11 +711,13 @@
 			(type solid)
 		)
 		(fill
-			(color 128 255 128 0.5000)
+			(color 128 255 128 0.5)
 		)
 		(uuid "f06537ee-772d-44d3-8c50-e0ba41038c9c")
 		(property "Sheetname" "Bladecore M54C"
 			(at 171.45 108.1909 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.905 1.905)
@@ -718,6 +728,8 @@
 		)
 		(property "Sheetfile" "Bladecore-M54C.kicad_sch"
 			(at 171.45 177.1146 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(face "Arial")
@@ -749,7 +761,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
-					(page "4")
+					(page "3")
 				)
 			)
 		)
