@@ -35,7 +35,7 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(Heartbeat Heartbeat.c )
+add_executable(Heartbeat Heartbeat.c mcp2515.c)
 
 pico_set_program_name(Heartbeat "Heartbeat")
 pico_set_program_version(Heartbeat "0.1")
@@ -47,7 +47,7 @@ pico_enable_stdio_usb(Heartbeat 1)
 # Add the standard library to the build
 target_link_libraries(Heartbeat
         pico_stdlib
-        hardware_pwm)
+        hardware_spi)
 
 # Add the standard include files to the build
 target_include_directories(Heartbeat PRIVATE

@@ -319,24 +319,6 @@
 			)
 			(symbol "DE9_Socket_MountingHoles_1_1"
 				(pin passive line
-					(at 0 -15.24 90)
-					(length 3.81)
-					(name "PAD"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "0"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
 					(at -7.62 10.16 0)
 					(length 3.81)
 					(name "1"
@@ -491,6 +473,24 @@
 						)
 					)
 					(number "9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -15.24 90)
+					(length 3.81)
+					(name "PAD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "SH"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -10099,112 +10099,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:DE9_Socket_MountingHoles")
-		(at 210.82 137.16 0)
-		(mirror x)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "3b3c92ef-1110-45c5-97c9-ac57f76a832c")
-		(property "Reference" "J12"
-			(at 206.502 118.618 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "DE9_Socket_MountingHoles"
-			(at 206.502 121.158 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Connector_Dsub:DSUB-9_Socket_Horizontal_P2.77x2.84mm_EdgePinOffset4.94mm_Housed_MountingHolesOffset4.94mm"
-			(at 210.82 137.16 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 210.82 137.16 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "9-pin D-SUB connector, socket (female), Mounting Hole"
-			(at 210.82 137.16 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "6"
-			(uuid "a87c2109-74fa-4677-be04-a32fe59d1867")
-		)
-		(pin "7"
-			(uuid "4c837274-dee6-49b0-ac32-879428c387d2")
-		)
-		(pin "3"
-			(uuid "63fbe18b-721b-4642-a8d1-05d763c057b1")
-		)
-		(pin "1"
-			(uuid "e2e2a318-9dfa-4f8e-b06b-3706a3a4b3b5")
-		)
-		(pin "8"
-			(uuid "0619a1e8-31df-4de9-b2f6-e85a49416d48")
-		)
-		(pin "9"
-			(uuid "9dd7f7ad-31c1-4bb8-8f97-d260fbdd5818")
-		)
-		(pin "0"
-			(uuid "8cf6f4ca-c266-41a4-b18b-f3cb6f36657a")
-		)
-		(pin "2"
-			(uuid "60c14fe5-8604-4f36-98f0-c7680225af0a")
-		)
-		(pin "4"
-			(uuid "8e980e34-2146-4c18-ab5a-5af6121c37ed")
-		)
-		(pin "5"
-			(uuid "dcdfc453-4d35-4a13-b400-c9292ca51e57")
-		)
-		(instances
-			(project "M54-DevBoard_1.0.0"
-				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f06537ee-772d-44d3-8c50-e0ba41038c9c"
-					(reference "J12")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:VBUS")
 		(at 53.34 171.45 90)
 		(unit 1)
@@ -11748,6 +11642,113 @@
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f06537ee-772d-44d3-8c50-e0ba41038c9c"
 					(reference "#PWR17")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:DE9_Socket_MountingHoles")
+		(at 210.82 137.16 0)
+		(mirror x)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "aa86a8e1-3027-4ba0-891e-992e727246c7")
+		(property "Reference" "J12"
+			(at 215.9 135.8899 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "DE9_Socket_MountingHoles"
+			(at 215.9 138.4299 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_Dsub:DSUB-9_Socket_Horizontal_P2.77x2.84mm_EdgePinOffset7.70mm_Housed_MountingHolesOffset9.12mm"
+			(at 210.82 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 210.82 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "9-pin D-SUB connector, socket (female), Mounting Hole"
+			(at 210.82 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "7"
+			(uuid "ed6b0038-4903-412a-a729-6c7f008227f6")
+		)
+		(pin "4"
+			(uuid "61bfa02c-ca5d-4970-ab7c-45f251d9af2c")
+		)
+		(pin "6"
+			(uuid "4261115a-6ff5-42d5-b6eb-3887b36c5af1")
+		)
+		(pin "SH"
+			(uuid "8a2252a6-3d3a-4909-b498-5ba137d08fef")
+		)
+		(pin "9"
+			(uuid "ca337b89-9f99-49f0-b08d-a332dfdf7370")
+		)
+		(pin "3"
+			(uuid "014366e2-6bb5-4749-b9fe-39bac493ab97")
+		)
+		(pin "5"
+			(uuid "b1abadaa-e1ab-47ee-a44a-d494a0d7445f")
+		)
+		(pin "8"
+			(uuid "8297e541-8b48-4b91-9883-f7ccb3b93477")
+		)
+		(pin "2"
+			(uuid "565a0489-e940-4816-a200-8eefbab8a5b9")
+		)
+		(pin "1"
+			(uuid "7250d1e5-eacf-4582-b8ec-9227c0d1eb17")
+		)
+		(instances
+			(project "M54-DevBoard_1.0.0"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f06537ee-772d-44d3-8c50-e0ba41038c9c"
+					(reference "J12")
 					(unit 1)
 				)
 			)
