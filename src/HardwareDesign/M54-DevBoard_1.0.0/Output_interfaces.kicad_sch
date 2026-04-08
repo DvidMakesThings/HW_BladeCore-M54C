@@ -2078,7 +2078,7 @@
 					(justify left)
 				)
 			)
-			(property "Datasheet" ""
+			(property "Datasheet" "https://4donline.ihs.com/images/VipMasterIC/IC/VISH/VISH-S-A0025774705/VISH-S-A0025774688-1.pdf?hkey=6D3A4C79FDBF58556ACFDE234799DDF0"
 				(at 2.032 -14.986 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -2090,7 +2090,7 @@
 					(justify left)
 				)
 			)
-			(property "Description" "62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 10kΩ 0402 Chip Resistor - Surface Mount ROHS"
+			(property "Description" "SMD Chip Resistor, 10 kohm, ± 1%, 100 mW, 0402 [1005 Metric], Thick Film, General Purpose"
 				(at 2.032 -8.382 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -2137,7 +2137,7 @@
 					(justify left)
 				)
 			)
-			(property "MFR" "ROHM"
+			(property "MFR" "VISHAY"
 				(at 2.032 -10.668 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -2147,6 +2147,28 @@
 						(size 1.27 1.27)
 					)
 					(justify left)
+				)
+			)
+			(property "DIST1" "https://de.farnell.com/en-DE/vishay/crcw040210k0fked/res-10k-1-0-063w-0402-thick-film/dp/1469669"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MPN" "CRCW040210K0FKED"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
 				)
 			)
 			(symbol "10K 1% 0402_0_1"
@@ -8925,7 +8947,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "08536e45-d037-47c5-8258-f7a241e50798")
-		(property "Reference" "#PWR034"
+		(property "Reference" "#PWR34"
 			(at 299.72 213.36 0)
 			(hide yes)
 			(show_name no)
@@ -8985,7 +9007,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR034")
+					(reference "#PWR34")
 					(unit 1)
 				)
 			)
@@ -9136,7 +9158,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0b39f374-bbb5-45b4-ae75-2ab2453be556")
-		(property "Reference" "#PWR0102"
+		(property "Reference" "#PWR102"
 			(at 205.74 236.22 0)
 			(hide yes)
 			(show_name no)
@@ -9196,7 +9218,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR0102")
+					(reference "#PWR102")
 					(unit 1)
 				)
 			)
@@ -9214,7 +9236,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0c2f268e-6ab1-4cf5-bf89-10c1b356b783")
-		(property "Reference" "#PWR0100"
+		(property "Reference" "#PWR100"
 			(at 191.77 236.22 0)
 			(hide yes)
 			(show_name no)
@@ -9274,7 +9296,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR0100")
+					(reference "#PWR100")
 					(unit 1)
 				)
 			)
@@ -9424,7 +9446,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "13b9d67e-484a-40ef-9bf5-a419d9890fa4")
-		(property "Reference" "#PWR060"
+		(property "Reference" "#PWR60"
 			(at 345.44 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -9484,7 +9506,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR060")
+					(reference "#PWR60")
 					(unit 1)
 				)
 			)
@@ -9580,7 +9602,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "177887f7-acb6-4450-9a14-a952d9d197ff")
-		(property "Reference" "#PWR069"
+		(property "Reference" "#PWR69"
 			(at 370.84 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -9640,7 +9662,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR069")
+					(reference "#PWR69")
 					(unit 1)
 				)
 			)
@@ -10119,7 +10141,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "23784346-0bfe-44bb-a3d9-a8fbf24adf90")
-		(property "Reference" "#PWR025"
+		(property "Reference" "#PWR25"
 			(at 161.29 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -10179,7 +10201,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR025")
+					(reference "#PWR25")
 					(unit 1)
 				)
 			)
@@ -10750,7 +10772,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2d304537-612e-40e8-8602-7bbd31b0b97d")
-		(property "Reference" "#PWR044"
+		(property "Reference" "#PWR44"
 			(at 229.87 167.64 0)
 			(hide yes)
 			(show_name no)
@@ -10810,7 +10832,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR044")
+					(reference "#PWR44")
 					(unit 1)
 				)
 			)
@@ -10828,7 +10850,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "33054e1f-1e13-4539-88ac-c6922cd22167")
-		(property "Reference" "#PWR039"
+		(property "Reference" "#PWR39"
 			(at 118.11 87.63 0)
 			(hide yes)
 			(show_name no)
@@ -10888,7 +10910,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR039")
+					(reference "#PWR39")
 					(unit 1)
 				)
 			)
@@ -11039,7 +11061,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3c5a2019-3d32-49f5-a407-26a50e9ad949")
-		(property "Reference" "#PWR033"
+		(property "Reference" "#PWR33"
 			(at 307.34 213.36 0)
 			(hide yes)
 			(show_name no)
@@ -11099,7 +11121,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR033")
+					(reference "#PWR33")
 					(unit 1)
 				)
 			)
@@ -11328,7 +11350,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4598c317-253f-419d-b1a3-907b9398a952")
-		(property "Reference" "#PWR096"
+		(property "Reference" "#PWR96"
 			(at 372.11 210.82 0)
 			(hide yes)
 			(show_name no)
@@ -11388,7 +11410,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR096")
+					(reference "#PWR96")
 					(unit 1)
 				)
 			)
@@ -11485,7 +11507,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "469a9a0c-fe9a-431f-99cc-52a93685c4b5")
-		(property "Reference" "#PWR097"
+		(property "Reference" "#PWR97"
 			(at 359.41 210.82 0)
 			(hide yes)
 			(show_name no)
@@ -11545,7 +11567,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR097")
+					(reference "#PWR97")
 					(unit 1)
 				)
 			)
@@ -13201,7 +13223,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6b564ac8-90a4-451f-9cca-5dfd8d6db3ca")
-		(property "Reference" "#PWR030"
+		(property "Reference" "#PWR30"
 			(at 193.04 154.94 0)
 			(hide yes)
 			(show_name no)
@@ -13261,7 +13283,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR030")
+					(reference "#PWR30")
 					(unit 1)
 				)
 			)
@@ -13832,7 +13854,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7833440f-e7e8-4595-bd0a-07af8af929f4")
-		(property "Reference" "#PWR040"
+		(property "Reference" "#PWR40"
 			(at 229.87 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -13892,7 +13914,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR040")
+					(reference "#PWR40")
 					(unit 1)
 				)
 			)
@@ -14328,7 +14350,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7f21fdc9-34ab-4644-b71f-545e84aa25ac")
-		(property "Reference" "#PWR022"
+		(property "Reference" "#PWR22"
 			(at 81.28 154.94 0)
 			(hide yes)
 			(show_name no)
@@ -14388,7 +14410,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR022")
+					(reference "#PWR22")
 					(unit 1)
 				)
 			)
@@ -14696,7 +14718,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "81880250-1ac7-4d2d-b239-5e5e30a582f5")
-		(property "Reference" "#PWR093"
+		(property "Reference" "#PWR93"
 			(at 365.76 210.82 0)
 			(hide yes)
 			(show_name no)
@@ -14756,7 +14778,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR093")
+					(reference "#PWR93")
 					(unit 1)
 				)
 			)
@@ -14774,7 +14796,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "82438612-a458-4b27-ad56-72e88a82bdf2")
-		(property "Reference" "#PWR050"
+		(property "Reference" "#PWR50"
 			(at 271.78 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -14834,7 +14856,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR050")
+					(reference "#PWR50")
 					(unit 1)
 				)
 			)
@@ -15248,7 +15270,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "87eead75-379b-4724-818d-c46f5a554d5d")
-		(property "Reference" "#PWR067"
+		(property "Reference" "#PWR67"
 			(at 370.84 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -15308,7 +15330,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR067")
+					(reference "#PWR67")
 					(unit 1)
 				)
 			)
@@ -15404,7 +15426,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8d0149a9-adc3-4dac-8f19-ccc2d7258352")
-		(property "Reference" "#PWR023"
+		(property "Reference" "#PWR23"
 			(at 102.87 243.84 0)
 			(hide yes)
 			(show_name no)
@@ -15464,7 +15486,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR023")
+					(reference "#PWR23")
 					(unit 1)
 				)
 			)
@@ -15839,7 +15861,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9e11808f-530f-451d-b3a1-9e2e49755009")
-		(property "Reference" "#PWR015"
+		(property "Reference" "#PWR15"
 			(at 49.53 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -15899,7 +15921,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR015")
+					(reference "#PWR15")
 					(unit 1)
 				)
 			)
@@ -15917,7 +15939,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a06e9997-92f2-407e-a9ff-9badcaf22d51")
-		(property "Reference" "#PWR027"
+		(property "Reference" "#PWR27"
 			(at 161.29 154.94 0)
 			(hide yes)
 			(show_name no)
@@ -15977,7 +15999,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR027")
+					(reference "#PWR27")
 					(unit 1)
 				)
 			)
@@ -16285,7 +16307,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "a2c52a6b-7a7d-42de-8c65-852c3d79b078")
-		(property "Reference" "IC6"
+		(property "Reference" "U6"
 			(at 322.072 229.108 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16356,7 +16378,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "IC6")
+					(reference "U6")
 					(unit 1)
 				)
 			)
@@ -17484,7 +17506,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b1944997-bc15-4bd8-8439-ddfa351c6eed")
-		(property "Reference" "#PWR054"
+		(property "Reference" "#PWR54"
 			(at 271.78 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -17544,7 +17566,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR054")
+					(reference "#PWR54")
 					(unit 1)
 				)
 			)
@@ -17562,7 +17584,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b5aed964-7c7c-4302-bae2-b890bedc1c71")
-		(property "Reference" "#PWR014"
+		(property "Reference" "#PWR14"
 			(at 81.28 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -17622,7 +17644,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR014")
+					(reference "#PWR14")
 					(unit 1)
 				)
 			)
@@ -17791,7 +17813,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b8be9c6b-92b6-4f78-8721-bc5f9b014946")
-		(property "Reference" "#PWR049"
+		(property "Reference" "#PWR49"
 			(at 297.18 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -17851,7 +17873,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR049")
+					(reference "#PWR49")
 					(unit 1)
 				)
 			)
@@ -17947,7 +17969,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c1a91feb-c452-47f6-9643-b0971653bfb9")
-		(property "Reference" "#PWR065"
+		(property "Reference" "#PWR65"
 			(at 370.84 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -18007,7 +18029,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR065")
+					(reference "#PWR65")
 					(unit 1)
 				)
 			)
@@ -18025,7 +18047,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c2d7cbdf-8c39-44eb-b596-7c8f5627e49b")
-		(property "Reference" "#PWR035"
+		(property "Reference" "#PWR35"
 			(at 316.23 213.36 0)
 			(hide yes)
 			(show_name no)
@@ -18085,7 +18107,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR035")
+					(reference "#PWR35")
 					(unit 1)
 				)
 			)
@@ -18103,7 +18125,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c3965729-3f8b-46e1-b09b-592243ba6327")
-		(property "Reference" "#PWR020"
+		(property "Reference" "#PWR20"
 			(at 49.53 154.94 0)
 			(hide yes)
 			(show_name no)
@@ -18163,7 +18185,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR020")
+					(reference "#PWR20")
 					(unit 1)
 				)
 			)
@@ -18181,7 +18203,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c3a4ebfe-45c8-4528-96d6-05243e64b2a6")
-		(property "Reference" "#PWR074"
+		(property "Reference" "#PWR74"
 			(at 224.79 236.22 0)
 			(hide yes)
 			(show_name no)
@@ -18241,7 +18263,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR074")
+					(reference "#PWR74")
 					(unit 1)
 				)
 			)
@@ -18259,7 +18281,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c3bc1033-02f7-4900-b68e-60ec1d1f72fe")
-		(property "Reference" "#PWR042"
+		(property "Reference" "#PWR42"
 			(at 118.11 168.91 0)
 			(hide yes)
 			(show_name no)
@@ -18319,7 +18341,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR042")
+					(reference "#PWR42")
 					(unit 1)
 				)
 			)
@@ -18547,7 +18569,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c91b3255-3541-4ee4-977f-24d8dc430467")
-		(property "Reference" "#PWR063"
+		(property "Reference" "#PWR63"
 			(at 345.44 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -18607,7 +18629,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR063")
+					(reference "#PWR63")
 					(unit 1)
 				)
 			)
@@ -18704,7 +18726,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cfb8bec7-33f3-4e90-a26e-a5355b180492")
-		(property "Reference" "#PWR046"
+		(property "Reference" "#PWR46"
 			(at 271.78 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -18764,7 +18786,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR046")
+					(reference "#PWR46")
 					(unit 1)
 				)
 			)
@@ -19178,7 +19200,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d6cfed30-eb65-43f0-b89c-b2ee9c06c236")
-		(property "Reference" "#PWR056"
+		(property "Reference" "#PWR56"
 			(at 297.18 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -19238,7 +19260,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR056")
+					(reference "#PWR56")
 					(unit 1)
 				)
 			)
@@ -19289,7 +19311,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://4donline.ihs.com/images/VipMasterIC/IC/VISH/VISH-S-A0025774705/VISH-S-A0025774688-1.pdf?hkey=6D3A4C79FDBF58556ACFDE234799DDF0"
 			(at 301.752 235.966 0)
 			(hide yes)
 			(show_name yes)
@@ -19301,7 +19323,7 @@
 				(justify left)
 			)
 		)
-		(property "Description" "62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 10kΩ 0402 Chip Resistor - Surface Mount ROHS"
+		(property "Description" "SMD Chip Resistor, 10 kohm, ± 1%, 100 mW, 0402 [1005 Metric], Thick Film, General Purpose"
 			(at 301.752 229.362 0)
 			(hide yes)
 			(show_name yes)
@@ -19387,7 +19409,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "db968918-af8e-472f-b0c7-af52233c2cb1")
-		(property "Reference" "#PWR052"
+		(property "Reference" "#PWR52"
 			(at 297.18 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -19447,7 +19469,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR052")
+					(reference "#PWR52")
 					(unit 1)
 				)
 			)
@@ -19755,7 +19777,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e08688b7-7d84-4e3d-b190-63fbc7578fde")
-		(property "Reference" "#PWR029"
+		(property "Reference" "#PWR29"
 			(at 193.04 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -19815,7 +19837,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR029")
+					(reference "#PWR29")
 					(unit 1)
 				)
 			)
@@ -20274,7 +20296,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f68555f7-a684-4361-8c39-34a0c6ad0d94")
-		(property "Reference" "#PWR058"
+		(property "Reference" "#PWR58"
 			(at 345.44 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -20334,7 +20356,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR058")
+					(reference "#PWR58")
 					(unit 1)
 				)
 			)
@@ -20430,7 +20452,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "faf8545c-e5e7-4c90-a884-9fa10ec58967")
-		(property "Reference" "#PWR016"
+		(property "Reference" "#PWR16"
 			(at 29.21 243.84 0)
 			(hide yes)
 			(show_name no)
@@ -20490,7 +20512,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/157745df-d6ee-4465-8ac8-b3dd68161d14"
-					(reference "#PWR016")
+					(reference "#PWR16")
 					(unit 1)
 				)
 			)

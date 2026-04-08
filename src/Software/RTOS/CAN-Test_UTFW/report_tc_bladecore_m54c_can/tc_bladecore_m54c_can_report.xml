@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ENERGIS Functional Test" tests="135" failures="0" skipped="0" time="0.0" session_id="6035c834">
+  <testcase classname="UTFW" name="STEP 1 DUT-&gt;REF [DE AD BE EF]" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2 REF-&gt;DUT [CA FE BA BE]" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3 DLC sweep 0..8 (DUT-&gt;REF)" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.1 DLC=0 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.2 DLC=1 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.3 DLC=2 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.4 DLC=3 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.5 DLC=4 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.6 DLC=5 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.7 DLC=6 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.8 DLC=7 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.9 DLC=8 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4 All-zeros [00]*8 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5 All-ones [FF]*8 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 6 Alternating [AA 55]*4 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7 Walking bit (DUT-&gt;REF)" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.1 Walking bit 0 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.2 Walking bit 1 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.3 Walking bit 2 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.4 Walking bit 3 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.5 Walking bit 4 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.6 Walking bit 5 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.7 Walking bit 6 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.8 Walking bit 7 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8 ID 0x001 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 9 ID 0x7FF DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 10 ID sweep (DUT-&gt;REF)" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 10.1 ID 0x010 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 10.2 ID 0x080 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 10.3 ID 0x100 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 10.4 ID 0x200 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 10.5 ID 0x3FF DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 10.6 ID 0x555 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 10.7 ID 0x7FE DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 11 Burst DUT-&gt;REF (10 frames)" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 11.1 Burst 0 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 11.2 Burst 1 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 11.3 Burst 2 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 11.4 Burst 3 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 11.5 Burst 4 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 11.6 Burst 5 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 11.7 Burst 6 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 11.8 Burst 7 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 11.9 Burst 8 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 11.10 Burst 9 DUT-&gt;REF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 12 Burst REF-&gt;DUT (10 frames)" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 12.1 Burst 0 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 12.2 Burst 1 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 12.3 Burst 2 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 12.4 Burst 3 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 12.5 Burst 4 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 12.6 Burst 5 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 12.7 Burst 6 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 12.8 Burst 7 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 12.9 Burst 8 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 12.10 Burst 9 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13 Burst REF-&gt;DUT (20 x DLC=8)" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.1 Burst DLC8 00 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.2 Burst DLC8 01 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.3 Burst DLC8 02 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.4 Burst DLC8 03 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.5 Burst DLC8 04 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.6 Burst DLC8 05 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.7 Burst DLC8 06 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.8 Burst DLC8 07 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.9 Burst DLC8 08 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.10 Burst DLC8 09 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.11 Burst DLC8 10 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.12 Burst DLC8 11 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.13 Burst DLC8 12 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.14 Burst DLC8 13 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.15 Burst DLC8 14 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.16 Burst DLC8 15 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.17 Burst DLC8 16 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.18 Burst DLC8 17 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.19 Burst DLC8 18 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 13.20 Burst DLC8 19 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 14 DLC sweep 0..8 (REF-&gt;DUT)" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 14.1 DLC=0 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 14.2 DLC=1 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 14.3 DLC=2 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 14.4 DLC=3 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 14.5 DLC=4 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 14.6 DLC=5 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 14.7 DLC=6 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 14.8 DLC=7 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 14.9 DLC=8 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 15 All-zeros [00]*8 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 16 All-ones [FF]*8 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 17 Alternating [AA 55]*4 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 18 Walking bit (REF-&gt;DUT)" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 18.1 Walking bit 0 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 18.2 Walking bit 1 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 18.3 Walking bit 2 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 18.4 Walking bit 3 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 18.5 Walking bit 4 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 18.6 Walking bit 5 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 18.7 Walking bit 6 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 18.8 Walking bit 7 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19 Byte boundary values (REF-&gt;DUT)" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.1 Byte[0]=0x00 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.2 Byte[0]=0x80 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.3 Byte[0]=0xFF REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.4 Byte[1]=0x00 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.5 Byte[1]=0x80 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.6 Byte[1]=0xFF REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.7 Byte[2]=0x00 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.8 Byte[2]=0x80 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.9 Byte[2]=0xFF REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.10 Byte[3]=0x00 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.11 Byte[3]=0x80 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.12 Byte[3]=0xFF REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.13 Byte[4]=0x00 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.14 Byte[4]=0x80 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.15 Byte[4]=0xFF REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.16 Byte[5]=0x00 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.17 Byte[5]=0x80 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.18 Byte[5]=0xFF REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.19 Byte[6]=0x00 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.20 Byte[6]=0x80 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.21 Byte[6]=0xFF REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.22 Byte[7]=0x00 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.23 Byte[7]=0x80 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 19.24 Byte[7]=0xFF REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 20 Counter payload (10 frames REF-&gt;DUT)" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 20.1 Counter 00 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 20.2 Counter 01 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 20.3 Counter 02 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 20.4 Counter 03 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 20.5 Counter 04 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 20.6 Counter 05 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 20.7 Counter 06 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 20.8 Counter 07 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 20.9 Counter 08 REF-&gt;DUT" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 20.10 Counter 09 REF-&gt;DUT" time="0.0">
+  </testcase>
+</testsuite>

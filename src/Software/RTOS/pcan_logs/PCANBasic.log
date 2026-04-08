@@ -1,0 +1,59 @@
+                          «____________________________________»
+                          «           PCAN-Basic Log           » <<<<< 64-Bit API V. 5.0.0.1115 >>>>>
+                          «____________________________________»
+Wed Apr  8 14:00:22.854 - [1590148]    PARAMETERS of CAN_SetValue: Channel: 0x00, Parameter: PCAN_LOG_CONFIGURE (11), Buffer: 0x26D31D18 [255], BufferLength: 4
+Wed Apr  8 14:00:22.854 - [1590148]  EXIT  'CAN_SetValue' -   RESULT: 0x00
+Wed Apr  8 14:00:22.854 - [1590148]  ENTRY  'CAN_SetValue'
+Wed Apr  8 14:00:22.854 - [1590148]    PARAMETERS of CAN_SetValue: Channel: 0x00, Parameter: PCAN_LOG_STATUS (10), Buffer: 0x26D31D98 [1], BufferLength: 4
+Wed Apr  8 14:00:22.854 - [1590148]  EXIT  'CAN_SetValue' -   RESULT: 0x00
+Wed Apr  8 14:00:22.855 - [1590148]  ENTRY  'CAN_Initialize'
+Wed Apr  8 14:00:22.855 - [1590148]    PARAMETERS of CAN_Initialize: Channel: 0x501, Baudrate: 0x001C, HwType: 0x00, IOPort: 0x0, Interrupt: 0
+Wed Apr  8 14:00:22.878 - -------------------------
+Wed Apr  8 14:00:22.878 - PCAN_USB 5.0.0.20000 (KMDF 1.15, x64) Copyright (C) 1995-2025 by PEAK-System Technik GmbH, Darmstadt
+Wed Apr  8 14:00:22.878 - -------------------------
+Wed Apr  8 14:00:22.878 - [1590148]  EXIT  'CAN_Initialize' -   RESULT: 0x00
+Wed Apr  8 14:00:22.878 - [1590148]  ENTRY  'CAN_Initialize'
+Wed Apr  8 14:00:22.878 - [1590148]    PARAMETERS of CAN_Initialize: Channel: 0x502, Baudrate: 0x001C, HwType: 0x00, IOPort: 0x0, Interrupt: 0
+Wed Apr  8 14:00:22.916 - -------------------------
+Wed Apr  8 14:00:22.916 - PCAN_USB 5.0.0.20000 (KMDF 1.15, x64) Copyright (C) 1995-2025 by PEAK-System Technik GmbH, Darmstadt
+Wed Apr  8 14:00:22.916 - -------------------------
+Wed Apr  8 14:00:22.916 - [1590148]  EXIT  'CAN_Initialize' -   RESULT: 0x00
+Wed Apr  8 14:00:23.917 - [1590148]  ENTRY  'CAN_Write'
+Wed Apr  8 14:00:23.917 - [1590148]    PARAMETERS of CAN_Write: Channel: 0x501, MessageBuffer: 0x26D31E18
+Wed Apr  8 14:00:23.917 - [1590148]      CHANNEL  0x501 (OUT) ID=0x456, Len=4, Data=0x11 0x22 0x33 0x44 
+Wed Apr  8 14:00:23.917 - [1590148]  EXIT  'CAN_Write' -   RESULT: 0x00
+Wed Apr  8 14:00:24.417 - [1590148]  ENTRY  'CAN_Read'
+Wed Apr  8 14:00:24.417 - [1590148]    PARAMETERS of CAN_Read: Channel: 0x502, MessageBuffer: 0x26D31C98, TimestampBuffer: 0x26D31E98
+Wed Apr  8 14:00:24.417 - [1590148]  EXIT  'CAN_Read' -   RESULT: 0x20
+Wed Apr  8 14:00:24.468 - [1590148]  ENTRY  'CAN_Read'
+Wed Apr  8 14:00:24.468 - [1590148]    PARAMETERS of CAN_Read: Channel: 0x502, MessageBuffer: 0x26D31C98, TimestampBuffer: 0x26D31E98
+Wed Apr  8 14:00:24.468 - [1590148]  EXIT  'CAN_Read' -   RESULT: 0x20
+Wed Apr  8 14:00:24.518 - [1590148]  ENTRY  'CAN_Read'
+Wed Apr  8 14:00:24.518 - [1590148]    PARAMETERS of CAN_Read: Channel: 0x502, MessageBuffer: 0x26D31C98, TimestampBuffer: 0x26D31E98
+Wed Apr  8 14:00:24.518 - [1590148]  EXIT  'CAN_Read' -   RESULT: 0x20
+Wed Apr  8 14:00:24.569 - [1590148]  ENTRY  'CAN_Read'
+Wed Apr  8 14:00:24.569 - [1590148]    PARAMETERS of CAN_Read: Channel: 0x502, MessageBuffer: 0x26D31C98, TimestampBuffer: 0x26D31E98
+Wed Apr  8 14:00:24.569 - [1590148]  EXIT  'CAN_Read' -   RESULT: 0x20
+Wed Apr  8 14:00:24.619 - [1590148]  ENTRY  'CAN_Read'
+Wed Apr  8 14:00:24.619 - [1590148]    PARAMETERS of CAN_Read: Channel: 0x502, MessageBuffer: 0x26D31C98, TimestampBuffer: 0x26D31E98
+Wed Apr  8 14:00:24.619 - [1590148]  EXIT  'CAN_Read' -   RESULT: 0x20
+Wed Apr  8 14:00:24.670 - [1590148]  ENTRY  'CAN_Read'
+Wed Apr  8 14:00:24.670 - [1590148]    PARAMETERS of CAN_Read: Channel: 0x502, MessageBuffer: 0x26D31C98, TimestampBuffer: 0x26D31E98
+Wed Apr  8 14:00:24.670 - [1590148]  EXIT  'CAN_Read' -   RESULT: 0x20
+Wed Apr  8 14:00:24.720 - [1590148]  ENTRY  'CAN_Read'
+Wed Apr  8 14:00:24.720 - [1590148]    PARAMETERS of CAN_Read: Channel: 0x502, MessageBuffer: 0x26D31C98, TimestampBuffer: 0x26D31E98
+Wed Apr  8 14:00:24.720 - [1590148]  EXIT  'CAN_Read' -   RESULT: 0x20
+Wed Apr  8 14:00:24.771 - [1590148]  ENTRY  'CAN_Read'
+Wed Apr  8 14:00:24.771 - [1590148]    PARAMETERS of CAN_Read: Channel: 0x502, MessageBuffer: 0x26D31C98, TimestampBuffer: 0x26D31E98
+Wed Apr  8 14:00:24.771 - [1590148]  EXIT  'CAN_Read' -   RESULT: 0x20
+Wed Apr  8 14:00:24.821 - [1590148]  ENTRY  'CAN_Read'
+Wed Apr  8 14:00:24.821 - [1590148]    PARAMETERS of CAN_Read: Channel: 0x502, MessageBuffer: 0x26D31C98, TimestampBuffer: 0x26D31E98
+Wed Apr  8 14:00:24.821 - [1590148]  EXIT  'CAN_Read' -   RESULT: 0x20
+Wed Apr  8 14:00:24.872 - [1590148]  ENTRY  'CAN_Read'
+Wed Apr  8 14:00:24.872 - [1590148]    PARAMETERS of CAN_Read: Channel: 0x502, MessageBuffer: 0x26D31C98, TimestampBuffer: 0x26D31E98
+Wed Apr  8 14:00:24.872 - [1590148]  EXIT  'CAN_Read' -   RESULT: 0x20
+Wed Apr  8 14:00:24.922 - [1590148]  ENTRY  'CAN_SetValue'
+                          «____________________________________»
+                          «            ############            »
+                          «____________________________________»
+

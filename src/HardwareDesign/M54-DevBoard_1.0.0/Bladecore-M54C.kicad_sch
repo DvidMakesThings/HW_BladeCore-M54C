@@ -541,7 +541,7 @@
 					(justify left)
 				)
 			)
-			(property "Datasheet" ""
+			(property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/C1206X102KGRACTU?lang=en"
 				(at 3.81 -8.128 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -600,7 +600,7 @@
 					(justify left)
 				)
 			)
-			(property "MFR" "Johanson Dielectrics "
+			(property "MFR" "KEMET"
 				(at 3.81 -10.16 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -610,6 +610,28 @@
 						(size 1.27 1.27)
 					)
 					(justify left)
+				)
+			)
+			(property "MPN" "C1206X102KGRACTU"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "DIST1" "https://de.farnell.com/en-DE/kemet/c1206x102kgractu/cap-1000pf-2-kv-10-x7r-1206/dp/1855330"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
 				)
 			)
 			(symbol "1nF 2kV 1206_0_1"
@@ -1147,43 +1169,6 @@
 						)
 					)
 					(number "75"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at -26.67 -45.72 0)
-					(length 5.08)
-					(name "SHIELD"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "S1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -26.67 -45.72 0)
-					(length 5.08)
-					(hide yes)
-					(name "SHIELD"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "S2"
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -2507,6 +2492,43 @@
 						)
 					)
 					(number "71"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -26.67 -45.72 0)
+					(length 5.08)
+					(name "SHIELD"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "SH1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -26.67 -45.72 0)
+					(length 5.08)
+					(hide yes)
+					(name "SHIELD"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "SH2"
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -9749,7 +9771,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2321eb70-3684-439f-9bf9-2349de09bb2e")
-		(property "Reference" "#PWR07"
+		(property "Reference" "#PWR7"
 			(at 354.33 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -9809,7 +9831,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f06537ee-772d-44d3-8c50-e0ba41038c9c"
-					(reference "#PWR07")
+					(reference "#PWR7")
 					(unit 1)
 				)
 			)
@@ -9936,7 +9958,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/C1206X102KGRACTU?lang=en"
 			(at 223.012 147.32 0)
 			(hide yes)
 			(show_name yes)
@@ -10110,7 +10132,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3bfd0617-0220-4fba-81c2-c413ee64c0e2")
-		(property "Reference" "#PWR03"
+		(property "Reference" "#PWR3"
 			(at 57.15 171.45 0)
 			(hide yes)
 			(show_name no)
@@ -10171,7 +10193,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f06537ee-772d-44d3-8c50-e0ba41038c9c"
-					(reference "#PWR03")
+					(reference "#PWR3")
 					(unit 1)
 				)
 			)
@@ -10397,7 +10419,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4d0adc9d-0cd1-430e-8626-786d495f8658")
-		(property "Reference" "#PWR010"
+		(property "Reference" "#PWR10"
 			(at 295.91 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -10457,7 +10479,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f06537ee-772d-44d3-8c50-e0ba41038c9c"
-					(reference "#PWR010")
+					(reference "#PWR10")
 					(unit 1)
 				)
 			)
@@ -10475,7 +10497,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4d405197-8742-439e-b944-260d0809e221")
-		(property "Reference" "#PWR012"
+		(property "Reference" "#PWR12"
 			(at 382.27 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -10535,7 +10557,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f06537ee-772d-44d3-8c50-e0ba41038c9c"
-					(reference "#PWR012")
+					(reference "#PWR12")
 					(unit 1)
 				)
 			)
@@ -10851,7 +10873,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "622f9038-3e0b-4966-bad3-f0aba2949fe5")
-		(property "Reference" "#PWR05"
+		(property "Reference" "#PWR5"
 			(at 172.72 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -10911,7 +10933,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f06537ee-772d-44d3-8c50-e0ba41038c9c"
-					(reference "#PWR05")
+					(reference "#PWR5")
 					(unit 1)
 				)
 			)
@@ -11165,7 +11187,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7649e6db-58ea-4318-9486-13b74b1739d4")
-		(property "Reference" "#PWR011"
+		(property "Reference" "#PWR11"
 			(at 372.11 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -11225,7 +11247,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f06537ee-772d-44d3-8c50-e0ba41038c9c"
-					(reference "#PWR011")
+					(reference "#PWR11")
 					(unit 1)
 				)
 			)
@@ -11321,7 +11343,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "98ae5c21-657c-473c-92d2-e9aa1308e245")
-		(property "Reference" "#PWR090"
+		(property "Reference" "#PWR90"
 			(at 179.07 165.1 0)
 			(hide yes)
 			(show_name no)
@@ -11381,7 +11403,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f06537ee-772d-44d3-8c50-e0ba41038c9c"
-					(reference "#PWR090")
+					(reference "#PWR90")
 					(unit 1)
 				)
 			)
@@ -11503,7 +11525,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9c36de52-d3f0-4bf0-9e91-a227c328b866")
-		(property "Reference" "#PWR091"
+		(property "Reference" "#PWR91"
 			(at 142.24 83.82 0)
 			(hide yes)
 			(show_name no)
@@ -11563,7 +11585,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f06537ee-772d-44d3-8c50-e0ba41038c9c"
-					(reference "#PWR091")
+					(reference "#PWR91")
 					(unit 1)
 				)
 			)
@@ -12111,10 +12133,10 @@
 		(pin "75"
 			(uuid "c0603a49-24f0-46db-b151-f03900433b8a")
 		)
-		(pin "S1"
+		(pin "SH1"
 			(uuid "22f93863-dd31-4437-83dd-f59256af2519")
 		)
-		(pin "S2"
+		(pin "SH2"
 			(uuid "3b7b3da8-2100-495f-bffa-da484c5643c5")
 		)
 		(pin "1"
@@ -12510,7 +12532,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "df89682c-5b02-4acc-9fc1-b67bad31f2a8")
-		(property "Reference" "#PWR02"
+		(property "Reference" "#PWR2"
 			(at 146.05 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -12570,7 +12592,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f06537ee-772d-44d3-8c50-e0ba41038c9c"
-					(reference "#PWR02")
+					(reference "#PWR2")
 					(unit 1)
 				)
 			)
@@ -12588,7 +12610,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e2469c89-ecb7-4716-8446-1e3eb4d25d50")
-		(property "Reference" "#PWR08"
+		(property "Reference" "#PWR8"
 			(at 363.22 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -12648,7 +12670,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/f06537ee-772d-44d3-8c50-e0ba41038c9c"
-					(reference "#PWR08")
+					(reference "#PWR8")
 					(unit 1)
 				)
 			)

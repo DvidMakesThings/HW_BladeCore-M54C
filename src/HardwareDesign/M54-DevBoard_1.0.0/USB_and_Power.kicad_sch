@@ -416,7 +416,7 @@
 					(justify left)
 				)
 			)
-			(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8579707359440130048"
+			(property "Datasheet" "http://www.farnell.com/datasheets/2710659.pdf"
 				(at 3.81 -8.128 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -497,6 +497,17 @@
 						(size 1.27 1.27)
 					)
 					(justify left)
+				)
+			)
+			(property "DIST1" "https://de.farnell.com/en-DE/samsung-electro-mechanics/cl31a106kbhnnne/cap-10uf-50v-mlcc-1206/dp/3013512"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
 				)
 			)
 			(symbol "10uF 50V 1206_0_1"
@@ -605,7 +616,7 @@
 					(justify left)
 				)
 			)
-			(property "Datasheet" ""
+			(property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/C1206X102KGRACTU?lang=en"
 				(at 3.81 -8.128 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -664,7 +675,7 @@
 					(justify left)
 				)
 			)
-			(property "MFR" "Johanson Dielectrics "
+			(property "MFR" "KEMET"
 				(at 3.81 -10.16 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -674,6 +685,28 @@
 						(size 1.27 1.27)
 					)
 					(justify left)
+				)
+			)
+			(property "MPN" "C1206X102KGRACTU"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "DIST1" "https://de.farnell.com/en-DE/kemet/c1206x102kgractu/cap-1000pf-2-kv-10-x7r-1206/dp/1855330"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
 				)
 			)
 			(symbol "1nF 2kV 1206_0_1"
@@ -782,7 +815,7 @@
 					(justify left)
 				)
 			)
-			(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8555567821597212672"
+			(property "Datasheet" "http://www.farnell.com/datasheets/2820398.pdf"
 				(at 3.81 -4.826 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -794,7 +827,7 @@
 					(justify left)
 				)
 			)
-			(property "Description" "100uF 2000hrs@105℃ 50V 6.3mm 7.7mm ±20% SMD,D6.3xL7.7mm Aluminum Electrolytic Capacitors - SMD ROHS"
+			(property "Description" "SMD Aluminium Electrolytic Capacitor, Radial Can - SMD, 100 µF, 50 V, 1000 hours @ 85°C, Polar"
 				(at 3.81 -6.858 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -806,7 +839,7 @@
 					(justify left)
 				)
 			)
-			(property "MPN" "RVT1H101M0607"
+			(property "MPN" "EEE1HA101UAP"
 				(at 3.81 -10.922 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -818,7 +851,7 @@
 					(justify left)
 				)
 			)
-			(property "MFR" "ROQANG"
+			(property "MFR" "PANASONIC"
 				(at 3.81 -12.954 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -866,7 +899,7 @@
 					(justify left)
 				)
 			)
-			(property "DIST1" ""
+			(property "DIST1" "https://de.farnell.com/en-DE/panasonic/eee1ha101uap/cap-100-f-50v-radial-smd/dp/2326148"
 				(at 3.81 -19.05 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -1042,7 +1075,7 @@
 					(justify left)
 				)
 			)
-			(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8555567821597212672"
+			(property "Datasheet" "https://industrial.panasonic.com/cdbs/www-data/pdf/RDE0000/ABA0000C1240.pdf"
 				(at 3.81 -4.826 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -2517,6 +2550,17 @@
 					(justify left)
 				)
 			)
+			(property "DIST1" "https://de.farnell.com/en-DE/littelfuse/sp0503bahtg/esd-protection-device-5-5v-sot/dp/1827633"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
 			(symbol "SP0503BAHTG_0_1"
 				(polyline
 					(pts
@@ -3936,7 +3980,7 @@
 					(justify left)
 				)
 			)
-			(property "Datasheet" ""
+			(property "Datasheet" "https://4donline.ihs.com/images/VipMasterIC/IC/VISH/VISH-S-A0025774705/VISH-S-A0025774688-1.pdf?hkey=6D3A4C79FDBF58556ACFDE234799DDF0"
 				(at 2.032 -14.986 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -3948,7 +3992,7 @@
 					(justify left)
 				)
 			)
-			(property "Description" "62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 1kΩ 0402 Chip Resistor - Surface Mount ROHS"
+			(property "Description" "SMD Chip Resistor, 1 kohm, ± 1%, 100 mW, 0402 [1005 Metric], Thick Film, General Purpose"
 				(at 2.032 -8.382 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -3995,7 +4039,7 @@
 					(justify left)
 				)
 			)
-			(property "MFR" "FH"
+			(property "MFR" "VISHAY"
 				(at 2.032 -10.668 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -4005,6 +4049,28 @@
 						(size 1.27 1.27)
 					)
 					(justify left)
+				)
+			)
+			(property "MPN" "CRCW04021K00FKED"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "DIST1" "https://de.farnell.com/en-DE/vishay/crcw04021k00fked/res-1k-1-0-063w-0402-thick-film/dp/1469662"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
 				)
 			)
 			(symbol "1K 1% 0402_0_1"
@@ -8034,7 +8100,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8579707359440130048"
+		(property "Datasheet" "http://www.farnell.com/datasheets/2710659.pdf"
 			(at 163.83 90.678 0)
 			(hide yes)
 			(show_name yes)
@@ -8178,7 +8244,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8579707359440130048"
+		(property "Datasheet" "http://www.farnell.com/datasheets/2710659.pdf"
 			(at 347.98 93.218 0)
 			(hide yes)
 			(show_name yes)
@@ -8319,7 +8385,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/C1206X102KGRACTU?lang=en"
 			(at 66.548 219.71 0)
 			(hide yes)
 			(show_name yes)
@@ -9644,7 +9710,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8579707359440130048"
+		(property "Datasheet" "http://www.farnell.com/datasheets/2710659.pdf"
 			(at 364.49 93.218 0)
 			(hide yes)
 			(show_name yes)
@@ -10172,7 +10238,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8555567821597212672"
+		(property "Datasheet" "https://industrial.panasonic.com/cdbs/www-data/pdf/RDE0000/ABA0000C1240.pdf"
 			(at 113.03 92.456 0)
 			(hide yes)
 			(show_name yes)
@@ -11683,7 +11749,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8579707359440130048"
+		(property "Datasheet" "http://www.farnell.com/datasheets/2710659.pdf"
 			(at 148.59 215.138 0)
 			(hide yes)
 			(show_name yes)
@@ -12083,7 +12149,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9b0e1270-ab61-4ab3-a51b-f0dfd6971c08")
-		(property "Reference" "#FLG06"
+		(property "Reference" "#FLG6"
 			(at 162.56 184.785 0)
 			(hide yes)
 			(show_name no)
@@ -12143,7 +12209,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/43e2093a-4d28-4ac5-bf7b-d54773a532e2"
-					(reference "#FLG06")
+					(reference "#FLG6")
 					(unit 1)
 				)
 			)
@@ -13469,7 +13535,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d0b80d4e-54bb-42bc-ac02-318724a00532")
-		(property "Reference" "#PWR0115"
+		(property "Reference" "#PWR115"
 			(at 127 185.42 0)
 			(hide yes)
 			(show_name no)
@@ -13529,7 +13595,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/43e2093a-4d28-4ac5-bf7b-d54773a532e2"
-					(reference "#PWR0115")
+					(reference "#PWR115")
 					(unit 1)
 				)
 			)
@@ -13792,7 +13858,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8555567821597212672"
+		(property "Datasheet" "http://www.farnell.com/datasheets/2820398.pdf"
 			(at 130.81 211.836 0)
 			(hide yes)
 			(show_name yes)
@@ -13804,7 +13870,7 @@
 				(justify left)
 			)
 		)
-		(property "Description" "100uF 2000hrs@105℃ 50V 6.3mm 7.7mm ±20% SMD,D6.3xL7.7mm Aluminum Electrolytic Capacitors - SMD ROHS"
+		(property "Description" "SMD Aluminium Electrolytic Capacitor, Radial Can - SMD, 100 µF, 50 V, 1000 hours @ 85°C, Polar"
 			(at 130.81 213.868 0)
 			(hide yes)
 			(show_name yes)
@@ -14064,7 +14130,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8579707359440130048"
+		(property "Datasheet" "http://www.farnell.com/datasheets/2710659.pdf"
 			(at 166.37 215.138 0)
 			(hide yes)
 			(show_name yes)
@@ -14431,7 +14497,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8579707359440130048"
+		(property "Datasheet" "http://www.farnell.com/datasheets/2710659.pdf"
 			(at 331.47 93.218 0)
 			(hide yes)
 			(show_name yes)
@@ -14574,7 +14640,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://4donline.ihs.com/images/VipMasterIC/IC/VISH/VISH-S-A0025774705/VISH-S-A0025774688-1.pdf?hkey=6D3A4C79FDBF58556ACFDE234799DDF0"
 			(at 180.848 202.184 0)
 			(hide yes)
 			(show_name yes)
@@ -14586,7 +14652,7 @@
 				(justify left)
 			)
 		)
-		(property "Description" "62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 1kΩ 0402 Chip Resistor - Surface Mount ROHS"
+		(property "Description" "SMD Chip Resistor, 1 kohm, ± 1%, 100 mW, 0402 [1005 Metric], Thick Film, General Purpose"
 			(at 180.848 208.788 0)
 			(hide yes)
 			(show_name yes)
@@ -14907,7 +14973,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "efe0c4f6-b756-4c7d-b4be-5b8c1f4f46c8")
-		(property "Reference" "#PWR087"
+		(property "Reference" "#PWR87"
 			(at 342.9 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -14967,7 +15033,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/43e2093a-4d28-4ac5-bf7b-d54773a532e2"
-					(reference "#PWR087")
+					(reference "#PWR87")
 					(unit 1)
 				)
 			)
@@ -14985,7 +15051,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f0086a96-1677-4073-8d81-1325172e978f")
-		(property "Reference" "#PWR098"
+		(property "Reference" "#PWR98"
 			(at 55.88 67.31 0)
 			(hide yes)
 			(show_name no)
@@ -15045,7 +15111,7 @@
 		(instances
 			(project "M54-DevBoard_1.0.0"
 				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e/43e2093a-4d28-4ac5-bf7b-d54773a532e2"
-					(reference "#PWR098")
+					(reference "#PWR98")
 					(unit 1)
 				)
 			)
