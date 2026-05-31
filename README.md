@@ -276,7 +276,7 @@ Please contact me through any of the channels listed in the [Contact](#contact) 
 ## Contact
 
 For questions or feedback:
-- **Email:** [dvidmakesthings@gmail.com](mailto:dvidmakesthings@gmail.com)
+- **Email:** [info@dmt-hw.com](mailto:info@dmt-hw.com)
 - **GitHub:** [DvidMakesThings](https://github.com/DvidMakesThings)
 
 ## Contributing

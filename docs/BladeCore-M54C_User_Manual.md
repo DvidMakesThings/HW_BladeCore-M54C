@@ -1,10 +1,11 @@
-# BladeCore-M54C User Manual
+---
+title: BladeCore-M54C User Manual
+---
 
 **Hardware Revision:** 1.0.0
 **Date:** 2026-01-31
 **Author:** DMT
 
----
 
 ## Table of Contents
 
@@ -27,7 +28,6 @@
 17. [Absolute Maximum Ratings](#17-absolute-maximum-ratings)
 18. [Revision History](#18-revision-history)
 
----
 
 ## 1. Introduction
 
@@ -67,7 +67,6 @@ BladeCore-M54C belongs to the BladeCore modular controller series:
 **Naming convention:** M40 = RP2040-based, M54 = RP2354B-based. Suffix E = Ethernet,
 C = CAN, no suffix = base module.
 
----
 
 ## 2. General Specifications
 
@@ -89,7 +88,6 @@ C = CAN, no suffix = base module.
 | Form Factor               | M.2 2980 M-Key                                     |
 | PCB Layers                | 6                                                  |
 
----
 
 ## 3. Electrical Characteristics
 
@@ -148,7 +146,6 @@ C = CAN, no suffix = base module.
 | Package                  | SOT-23             |
 | Connected To             | ADC7 (GPIO47) via 10K-10K divider |
 
----
 
 ## 4. Microcontroller
 
@@ -206,7 +203,6 @@ It features hardware floating-point, DSP extensions, and the RP2-series PIO
 > NOT available for user applications. GPIO34 and GPIO35 are used for MCP2515
 > reset and interrupt respectively.
 
----
 
 ## 5. Memory Subsystem
 
@@ -254,7 +250,6 @@ M.2 edge connector, it operates on a physically separate bus - address 0x50 is f
 available on the carrier board side. The EEPROM is ideal for storing configuration
 data, calibration values, serial numbers, or small persistent datasets.
 
----
 
 ## 6. CAN Interface
 
@@ -354,7 +349,6 @@ The module includes onboard split termination:
 - Load Capacitance: 8 pF
 - Package: SMD 2016 (2.0 x 1.6 mm)
 
----
 
 ## 7. USB Interface
 
@@ -397,12 +391,11 @@ The USB VBUS voltage is monitored via GPIO46 (ADC6) through a resistive voltage 
 
 - Divider: 5.1 kOhm / 5.1 kOhm
 - ADC input voltage at 5.0 V VBUS: ~2.5 V
-- Formula: VBUS = ADC_reading * (3.3 / 4096) * 2
+- Formula: VBUS = ADC_reading * (3.0 / 4096) * 2
 
 This allows firmware to detect whether USB power is present and measure the
 actual VBUS voltage.
 
----
 
 ## 8. Power Management
 
@@ -460,13 +453,12 @@ to GPIO47 (ADC7) through a 10K / 10K voltage divider. This enables:
 ```
 Expected ADC reading for 3.0V reference through 10K/10K divider:
   VADC = 3.0 / 2 = 1.5 V
-  Expected ADC code = 1.5 / 3.3 * 4096 = ~1862
+  Expected ADC code = 1.5 / 3.0 * 4096 = ~2048
 
-  Calibration factor = 1862 / actual_adc_reading
+  Calibration factor = 2048 / actual_adc_reading
   Apply this factor to all subsequent ADC readings.
 ```
 
----
 
 ## 9. M.2 Connector Pinout
 
@@ -560,7 +552,6 @@ Expected ADC reading for 3.0V reference through 10K/10K divider:
 - **CAN bus** signals (CAN_P, CAN_N) on M.2 pins 28 and 30 are directly from
   the TCAN1044A transceiver -- these are not GPIO-controlled.
 
----
 
 ## 10. Onboard Peripherals
 
@@ -600,7 +591,6 @@ reset and boot-mode selection.
 | RCLAMP0582BQTCT    | General I/O ESD clamping         |
 | PESD2CANFD24V-UX   | CAN bus line ESD clamping        |
 
----
 
 ## 11. Power-Up Sequencing
 
@@ -622,7 +612,6 @@ The board follows a defined power-up sequence with the following timeline:
 > crystal -- typically under 1 ms.  Firmware should wait at least 1 ms after
 > releasing the MCP2515 reset before attempting SPI communication.
 
----
 
 ## 12. Getting Started -- Software
 
@@ -692,7 +681,6 @@ rate (USB CDC is rate-independent):
 # Select the COM port assigned to the Pico
 ```
 
----
 
 ## 13. Programming Guide
 
@@ -862,7 +850,7 @@ float read_vbus_voltage(void) {
     adc_read();           // Throwaway sample after channel switch
     uint16_t raw = adc_read();
     // 5.1K / 5.1K divider, factor = 2
-    return (float)raw * 3.3f / 4096.0f * 2.0f;
+    return (float)raw * 3.0f / 4096.0f * 2.0f;
 }
 
 // Read precision voltage reference (3.0V nominal)
@@ -871,7 +859,7 @@ float read_vref(void) {
     adc_read();           // Throwaway sample after channel switch
     uint16_t raw = adc_read();
     // 10K / 10K divider, factor = 2
-    return (float)raw * 3.3f / 4096.0f * 2.0f;
+    return (float)raw * 3.0f / 4096.0f * 2.0f;
 }
 
 // Calculate ADC calibration factor using known reference
@@ -879,7 +867,7 @@ float get_adc_calibration_factor(void) {
     adc_select_input(7);
     adc_read();           // Throwaway sample after channel switch
     uint16_t raw = adc_read();
-    float measured = (float)raw * 3.3f / 4096.0f * 2.0f;
+    float measured = (float)raw * 3.0f / 4096.0f * 2.0f;
     return 3.0f / measured;  // Ratio of known vs measured
 }
 ```
@@ -984,7 +972,6 @@ target_include_directories(MyProject PRIVATE
 pico_add_extra_outputs(MyProject)
 ```
 
----
 
 ## 14. Code Examples
 
@@ -1112,7 +1099,7 @@ int main(void) {
     adc_select_input(7);  // ADC7 = GPIO47 (VREF)
     adc_read();           // Throwaway sample after channel switch
     uint16_t ref_raw = adc_read();
-    float ref_measured = (float)ref_raw * 3.3f / 4096.0f * 2.0f;
+    float ref_measured = (float)ref_raw * 3.0f / 4096.0f * 2.0f;
     float cal_factor = 3.0f / ref_measured;
 
     printf("Reference ADC raw: %u\n", ref_raw);
@@ -1124,7 +1111,7 @@ int main(void) {
         adc_select_input(6);  // ADC6 = GPIO46 (VUSB)
         adc_read();           // Throwaway sample after channel switch
         uint16_t vbus_raw = adc_read();
-        float vbus = (float)vbus_raw * 3.3f / 4096.0f * 2.0f * cal_factor;
+        float vbus = (float)vbus_raw * 3.0f / 4096.0f * 2.0f * cal_factor;
 
         printf("VBUS: %.2f V (raw: %u)\n", vbus, vbus_raw);
         sleep_ms(1000);
@@ -1132,7 +1119,6 @@ int main(void) {
 }
 ```
 
----
 
 ## 15. Design Considerations for Carrier Boards
 
@@ -1191,7 +1177,6 @@ Keep stub lengths as short as possible to minimize reflections.
   - 500 kbps: ~100 m
   - 125 kbps: ~500 m
 
----
 
 ## 16. Mechanical Specifications
 
@@ -1205,7 +1190,6 @@ Keep stub lengths as short as possible to minimize reflections.
 | Mounting               | M2.5 threaded standoff  |
 | Weight                 | < 10 g                  |
 
----
 
 ## 17. Absolute Maximum Ratings
 
@@ -1226,7 +1210,6 @@ Exceeding absolute maximum ratings may cause permanent damage to the module.
 > connected to the M.2 connector must be 3.3 V logic.  Use level shifters on
 > the carrier board if interfacing with 5 V systems.
 
----
 
 ## 18. Revision History
 
@@ -1234,7 +1217,6 @@ Exceeding absolute maximum ratings may cause permanent damage to the module.
 |----------|------------|------------------|
 | 1.0.0    | 2026-01-31 | Initial creation |
 
----
 
 *This document is derived from the BladeCore-M54C schematics (v1.0.0) and
 associated design files. Component-level limits and behavior should be verified
@@ -1242,4 +1224,4 @@ against the respective datasheets. For the latest information, refer to the
 project repository.*
 
 *Hardware licensed under CC BY-NC-SA 4.0.*
-*Contact: dvidmakesthings@gmail.com | GitHub: DvidMakesThings*
+*Contact: info@dmt-hw.com | GitHub: DvidMakesThings*

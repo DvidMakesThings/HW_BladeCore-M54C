@@ -1,7 +1,7 @@
 (kicad_sch
-	(version 20250114)
+	(version 20260306)
 	(generator "eeschema")
-	(generator_version "9.0")
+	(generator_version "10.0")
 	(uuid "26e99a33-043b-499d-a26e-816ff79b487a")
 	(paper "A3")
 	(title_block
@@ -23,7 +23,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 01c9fd1d-d2cd-474e-a2f2-7336d2eb5438)
+		(uuid "01c9fd1d-d2cd-474e-a2f2-7336d2eb5438")
 	)
 	(rectangle
 		(start 153.162 152.146)
@@ -37,7 +37,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 085660ca-3a67-46bf-85b0-bb74abf891e3)
+		(uuid "085660ca-3a67-46bf-85b0-bb74abf891e3")
 	)
 	(rectangle
 		(start 230.378 152.146)
@@ -51,7 +51,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 09774e91-f9d0-4db9-9e0f-815490f4898d)
+		(uuid "09774e91-f9d0-4db9-9e0f-815490f4898d")
 	)
 	(rectangle
 		(start 288.29 152.146)
@@ -65,7 +65,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 1c1e908e-05f8-44d9-8561-32d60503f5fa)
+		(uuid "1c1e908e-05f8-44d9-8561-32d60503f5fa")
 	)
 	(rectangle
 		(start 259.334 152.146)
@@ -79,7 +79,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 205e879f-c514-4b78-8bf1-d45ed4980894)
+		(uuid "205e879f-c514-4b78-8bf1-d45ed4980894")
 	)
 	(rectangle
 		(start 133.096 102.235)
@@ -93,7 +93,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 23111c0a-8311-4e0b-b6b5-bb05b9cd3eab)
+		(uuid "23111c0a-8311-4e0b-b6b5-bb05b9cd3eab")
 	)
 	(rectangle
 		(start 240.03 152.146)
@@ -107,7 +107,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 3b7d974c-37a0-442f-9733-47c591f05f53)
+		(uuid "3b7d974c-37a0-442f-9733-47c591f05f53")
 	)
 	(rectangle
 		(start 133.858 152.146)
@@ -121,7 +121,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 3dd077b4-ca8f-47c2-bee1-2e3802083be7)
+		(uuid "3dd077b4-ca8f-47c2-bee1-2e3802083be7")
 	)
 	(rectangle
 		(start 172.466 152.146)
@@ -135,7 +135,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 3e62ef00-0c8e-41fa-b2f3-08de867fa54f)
+		(uuid "3e62ef00-0c8e-41fa-b2f3-08de867fa54f")
 	)
 	(rectangle
 		(start 133.096 92.202)
@@ -149,7 +149,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 421293c6-3cf3-494b-b1c5-7fc458134e79)
+		(uuid "421293c6-3cf3-494b-b1c5-7fc458134e79")
 	)
 	(rectangle
 		(start 133.096 112.268)
@@ -163,7 +163,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 469c46ff-b6e8-4790-b52f-1ed9a2bdd1f8)
+		(uuid "469c46ff-b6e8-4790-b52f-1ed9a2bdd1f8")
 	)
 	(rectangle
 		(start 201.422 152.146)
@@ -177,7 +177,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 56c4474d-0301-4408-974f-0518f1baa953)
+		(uuid "56c4474d-0301-4408-974f-0518f1baa953")
 	)
 	(rectangle
 		(start 182.118 152.146)
@@ -191,7 +191,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 5eee5b1a-6c26-4234-8466-170b3f779aa3)
+		(uuid "5eee5b1a-6c26-4234-8466-170b3f779aa3")
 	)
 	(rectangle
 		(start 133.858 151.892)
@@ -205,7 +205,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 6d8a1105-6737-4a0b-9f5f-040b945eed17)
+		(uuid "6d8a1105-6737-4a0b-9f5f-040b945eed17")
 	)
 	(rectangle
 		(start 133.096 122.301)
@@ -219,7 +219,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 7f8be5cb-90a9-46c5-97db-3d1d78b2f341)
+		(uuid "7f8be5cb-90a9-46c5-97db-3d1d78b2f341")
 	)
 	(rectangle
 		(start 133.096 132.334)
@@ -233,7 +233,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 7fdcc2de-fa58-4066-9ff8-f7d6046e1167)
+		(uuid "7fdcc2de-fa58-4066-9ff8-f7d6046e1167")
 	)
 	(rectangle
 		(start 297.942 152.146)
@@ -247,7 +247,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 842b39c1-4ee6-4238-8b46-e785731d06f1)
+		(uuid "842b39c1-4ee6-4238-8b46-e785731d06f1")
 	)
 	(rectangle
 		(start 143.51 152.146)
@@ -261,7 +261,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 960a89ab-5167-4e3c-95c8-b3e891644096)
+		(uuid "960a89ab-5167-4e3c-95c8-b3e891644096")
 	)
 	(rectangle
 		(start 278.638 152.146)
@@ -275,7 +275,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 96e56ef9-debd-4418-8330-7dca10cdbbe7)
+		(uuid "96e56ef9-debd-4418-8330-7dca10cdbbe7")
 	)
 	(rectangle
 		(start 133.858 70.358)
@@ -289,7 +289,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 996b6b38-3a4b-457c-8281-2dd4304c7e91)
+		(uuid "996b6b38-3a4b-457c-8281-2dd4304c7e91")
 	)
 	(rectangle
 		(start 249.682 152.146)
@@ -303,7 +303,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid 9bd636ad-96b2-4037-90f6-ad48772c0413)
+		(uuid "9bd636ad-96b2-4037-90f6-ad48772c0413")
 	)
 	(rectangle
 		(start 268.986 152.146)
@@ -317,7 +317,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid ab3483ad-9beb-416f-a41c-b3b1b7dc1850)
+		(uuid "ab3483ad-9beb-416f-a41c-b3b1b7dc1850")
 	)
 	(rectangle
 		(start 133.096 72.136)
@@ -331,7 +331,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid b0c9fcec-fe45-4575-885f-193ce09a72d8)
+		(uuid "b0c9fcec-fe45-4575-885f-193ce09a72d8")
 	)
 	(rectangle
 		(start 211.074 152.146)
@@ -345,7 +345,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid bacf2a60-ebce-4900-a491-53d1d841d529)
+		(uuid "bacf2a60-ebce-4900-a491-53d1d841d529")
 	)
 	(rectangle
 		(start 162.814 152.146)
@@ -359,7 +359,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid c0e4d47a-808d-44d6-ac4a-0f050619e78d)
+		(uuid "c0e4d47a-808d-44d6-ac4a-0f050619e78d")
 	)
 	(rectangle
 		(start 133.0395 138.3793)
@@ -373,7 +373,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid ca1d8189-fb37-45bd-8f79-eacdaa3debc6)
+		(uuid "ca1d8189-fb37-45bd-8f79-eacdaa3debc6")
 	)
 	(rectangle
 		(start 133.096 82.169)
@@ -387,7 +387,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid d880b30a-ae22-4b99-94cc-3cc9c533e8e9)
+		(uuid "d880b30a-ae22-4b99-94cc-3cc9c533e8e9")
 	)
 	(rectangle
 		(start 220.726 152.146)
@@ -401,7 +401,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid f32b3655-beae-4c32-8ac8-4acf2e080e86)
+		(uuid "f32b3655-beae-4c32-8ac8-4acf2e080e86")
 	)
 	(rectangle
 		(start 191.77 152.146)
@@ -415,7 +415,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid f8dd6608-6fed-4399-a2fa-9a4460646543)
+		(uuid "f8dd6608-6fed-4399-a2fa-9a4460646543")
 	)
 	(rectangle
 		(start 133.096 152.4)
@@ -429,7 +429,7 @@
 			(type color)
 			(color 0 0 0 1)
 		)
-		(uuid fbce5f74-e6dc-4caf-95b1-d2e389cbff45)
+		(uuid "fbce5f74-e6dc-4caf-95b1-d2e389cbff45")
 	)
 	(text "Voltage [V]"
 		(exclude_from_sim no)

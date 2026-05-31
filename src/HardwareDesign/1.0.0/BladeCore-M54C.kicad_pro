@@ -60,12 +60,7 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [
-        [
-          "copper_edge_clearance|221471447|84000000|a1562e13-af61-4b74-af3f-bc29031d7dea|1a27afe4-7e0c-4839-8be4-9794c9303cf4",
-          ""
-        ]
-      ],
+      "drc_exclusions": [],
       "meta": {
         "version": 2
       },
@@ -272,7 +267,7 @@
       "internal_id": "",
       "mfg": "",
       "mpn": "",
-      "sch_revision": ""
+      "sch_revision": "${REVISION}"
     },
     "layer_pairs": [],
     "layer_presets": [],
@@ -978,16 +973,16 @@
       {
         "filename": "BladeCore-M54C.kicad_sch",
         "name": "BladeCore-M54C",
-        "uuid": "00000000-0000-0000-0000-000000000000"
+        "uuid": "f9e05184-c88b-4a88-ae9c-ab2bdb32be7c"
       }
     ],
-    "used_designators": "",
+    "used_designators": "J1",
     "variants": []
   },
   "sheets": [
     [
       "f9e05184-c88b-4a88-ae9c-ab2bdb32be7c",
-      "Root"
+      "BladeCore-M54C"
     ],
     [
       "82da9dbf-ba38-4d08-ba35-a220fa2963b1",
