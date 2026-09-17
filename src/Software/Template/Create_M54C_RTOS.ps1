@@ -101,6 +101,20 @@ function Test-Command($name) {
     return [bool](Get-Command $name -ErrorAction SilentlyContinue)
 }
 
+# Return the name of a Python command on PATH that is a REAL executable, not
+# the Windows Store App Execution Alias stub (whose Source path lives under
+# %LOCALAPPDATA%\Microsoft\WindowsApps\ and prints "Python not found" instead
+# of running). Never invokes the command, only checks Get-Command.Source.
+function Get-RealPythonCommand {
+    foreach ($name in @('py', 'python', 'python3')) {
+        $cmd = Get-Command $name -ErrorAction SilentlyContinue
+        if (-not $cmd) { continue }
+        if ($cmd.Source -match '\\WindowsApps\\') { continue }
+        return [pscustomobject]@{ Name = $name; Path = $cmd.Source }
+    }
+    return $null
+}
+
 # Run a native command tolerating stderr output under strict mode.
 # Returns the exit code without throwing. ($Args is a PS automatic variable, use $Arguments.)
 function Invoke-Native {
@@ -177,23 +191,13 @@ function Install-BaseTools {
             Write-Ok "Git: $v"
         }
 
-        # Prefer python3 (unambiguously Python 3); fall back to python.
-        $pyCmd = $null
-        foreach ($candidate in @('python3', 'python')) {
-            if (Test-Command $candidate) {
-                $v = (& $candidate --version 2>&1 | Out-String).Trim()
-                if ($v -match 'Python\s+3\.') {
-                    $pyCmd = $candidate
-                    Write-Ok "Python ($candidate): $v"
-                    break
-                } elseif (-not $pyCmd) {
-                    # Remember non-Python-3 hit; keep looking for a v3.
-                    Write-Warn2 "$candidate is $v (not Python 3)."
-                }
-            }
-        }
-        if (-not $pyCmd) {
-            Write-Warn2 'No Python 3 found on PATH. build.py requires Python 3.'
+        # Real Python detection: never invokes python3, only checks Get-Command
+        # and filters out the Windows Store App Execution Alias stub.
+        $py = Get-RealPythonCommand
+        if ($py) {
+            Write-Ok "Python ($($py.Name)): $($py.Path)"
+        } else {
+            Write-Warn2 'No real Python interpreter on PATH (Windows Store alias skipped). build.py requires Python 3.'
             Invoke-Winget 'Python.Python.3.12' | Out-Null
         }
 
@@ -1579,14 +1583,9 @@ Write-ProjectFile -Path (Join-Path $vs 'tasks.json')            -Content (Get-Vs
 Add-InclFolder      -ProjectDir $TargetPath
 Add-FreeRTOSKernel  -ProjectDir $TargetPath
 
-# Prefer python3 in hints when it exists, else python.
-$pyHint = 'python'
-foreach ($c in @('python3', 'python')) {
-    if (Test-Command $c) {
-        $ver = (& $c --version 2>&1 | Out-String).Trim()
-        if ($ver -match 'Python\s+3\.') { $pyHint = $c; break }
-    }
-}
+# Pick whichever real Python command exists for the "Next steps" hint.
+$pyReal = Get-RealPythonCommand
+$pyHint = if ($pyReal) { $pyReal.Name } else { 'python' }
 
 Write-Host ''
 Write-Ok "Project '$ProjectName' created at $TargetPath"
