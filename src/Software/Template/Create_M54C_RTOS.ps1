@@ -88,6 +88,8 @@ $PICOTOOL_DIR      = Join-Path $PICO_SDK_BASE "picotool\$PICOTOOL_VERSION"
 $OPENOCD_DIR       = Join-Path $PICO_SDK_BASE "openocd\$OPENOCD_VERSION"
 $CMAKE_DIR         = Join-Path $PICO_SDK_BASE "cmake\$CMAKE_VERSION"
 $NINJA_DIR         = Join-Path $PICO_SDK_BASE "ninja\$NINJA_VERSION"
+$PIOASM_DIR        = Join-Path $PICO_SDK_BASE "tools\$SDK_VERSION"
+$PICO_VSCODE_CMAKE = Join-Path $PICO_SDK_BASE 'cmake\pico-vscode.cmake'
 
 # ---------------------------------------------------------------------------
 # Utility helpers
@@ -151,7 +153,29 @@ function Save-File($url, $dest) {
 function Expand-Zip($zip, $dest) {
     Write-Step "Extracting $zip -> $dest"
     if (-not (Test-Path $dest)) { New-Item -ItemType Directory -Path $dest -Force | Out-Null }
-    Expand-Archive -Path $zip -DestinationPath $dest -Force
+    Add-Type -AssemblyName System.IO.Compression.FileSystem -ErrorAction SilentlyContinue | Out-Null
+    # Per-entry extract so a single bad entry (illegal path chars, e.g. in
+    # OpenOCD config files) doesn't kill the whole archive.
+    $archive = [System.IO.Compression.ZipFile]::OpenRead($zip)
+    $skipped = 0
+    try {
+        foreach ($entry in $archive.Entries) {
+            $rel = $entry.FullName -replace '/', '\'
+            $out = Join-Path $dest $rel
+            if ([string]::IsNullOrEmpty($entry.Name)) {
+                if (-not (Test-Path $out)) { New-Item -ItemType Directory -Force -Path $out | Out-Null }
+                continue
+            }
+            $outDir = Split-Path $out -Parent
+            if ($outDir -and -not (Test-Path $outDir)) { New-Item -ItemType Directory -Force -Path $outDir | Out-Null }
+            try {
+                [System.IO.Compression.ZipFileExtensions]::ExtractToFile($entry, $out, $true)
+            } catch {
+                $skipped++
+            }
+        }
+    } finally { $archive.Dispose() }
+    if ($skipped -gt 0) { Write-Warn2 "Skipped $skipped archive entries with illegal path characters." }
 }
 
 function Add-UserPath($dir) {
@@ -220,9 +244,15 @@ function Install-BaseTools {
 }
 
 function Install-CMakeBundle {
-    if (Test-Path (Join-Path $CMAKE_DIR 'bin\cmake.exe')) {
+    $exe = Join-Path $CMAKE_DIR 'bin\cmake.exe'
+    if (Test-Path $exe) {
         Write-Ok "CMake $CMAKE_VERSION already at $CMAKE_DIR"
+        Add-UserPath (Join-Path $CMAKE_DIR 'bin')
         return
+    }
+    if (Test-Path $CMAKE_DIR) {
+        Write-Warn2 "CMake install at $CMAKE_DIR is incomplete; wiping and reinstalling."
+        Remove-Item -Recurse -Force $CMAKE_DIR
     }
     $ver = $CMAKE_VERSION.TrimStart('v')
     $url = "https://github.com/Kitware/CMake/releases/download/$CMAKE_VERSION/cmake-$ver-windows-x86_64.zip"
@@ -232,17 +262,25 @@ function Install-CMakeBundle {
     if (Test-Path $stage) { Remove-Item -Recurse -Force $stage }
     Expand-Zip $zip $stage
     $root = Get-ChildItem $stage -Directory | Select-Object -First 1
+    if (-not $root) { throw "CMake archive layout unexpected: no top-level directory in $stage" }
     New-Item -ItemType Directory -Force -Path $CMAKE_DIR | Out-Null
     Copy-Item -Path (Join-Path $root.FullName '*') -Destination $CMAKE_DIR -Recurse -Force
     Remove-Item -Recurse -Force $stage, $zip
+    if (-not (Test-Path $exe)) { throw "CMake install failed: $exe not present after extract." }
     Add-UserPath (Join-Path $CMAKE_DIR 'bin')
     Write-Ok "CMake bundle installed at $CMAKE_DIR"
 }
 
 function Install-NinjaBundle {
-    if (Test-Path (Join-Path $NINJA_DIR 'ninja.exe')) {
+    $exe = Join-Path $NINJA_DIR 'ninja.exe'
+    if (Test-Path $exe) {
         Write-Ok "Ninja $NINJA_VERSION already at $NINJA_DIR"
+        Add-UserPath $NINJA_DIR
         return
+    }
+    if (Test-Path $NINJA_DIR) {
+        Write-Warn2 "Ninja install at $NINJA_DIR is incomplete; wiping and reinstalling."
+        Remove-Item -Recurse -Force $NINJA_DIR
     }
     $url = "https://github.com/ninja-build/ninja/releases/download/$NINJA_VERSION/ninja-win.zip"
     $zip = Join-Path $env:TEMP "ninja-$NINJA_VERSION.zip"
@@ -250,32 +288,49 @@ function Install-NinjaBundle {
     New-Item -ItemType Directory -Force -Path $NINJA_DIR | Out-Null
     Expand-Zip $zip $NINJA_DIR
     Remove-Item -Force $zip
+    if (-not (Test-Path $exe)) { throw "Ninja install failed: $exe not present after extract." }
     Add-UserPath $NINJA_DIR
     Write-Ok "Ninja bundle installed at $NINJA_DIR"
 }
 
 function Install-ArmToolchain {
-    if (Test-Path (Join-Path $TOOLCHAIN_DIR 'bin\arm-none-eabi-gcc.exe')) {
+    $exe = Join-Path $TOOLCHAIN_DIR 'bin\arm-none-eabi-gcc.exe'
+    if (Test-Path $exe) {
         Write-Ok "ARM toolchain $TOOLCHAIN_VERSION already at $TOOLCHAIN_DIR"
+        Add-UserPath (Join-Path $TOOLCHAIN_DIR 'bin')
         return
+    }
+    if (Test-Path $TOOLCHAIN_DIR) {
+        Write-Warn2 "ARM toolchain install at $TOOLCHAIN_DIR is incomplete; wiping and reinstalling."
+        Remove-Item -Recurse -Force $TOOLCHAIN_DIR
     }
     $zip = Join-Path $env:TEMP "arm-gnu-toolchain-$TOOLCHAIN_VERSION.zip"
     $stage = Join-Path $env:TEMP "arm-gnu-toolchain-$TOOLCHAIN_VERSION-stage"
     Save-File $ARM_TOOLCHAIN_URL $zip
     if (Test-Path $stage) { Remove-Item -Recurse -Force $stage }
     Expand-Zip $zip $stage
-    $root = Get-ChildItem $stage -Directory | Select-Object -First 1
+    # Archive layout can either wrap in a top-level dir or extract flat.
+    # Locate arm-none-eabi-gcc.exe and treat its bin/.. as the toolchain root.
+    $gccHit = Get-ChildItem -Path $stage -Recurse -File -Filter 'arm-none-eabi-gcc.exe' -ErrorAction SilentlyContinue | Select-Object -First 1
+    if (-not $gccHit) { throw "ARM toolchain: arm-none-eabi-gcc.exe not found anywhere inside $stage" }
+    $root = $gccHit.Directory.Parent.FullName
     New-Item -ItemType Directory -Force -Path $TOOLCHAIN_DIR | Out-Null
-    Copy-Item -Path (Join-Path $root.FullName '*') -Destination $TOOLCHAIN_DIR -Recurse -Force
+    Copy-Item -Path (Join-Path $root '*') -Destination $TOOLCHAIN_DIR -Recurse -Force
     Remove-Item -Recurse -Force $stage, $zip
+    if (-not (Test-Path $exe)) { throw "ARM toolchain install failed: $exe not present after extract." }
     Add-UserPath (Join-Path $TOOLCHAIN_DIR 'bin')
     Write-Ok "ARM toolchain installed at $TOOLCHAIN_DIR"
 }
 
 function Install-PicoSdk {
-    if (Test-Path (Join-Path $SDK_DIR 'pico_sdk_init.cmake')) {
+    $marker = Join-Path $SDK_DIR 'pico_sdk_init.cmake'
+    if (Test-Path $marker) {
         Write-Ok "Pico SDK $SDK_VERSION already at $SDK_DIR"
         return
+    }
+    if (Test-Path $SDK_DIR) {
+        Write-Warn2 "Pico SDK checkout at $SDK_DIR is incomplete; wiping and recloning."
+        Remove-Item -Recurse -Force $SDK_DIR
     }
     if (-not (Test-Command 'git')) { throw 'Git is required to clone the Pico SDK.' }
     New-Item -ItemType Directory -Force -Path (Split-Path $SDK_DIR -Parent) | Out-Null
@@ -287,84 +342,143 @@ function Install-PicoSdk {
         $rc = Invoke-Native 'git' @('submodule', 'update', '--init', '--recursive', '--depth', '1')
         if ($rc -ne 0) { Write-Warn2 "Pico SDK submodule update returned $rc." }
     } finally { Pop-Location }
+    if (-not (Test-Path $marker)) { throw "Pico SDK clone did not produce $marker" }
     Set-UserEnv 'PICO_SDK_PATH' $SDK_DIR
     Write-Ok "Pico SDK installed at $SDK_DIR"
 }
 
 function Install-PicoSdkTools {
+    # pico-sdk-tools ships picotool, openocd and pioasm as SEPARATE release
+    # assets under the same tag. Download each one that is missing.
+    $baseUrl = "https://github.com/raspberrypi/pico-sdk-tools/releases/download/$PICO_SDK_TOOLS_TAG"
     $picotoolExe = Join-Path $PICOTOOL_DIR 'picotool\picotool.exe'
     $openocdExe  = Join-Path $OPENOCD_DIR 'openocd.exe'
-    $needPicotool = -not (Test-Path $picotoolExe)
-    $needOpenocd  = -not (Test-Path $openocdExe)
-    if (-not $needPicotool -and -not $needOpenocd) {
-        Write-Ok "picotool + openocd already present."
-        return
-    }
+    $pioasmExe   = Join-Path $PIOASM_DIR 'pioasm\pioasm.exe'
 
-    $url = "https://github.com/raspberrypi/pico-sdk-tools/releases/download/$PICO_SDK_TOOLS_TAG/pico-sdk-tools-$SDK_VERSION-x64-win.zip"
-    $zip = Join-Path $env:TEMP "pico-sdk-tools-$SDK_VERSION.zip"
-    $stage = Join-Path $env:TEMP "pico-sdk-tools-$SDK_VERSION-stage"
-    try {
+    if (-not (Test-Path $picotoolExe)) {
+        $url = "$baseUrl/picotool-$PICOTOOL_VERSION-x64-win.zip"
+        $zip = Join-Path $env:TEMP "picotool-$PICOTOOL_VERSION.zip"
+        $stage = Join-Path $env:TEMP "picotool-$PICOTOOL_VERSION-stage"
         Save-File $url $zip
-    } catch {
-        Write-Warn2 "Could not download pico-sdk-tools bundle from $url"
-        Write-Warn2 "Install the Raspberry Pi Pico VS Code extension to populate picotool + openocd."
-        return
+        if (Test-Path $stage) { Remove-Item -Recurse -Force $stage }
+        Expand-Zip $zip $stage
+        # picotool bundle contains picotool/ and picotoolConfig*.cmake files. Copy WHOLE dir.
+        New-Item -ItemType Directory -Force -Path $PICOTOOL_DIR | Out-Null
+        Copy-Item -Path (Join-Path $stage '*') -Destination $PICOTOOL_DIR -Recurse -Force
+        if (-not (Test-Path $picotoolExe)) { throw "picotool install failed: $picotoolExe missing after copy." }
+        Add-UserPath (Join-Path $PICOTOOL_DIR 'picotool')
+        Remove-Item -Recurse -Force $stage, $zip -ErrorAction SilentlyContinue
+        Write-Ok "picotool installed at $PICOTOOL_DIR"
+    } else {
+        Write-Ok "picotool already at $picotoolExe"
     }
-    if (Test-Path $stage) { Remove-Item -Recurse -Force $stage }
-    Expand-Zip $zip $stage
 
-    if ($needPicotool) {
-        $srcPicotool = Get-ChildItem -Path $stage -Recurse -Filter 'picotool.exe' | Select-Object -First 1
-        if ($srcPicotool) {
-            New-Item -ItemType Directory -Force -Path (Join-Path $PICOTOOL_DIR 'picotool') | Out-Null
-            Copy-Item $srcPicotool.FullName (Join-Path $PICOTOOL_DIR 'picotool\picotool.exe') -Force
-            Add-UserPath (Join-Path $PICOTOOL_DIR 'picotool')
-            Write-Ok "picotool installed at $PICOTOOL_DIR"
-        } else {
-            Write-Warn2 "picotool.exe not found in downloaded bundle."
+    if (-not (Test-Path $openocdExe)) {
+        $url = "$baseUrl/openocd-$OPENOCD_VERSION-x64-win.zip"
+        $zip = Join-Path $env:TEMP "openocd-$OPENOCD_VERSION.zip"
+        $stage = Join-Path $env:TEMP "openocd-$OPENOCD_VERSION-stage"
+        Save-File $url $zip
+        if (Test-Path $stage) { Remove-Item -Recurse -Force $stage }
+        Expand-Zip $zip $stage
+        $src = Get-ChildItem -Path $stage -Recurse -File -Filter 'openocd.exe' | Select-Object -First 1
+        if (-not $src) { throw "openocd.exe not found inside $url" }
+        New-Item -ItemType Directory -Force -Path $OPENOCD_DIR | Out-Null
+        Copy-Item $src.FullName $openocdExe -Force
+        $scriptsSrc = Join-Path $src.Directory.FullName 'scripts'
+        if (Test-Path $scriptsSrc) {
+            Copy-Item -Path $scriptsSrc -Destination $OPENOCD_DIR -Recurse -Force
         }
+        if (-not (Test-Path $openocdExe)) { throw "openocd install failed: $openocdExe missing after copy." }
+        Remove-Item -Recurse -Force $stage, $zip -ErrorAction SilentlyContinue
+        Write-Ok "openocd installed at $OPENOCD_DIR"
+    } else {
+        Write-Ok "openocd already at $openocdExe"
     }
 
-    if ($needOpenocd) {
-        $srcOpenocd = Get-ChildItem -Path $stage -Recurse -Filter 'openocd.exe' | Select-Object -First 1
-        if ($srcOpenocd) {
-            New-Item -ItemType Directory -Force -Path $OPENOCD_DIR | Out-Null
-            Copy-Item $srcOpenocd.FullName (Join-Path $OPENOCD_DIR 'openocd.exe') -Force
-            $scriptsSrc = Join-Path $srcOpenocd.Directory.FullName 'scripts'
-            if (Test-Path $scriptsSrc) {
-                Copy-Item -Path $scriptsSrc -Destination $OPENOCD_DIR -Recurse -Force
-            }
-            Write-Ok "openocd installed at $OPENOCD_DIR"
-        } else {
-            Write-Warn2 "openocd.exe not found in downloaded bundle."
-        }
+    if (-not (Test-Path $pioasmExe)) {
+        # pioasm ships inside pico-sdk-tools-<sdk>-x64-win.zip together with helper CMake files.
+        $url = "$baseUrl/pico-sdk-tools-$SDK_VERSION-x64-win.zip"
+        $zip = Join-Path $env:TEMP "pico-sdk-tools-$SDK_VERSION.zip"
+        $stage = Join-Path $env:TEMP "pico-sdk-tools-$SDK_VERSION-stage"
+        Save-File $url $zip
+        if (Test-Path $stage) { Remove-Item -Recurse -Force $stage }
+        Expand-Zip $zip $stage
+        New-Item -ItemType Directory -Force -Path $PIOASM_DIR | Out-Null
+        Copy-Item -Path (Join-Path $stage '*') -Destination $PIOASM_DIR -Recurse -Force
+        if (-not (Test-Path $pioasmExe)) { throw "pioasm install failed: $pioasmExe missing after copy." }
+        Remove-Item -Recurse -Force $stage, $zip -ErrorAction SilentlyContinue
+        Write-Ok "pioasm installed at $PIOASM_DIR"
+    } else {
+        Write-Ok "pioasm already at $pioasmExe"
     }
+}
 
-    Remove-Item -Recurse -Force $stage, $zip -ErrorAction SilentlyContinue
+function Install-PicoVscodeGlue {
+    # SDK 2.2.0's CMakeLists template includes this file. It hooks pioasm_DIR,
+    # picotool_DIR, PICO_SDK_PATH and PICO_TOOLCHAIN_PATH so the SDK finds our
+    # installed tools instead of trying to build picotool from source.
+    $content = @'
+set(PICO_SDK_PATH "${USERHOME}/.pico-sdk/sdk/${sdkVersion}")
+set(PICO_TOOLCHAIN_PATH "${USERHOME}/.pico-sdk/toolchain/${toolchainVersion}")
+
+if (sdkVersion VERSION_LESS "2.0.0")
+    if(WIN32)
+        set(pico-sdk-tools_DIR "${USERHOME}/.pico-sdk/tools/${sdkVersion}")
+        include(${pico-sdk-tools_DIR}/pico-sdk-tools-config.cmake)
+        include(${pico-sdk-tools_DIR}/pico-sdk-tools-config-version.cmake)
+    endif()
+else()
+    set(pioasm_HINT "${USERHOME}/.pico-sdk/tools/${sdkVersion}/pioasm")
+    if(EXISTS ${pioasm_HINT})
+        set(pioasm_DIR ${pioasm_HINT})
+    endif()
+    set(picotool_HINT "${USERHOME}/.pico-sdk/picotool/${picotoolVersion}/picotool")
+    if(EXISTS ${picotool_HINT})
+        set(picotool_DIR ${picotool_HINT})
+    endif()
+    if(PICO_TOOLCHAIN_PATH MATCHES "RISCV")
+        set(PICO_PLATFORM rp2350-riscv CACHE STRING "Pico Platform")
+        if((PICO_TOOLCHAIN_PATH MATCHES "RISCV_ZCB") AND (sdkVersion VERSION_LESS "2.3.0"))
+            set(PICO_COMPILER "pico_riscv_gcc_zcb_zcmp")
+        endif()
+    endif()
+endif()
+'@
+    $dir = Split-Path $PICO_VSCODE_CMAKE -Parent
+    if (-not (Test-Path $dir)) { New-Item -ItemType Directory -Force -Path $dir | Out-Null }
+    [System.IO.File]::WriteAllText($PICO_VSCODE_CMAKE, $content, (New-Object System.Text.UTF8Encoding($false)))
+    Write-Ok "Wrote SDK glue file at $PICO_VSCODE_CMAKE"
 }
 
 function Install-AllTools {
-    # Each step is guarded so PICO_SDK_PATH/PICO_TOOLCHAIN_PATH are always set at the end.
+    # Every step must succeed. Track failures and rethrow at the end.
     $steps = @(
-        @{ Name = 'Base tools';   Action = { Install-BaseTools } },
-        @{ Name = 'CMake';        Action = { Install-CMakeBundle } },
-        @{ Name = 'Ninja';        Action = { Install-NinjaBundle } },
-        @{ Name = 'ARM toolchain'; Action = { Install-ArmToolchain } },
-        @{ Name = 'Pico SDK';     Action = { Install-PicoSdk } },
-        @{ Name = 'Pico SDK tools'; Action = { Install-PicoSdkTools } }
+        @{ Name = 'Base tools';     Action = { Install-BaseTools } },
+        @{ Name = 'CMake';          Action = { Install-CMakeBundle } },
+        @{ Name = 'Ninja';          Action = { Install-NinjaBundle } },
+        @{ Name = 'ARM toolchain';  Action = { Install-ArmToolchain } },
+        @{ Name = 'Pico SDK';       Action = { Install-PicoSdk } },
+        @{ Name = 'Pico SDK tools'; Action = { Install-PicoSdkTools } },
+        @{ Name = 'SDK glue file';  Action = { Install-PicoVscodeGlue } }
     )
+    $failures = @()
     foreach ($s in $steps) {
-        try { & $s.Action }
-        catch {
+        try {
+            & $s.Action
+        } catch {
             Write-Fail "$($s.Name) step failed: $_"
+            $failures += "$($s.Name): $_"
         }
     }
     if (Test-Path (Join-Path $SDK_DIR 'pico_sdk_init.cmake')) {
         Set-UserEnv 'PICO_SDK_PATH' $SDK_DIR
     }
-    if (Test-Path (Join-Path $TOOLCHAIN_DIR 'bin')) {
+    if (Test-Path (Join-Path $TOOLCHAIN_DIR 'bin\arm-none-eabi-gcc.exe')) {
         Set-UserEnv 'PICO_TOOLCHAIN_PATH' $TOOLCHAIN_DIR
+    }
+    if ($failures.Count -gt 0) {
+        throw ("Tool installation failed for: " + ($failures -join '; ') +
+               ". Fix connectivity / permissions and re-run.")
     }
 }
 
@@ -1552,12 +1666,7 @@ if (Test-Path $TargetPath) {
 }
 
 if (-not $SkipToolInstall) {
-    try {
-        Install-AllTools
-    } catch {
-        Write-Fail "Tool installation failed: $_"
-        Write-Warn2 'Continuing with project file generation.'
-    }
+    Install-AllTools
 } else {
     Write-Warn2 'Skipping tool detection/install (-SkipToolInstall).'
 }
