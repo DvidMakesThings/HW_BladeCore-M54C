@@ -69,26 +69,26 @@ $ErrorActionPreference = 'Stop'
 # ---------------------------------------------------------------------------
 # Version pinning: matches the .vscode configuration written below.
 # ---------------------------------------------------------------------------
-$SDK_VERSION       = '2.2.0'
+$SDK_VERSION = '2.2.0'
 $TOOLCHAIN_VERSION = '14_2_Rel1'
-$PICOTOOL_VERSION  = '2.2.0-a4'
-$OPENOCD_VERSION   = '0.12.0+dev'
-$CMAKE_VERSION     = 'v3.31.5'
-$NINJA_VERSION     = 'v1.12.1'
+$PICOTOOL_VERSION = '2.2.0-a4'
+$OPENOCD_VERSION = '0.12.0+dev'
+$CMAKE_VERSION = 'v3.31.5'
+$NINJA_VERSION = 'v1.12.1'
 
-$PICO_SDK_TOOLS_TAG   = 'v2.2.0-2'  # pico-sdk-tools release providing picotool + openocd for Windows
+$PICO_SDK_TOOLS_TAG = 'v2.2.0-2'  # pico-sdk-tools release providing picotool + openocd for Windows
 $FREERTOS_KERNEL_REPO = 'https://github.com/raspberrypi/FreeRTOS-Kernel.git'
 $FREERTOS_KERNEL_BRANCH = 'main'  # raspberrypi/FreeRTOS-Kernel main has portable/ThirdParty/GCC/RP2350_ARM_NTZ
 $ARM_TOOLCHAIN_URL = 'https://developer.arm.com/-/media/Files/downloads/gnu/14.2.rel1/binrel/arm-gnu-toolchain-14.2.rel1-mingw-w64-i686-arm-none-eabi.zip'
 
-$PICO_SDK_BASE     = Join-Path $env:USERPROFILE '.pico-sdk'
-$SDK_DIR           = Join-Path $PICO_SDK_BASE "sdk\$SDK_VERSION"
-$TOOLCHAIN_DIR     = Join-Path $PICO_SDK_BASE "toolchain\$TOOLCHAIN_VERSION"
-$PICOTOOL_DIR      = Join-Path $PICO_SDK_BASE "picotool\$PICOTOOL_VERSION"
-$OPENOCD_DIR       = Join-Path $PICO_SDK_BASE "openocd\$OPENOCD_VERSION"
-$CMAKE_DIR         = Join-Path $PICO_SDK_BASE "cmake\$CMAKE_VERSION"
-$NINJA_DIR         = Join-Path $PICO_SDK_BASE "ninja\$NINJA_VERSION"
-$PIOASM_DIR        = Join-Path $PICO_SDK_BASE "tools\$SDK_VERSION"
+$PICO_SDK_BASE = Join-Path $env:USERPROFILE '.pico-sdk'
+$SDK_DIR = Join-Path $PICO_SDK_BASE "sdk\$SDK_VERSION"
+$TOOLCHAIN_DIR = Join-Path $PICO_SDK_BASE "toolchain\$TOOLCHAIN_VERSION"
+$PICOTOOL_DIR = Join-Path $PICO_SDK_BASE "picotool\$PICOTOOL_VERSION"
+$OPENOCD_DIR = Join-Path $PICO_SDK_BASE "openocd\$OPENOCD_VERSION"
+$CMAKE_DIR = Join-Path $PICO_SDK_BASE "cmake\$CMAKE_VERSION"
+$NINJA_DIR = Join-Path $PICO_SDK_BASE "ninja\$NINJA_VERSION"
+$PIOASM_DIR = Join-Path $PICO_SDK_BASE "tools\$SDK_VERSION"
 $PICO_VSCODE_CMAKE = Join-Path $PICO_SDK_BASE 'cmake\pico-vscode.cmake'
 
 # ---------------------------------------------------------------------------
@@ -126,7 +126,8 @@ function Invoke-Native {
     try {
         & $Exe @Arguments 2>&1 | ForEach-Object { Write-Host $_ }
         return $LASTEXITCODE
-    } finally {
+    }
+    finally {
         $ErrorActionPreference = $prev
     }
 }
@@ -170,11 +171,13 @@ function Expand-Zip($zip, $dest) {
             if ($outDir -and -not (Test-Path $outDir)) { New-Item -ItemType Directory -Force -Path $outDir | Out-Null }
             try {
                 [System.IO.Compression.ZipFileExtensions]::ExtractToFile($entry, $out, $true)
-            } catch {
+            }
+            catch {
                 $skipped++
             }
         }
-    } finally { $archive.Dispose() }
+    }
+    finally { $archive.Dispose() }
     if ($skipped -gt 0) { Write-Warn2 "Skipped $skipped archive entries with illegal path characters." }
 }
 
@@ -210,7 +213,8 @@ function Install-BaseTools {
         if (-not (Test-Command 'git')) {
             Write-Warn2 'Git not found.'
             Invoke-Winget 'Git.Git' | Out-Null
-        } else {
+        }
+        else {
             $v = (& git --version 2>&1 | Out-String).Trim()
             Write-Ok "Git: $v"
         }
@@ -220,25 +224,29 @@ function Install-BaseTools {
         $py = Get-RealPythonCommand
         if ($py) {
             Write-Ok "Python ($($py.Name)): $($py.Path)"
-        } else {
+        }
+        else {
             Write-Warn2 'No real Python interpreter on PATH (Windows Store alias skipped). build.py requires Python 3.'
             Invoke-Winget 'Python.Python.3.12' | Out-Null
         }
 
         if (-not (Test-Command 'cmake')) {
             Write-Warn2 'System CMake not on PATH (Pico SDK bundle will still be installed below).'
-        } else {
+        }
+        else {
             $v = ((& cmake --version 2>&1 | Out-String) -split "`n" | Select-Object -First 1).Trim()
             Write-Ok "CMake: $v"
         }
 
         if (-not (Test-Command 'ninja')) {
             Write-Warn2 'System Ninja not on PATH (Pico SDK bundle will still be installed below).'
-        } else {
+        }
+        else {
             $v = (& ninja --version 2>&1 | Out-String).Trim()
             Write-Ok "Ninja: $v"
         }
-    } finally {
+    }
+    finally {
         $ErrorActionPreference = $prev
     }
 }
@@ -341,7 +349,8 @@ function Install-PicoSdk {
     try {
         $rc = Invoke-Native 'git' @('submodule', 'update', '--init', '--recursive', '--depth', '1')
         if ($rc -ne 0) { Write-Warn2 "Pico SDK submodule update returned $rc." }
-    } finally { Pop-Location }
+    }
+    finally { Pop-Location }
     if (-not (Test-Path $marker)) { throw "Pico SDK clone did not produce $marker" }
     Set-UserEnv 'PICO_SDK_PATH' $SDK_DIR
     Write-Ok "Pico SDK installed at $SDK_DIR"
@@ -352,8 +361,8 @@ function Install-PicoSdkTools {
     # assets under the same tag. Download each one that is missing.
     $baseUrl = "https://github.com/raspberrypi/pico-sdk-tools/releases/download/$PICO_SDK_TOOLS_TAG"
     $picotoolExe = Join-Path $PICOTOOL_DIR 'picotool\picotool.exe'
-    $openocdExe  = Join-Path $OPENOCD_DIR 'openocd.exe'
-    $pioasmExe   = Join-Path $PIOASM_DIR 'pioasm\pioasm.exe'
+    $openocdExe = Join-Path $OPENOCD_DIR 'openocd.exe'
+    $pioasmExe = Join-Path $PIOASM_DIR 'pioasm\pioasm.exe'
 
     if (-not (Test-Path $picotoolExe)) {
         $url = "$baseUrl/picotool-$PICOTOOL_VERSION-x64-win.zip"
@@ -369,7 +378,8 @@ function Install-PicoSdkTools {
         Add-UserPath (Join-Path $PICOTOOL_DIR 'picotool')
         Remove-Item -Recurse -Force $stage, $zip -ErrorAction SilentlyContinue
         Write-Ok "picotool installed at $PICOTOOL_DIR"
-    } else {
+    }
+    else {
         Write-Ok "picotool already at $picotoolExe"
     }
 
@@ -391,7 +401,8 @@ function Install-PicoSdkTools {
         if (-not (Test-Path $openocdExe)) { throw "openocd install failed: $openocdExe missing after copy." }
         Remove-Item -Recurse -Force $stage, $zip -ErrorAction SilentlyContinue
         Write-Ok "openocd installed at $OPENOCD_DIR"
-    } else {
+    }
+    else {
         Write-Ok "openocd already at $openocdExe"
     }
 
@@ -408,7 +419,8 @@ function Install-PicoSdkTools {
         if (-not (Test-Path $pioasmExe)) { throw "pioasm install failed: $pioasmExe missing after copy." }
         Remove-Item -Recurse -Force $stage, $zip -ErrorAction SilentlyContinue
         Write-Ok "pioasm installed at $PIOASM_DIR"
-    } else {
+    }
+    else {
         Write-Ok "pioasm already at $pioasmExe"
     }
 }
@@ -453,19 +465,20 @@ endif()
 function Install-AllTools {
     # Every step must succeed. Track failures and rethrow at the end.
     $steps = @(
-        @{ Name = 'Base tools';     Action = { Install-BaseTools } },
-        @{ Name = 'CMake';          Action = { Install-CMakeBundle } },
-        @{ Name = 'Ninja';          Action = { Install-NinjaBundle } },
-        @{ Name = 'ARM toolchain';  Action = { Install-ArmToolchain } },
-        @{ Name = 'Pico SDK';       Action = { Install-PicoSdk } },
+        @{ Name = 'Base tools'; Action = { Install-BaseTools } },
+        @{ Name = 'CMake'; Action = { Install-CMakeBundle } },
+        @{ Name = 'Ninja'; Action = { Install-NinjaBundle } },
+        @{ Name = 'ARM toolchain'; Action = { Install-ArmToolchain } },
+        @{ Name = 'Pico SDK'; Action = { Install-PicoSdk } },
         @{ Name = 'Pico SDK tools'; Action = { Install-PicoSdkTools } },
-        @{ Name = 'SDK glue file';  Action = { Install-PicoVscodeGlue } }
+        @{ Name = 'SDK glue file'; Action = { Install-PicoVscodeGlue } }
     )
     $failures = @()
     foreach ($s in $steps) {
         try {
             & $s.Action
-        } catch {
+        }
+        catch {
             Write-Fail "$($s.Name) step failed: $_"
             $failures += "$($s.Name): $_"
         }
@@ -478,7 +491,7 @@ function Install-AllTools {
     }
     if ($failures.Count -gt 0) {
         throw ("Tool installation failed for: " + ($failures -join '; ') +
-               ". Fix connectivity / permissions and re-run.")
+            ". Fix connectivity / permissions and re-run.")
     }
 }
 
@@ -486,162 +499,230 @@ function Install-AllTools {
 # Embedded file contents
 # ---------------------------------------------------------------------------
 function Get-MainC {
-@'
-/*
- * main.c - __PROJECT_NAME__ firmware entry point (FreeRTOS on RP2354B)
+    @'
+/**
+ * @file src/Software/__PROJECT_NAME__/main.c
+ *
+ * @version 1.0.0
+ * @date 2026-09-18
+ *
+ * @details
+ * Starts the generated __PROJECT_NAME__ project with the two requested application tasks: Heartbeat at
+ * the minimum scheduler priority and a higher-priority CAN listener. Initialises the board
+ * clock and silicon identity before checking both task allocations and starting FreeRTOS. The
+ * watchdog is serviced only when both tasks make progress. Fault hooks request reset rather
+ * than continuing with an invalid scheduler state.
+ *
+ * @project __PROJECT_NAME__ - BladeCore-M54C firmware
+ * @github https://github.com/DvidMakesThings/HW_BladeCore-M54C
  */
-
 #include "CONFIG.h"
-
-#include "FreeRTOS.h"
-#include "task.h"
-
+#include "application.h"
 #include "pico/stdlib.h"
-#include "hardware/gpio.h"
-#include "hardware/watchdog.h"
 #include "hardware/clocks.h"
+#include "hardware/watchdog.h"
+#include <string.h>
 
-#define WATCHDOG_TIMEOUT_MS 2000
+volatile application_diagnostics_t bare_diag; /**< Runtime diagnostic state. */
+TaskHandle_t can_task_handle;                 /**< Handle assigned before the scheduler starts. */
 
-static void heartbeat_task(void *param)
-{
-    (void)param;
-
-    gpio_init(PIN_HEARTBEAT);
-    gpio_set_dir(PIN_HEARTBEAT, GPIO_OUT);
-
-    bool led = false;
-    for (;;)
-    {
-        led = !led;
-        gpio_put(PIN_HEARTBEAT, led);
-        vTaskDelay(pdMS_TO_TICKS(500));
-        watchdog_update();
-    }
-}
-
+/**
+ * @brief Reset following a failed runtime assertion.
+ *
+ * @param[in] file Source filename reporting the failure.
+ * @param[in] line Source line reporting the failure.
+ * @return None (void); this function never returns.
+ *
+ * @details
+ * Disables task interrupts and requests a short watchdog reset instead of continuing with a
+ * potentially corrupted scheduler state. The source location is supplied by configASSERT and
+ * remains available to a debugger at the call site. The function then stays in a tight loop
+ * until reset; it must never return to the failed operation.
+ */
 void vAssertCalled(const char *file, int line)
 {
     (void)file;
     (void)line;
     taskDISABLE_INTERRUPTS();
-    for (;;) { tight_loop_contents(); }
+    watchdog_reboot(0, 0, FAULT_RESET_DELAY_MS);
+    while (true)
+    {
+        tight_loop_contents();
+    }
 }
 
-void vApplicationStackOverflowHook(TaskHandle_t xTask, char *pcTaskName)
+/**
+ * @brief Reset when FreeRTOS detects a task stack overflow.
+ *
+ * @param[in] task Task whose stack failed validation.
+ * @param[in] name Name of the affected task.
+ * @return None (void); delegates to the non-returning assertion handler.
+ *
+ * @details
+ * Receives the task handle and name supplied by the FreeRTOS stack-overflow check. It forwards
+ * the failure to the common assertion handler, which disables interrupts and resets the MCU.
+ * No allocation, logging, or further task processing is attempted on a potentially corrupted
+ * stack.
+ */
+void vApplicationStackOverflowHook(TaskHandle_t task, char *name)
 {
-    (void)xTask;
-    (void)pcTaskName;
-    watchdog_reboot(0, 0, 100);
-    for (;;) { tight_loop_contents(); }
+    (void)task;
+    vAssertCalled(name, 0);
 }
 
+/**
+ * @brief Reset when the FreeRTOS heap cannot satisfy an allocation.
+ *
+ * @par Parameters
+ * None (void).
+ * @return None (void); delegates to the non-returning assertion handler.
+ *
+ * @details
+ * Handles failure of a FreeRTOS dynamic allocation by entering the common reset path. The hook
+ * avoids any additional heap use. Task creation in main is also checked explicitly so the
+ * scheduler cannot start without both required tasks.
+ */
 void vApplicationMallocFailedHook(void)
 {
-    watchdog_reboot(0, 0, 100);
-    for (;;) { tight_loop_contents(); }
+    vAssertCalled("heap", 0);
 }
 
+/**
+ * @brief Initialise board state, create both tasks, and start FreeRTOS.
+ *
+ * @par Parameters
+ * None (void).
+ * @return Does not return during normal operation; scheduler failure causes reset.
+ *
+ * @details
+ * Initialises board clock, heartbeat GPIO, and the full silicon identifier before allocating
+ * Heartbeat and CAN tasks. Both allocation results are checked. The scheduler starts only
+ * after the watchdog is enabled, and any unexpected scheduler return enters the common fault-
+ * reset path.
+ */
 int main(void)
 {
-    set_sys_clock_khz(150000, true);
+    uint8_t identity[8]; /**< Full silicon identifier fetched before scheduling. */
+    set_sys_clock_khz(SYSTEM_CLOCK_KHZ, true);
+    gpio_init(PIN_HEARTBEAT);
+    gpio_set_dir(PIN_HEARTBEAT, GPIO_OUT);
+    bare_diag.node = board_identity(identity);
+    memcpy((void *)bare_diag.uid, identity, sizeof(identity));
+
+    /* Validate allocations before enabling the task-supervised watchdog. */
+    configASSERT(xTaskCreate(init_task, "Init", INIT_STACK_WORDS, NULL, INIT_TASK_PRIORITY, NULL) ==
+                 pdPASS);
+    configASSERT(xTaskCreate(heartbeat_task, "Heartbeat", HEARTBEAT_STACK_WORDS, NULL,
+                             HEARTBEAT_TASK_PRIORITY, NULL) == pdPASS);
+    configASSERT(xTaskCreate(can_task, "CAN", CAN_STACK_WORDS, NULL, CAN_TASK_PRIORITY,
+                             &can_task_handle) == pdPASS);
+    configASSERT(xTaskCreate(example_task, "Example", EXAMPLE_STACK_WORDS, NULL,
+                             EXAMPLE_TASK_PRIORITY, NULL) == pdPASS);
     watchdog_enable(WATCHDOG_TIMEOUT_MS, true);
-
-    xTaskCreate(heartbeat_task, "hb", 256, NULL, HEARTBEAT_TASK_PRIORITY, NULL);
-
     vTaskStartScheduler();
-
-    for (;;) { tight_loop_contents(); }
+    vAssertCalled("scheduler", 0);
     return 0;
 }
 '@
 }
 
 function Get-ConfigH {
-@'
-/*
- * CONFIG.h - BladeCore-M54C Board Pin Configuration
+    @'
+/**
+ * @file src/Software/__PROJECT_NAME__/CONFIG.h
  *
- * Pin assignments derived from the BladeCore-M54C hardware schematics (v1.0.0).
- * MCU: RP2354B (QFN-80)
+ * @version 1.0.0
+ * @date 2026-09-18
+ *
+ * @details
+ * Owns the board pin map, peripheral instances, application task priorities and timing, CAN
+ * protocol identifiers, and application flash-layout macros for BladeCore-M54C, so the firmware
+ * and host tools share one configuration source. FreeRTOS kernel configuration lives separately
+ * in FreeRTOSConfig.h. This file is macro-only and safe for the Pico SDK board adapter's
+ * assembler preprocessing.
+ *
+ * @project __PROJECT_NAME__ - BladeCore-M54C firmware
+ * @github https://github.com/DvidMakesThings/HW_BladeCore-M54C
  */
 
-#ifndef CONFIG_H
-#define CONFIG_H
+#pragma once
+#include "FreeRTOSConfig.h"
 
 /* -------------------------------------------------------------------------- */
 /*  MCP2515 CAN Controller (SPI1)                                             */
 /* -------------------------------------------------------------------------- */
-#define PIN_CAN_MISO 28 /* SPI1 RX  - MCP2515 SO             */
-#define PIN_CAN_CS 29   /* SPI1 CSn - MCP2515 CS (active low)*/
-#define PIN_CAN_SCK 30  /* SPI1 SCK - MCP2515 SCK            */
-#define PIN_CAN_MOSI 31 /* SPI1 TX  - MCP2515 SI             */
+#define PIN_CAN_MISO 28 /**< SPI1 RX  - MCP2515 SO             */
+#define PIN_CAN_CS 29   /**< SPI1 CSn - MCP2515 CS (active low)*/
+#define PIN_CAN_SCK 30  /**< SPI1 SCK - MCP2515 SCK            */
+#define PIN_CAN_MOSI 31 /**< SPI1 TX  - MCP2515 SI             */
 
 /* -------------------------------------------------------------------------- */
 /*  I2C0 - Onboard EEPROM (AT24C256) + M.2 connector                         */
 /* -------------------------------------------------------------------------- */
-#define PIN_I2C0_SDA 32 /* I2C0 data  (4.7K pull-up)         */
-#define PIN_I2C0_SCL 33 /* I2C0 clock (4.7K pull-up)         */
+#define PIN_I2C0_SDA 32 /**< I2C0 data  (4.7K pull-up)         */
+#define PIN_I2C0_SCL 33 /**< I2C0 clock (4.7K pull-up)         */
 
 /* -------------------------------------------------------------------------- */
 /*  MCP2515 CAN Control                                                       */
 /* -------------------------------------------------------------------------- */
-#define PIN_CAN_RST 34 /* MCP2515 hardware reset (active low)*/
-#define PIN_CAN_INT 35 /* MCP2515 interrupt (active low)    */
+#define PIN_CAN_RST 34 /**< MCP2515 hardware reset (active low)*/
+#define PIN_CAN_INT 35 /**< MCP2515 interrupt (active low)    */
 
 /* -------------------------------------------------------------------------- */
 /*  Onboard Heartbeat LED                                                     */
 /* -------------------------------------------------------------------------- */
-#define PIN_HEARTBEAT 36 /* Blue LED, 100R series resistor    */
+#define PIN_HEARTBEAT 36 /**< Blue LED, 100R series resistor    */
 
 /* -------------------------------------------------------------------------- */
 /*  ADC - Onboard                                                             */
 /* -------------------------------------------------------------------------- */
-#define PIN_ADC_VUSB 46 /* GPIO46/ADC6 - USB VBUS sense (5.1K-5.1K divider) */
-#define PIN_ADC_VREF 47 /* GPIO47/ADC7 - 3.00V 0.1% ref (10K-10K divider)   */
+#define PIN_ADC_VUSB 46 /**< GPIO46/ADC6 - USB VBUS sense (5.1K-5.1K divider) */
+#define PIN_ADC_VREF 47 /**< GPIO47/ADC7 - 3.00V 0.1% ref (10K-10K divider)   */
+/** @brief Measured true voltage at the VREF ADC pin (3.004 V ref through the 2:1 divider). */
+#define ADC_CAL_PIN_MV 1500u
 
 /* -------------------------------------------------------------------------- */
 /*  Unused GPIOs - M.2 Connector (directly access through M.2 edge connector) */
 /* -------------------------------------------------------------------------- */
 /*  Left side (odd pins)                                                      */
-// #define PIN_GPIO0             0       /* M.2 pin 57             */
-// #define PIN_GPIO1             1       /* M.2 pin 55             */
-// #define PIN_GPIO2             2       /* M.2 pin 53             */
-// #define PIN_GPIO3             3       /* M.2 pin 51             */
-// #define PIN_GPIO4             4       /* M.2 pin 49             */
-// #define PIN_GPIO5             5       /* M.2 pin 47             */
-// #define PIN_GPIO6             6       /* M.2 pin 45             */
-// #define PIN_GPIO7             7       /* M.2 pin 43             */
-// #define PIN_GPIO8             8       /* M.2 pin 39             */
-// #define PIN_GPIO9             9       /* M.2 pin 37             */
-// #define PIN_GPIO10            10      /* M.2 pin 35             */
-// #define PIN_GPIO11            11      /* M.2 pin 33             */
-// #define PIN_GPIO12            12      /* M.2 pin 31             */
-// #define PIN_GPIO13            13      /* M.2 pin 29             */
-// #define PIN_GPIO14            14      /* M.2 pin 27             */
-// #define PIN_GPIO15            15      /* M.2 pin 25             */
-// #define PIN_GPIO16            16      /* M.2 pin 21             */
-// #define PIN_GPIO17            17      /* M.2 pin 19             */
-// #define PIN_GPIO18            18      /* M.2 pin 17             */
-// #define PIN_GPIO19            19      /* M.2 pin 15             */
-// #define PIN_GPIO20            20      /* M.2 pin 13             */
-// #define PIN_GPIO21            21      /* M.2 pin 9              */
-// #define PIN_GPIO22            22      /* M.2 pin 7              */
-// #define PIN_GPIO23            23      /* M.2 pin 5              */
-// #define PIN_GPIO24            24      /* M.2 pin 3              */
+// #define PIN_GPIO0             0       /**< M.2 pin 57             */
+// #define PIN_GPIO1             1       /**< M.2 pin 55             */
+// #define PIN_GPIO2             2       /**< M.2 pin 53             */
+// #define PIN_GPIO3             3       /**< M.2 pin 51             */
+// #define PIN_GPIO4             4       /**< M.2 pin 49             */
+// #define PIN_GPIO5             5       /**< M.2 pin 47             */
+// #define PIN_GPIO6             6       /**< M.2 pin 45             */
+// #define PIN_GPIO7             7       /**< M.2 pin 43             */
+// #define PIN_GPIO8             8       /**< M.2 pin 39             */
+// #define PIN_GPIO9             9       /**< M.2 pin 37             */
+// #define PIN_GPIO10            10      /**< M.2 pin 35             */
+// #define PIN_GPIO11            11      /**< M.2 pin 33             */
+// #define PIN_GPIO12            12      /**< M.2 pin 31             */
+// #define PIN_GPIO13            13      /**< M.2 pin 29             */
+// #define PIN_GPIO14            14      /**< M.2 pin 27             */
+// #define PIN_GPIO15            15      /**< M.2 pin 25             */
+// #define PIN_GPIO16            16      /**< M.2 pin 21             */
+// #define PIN_GPIO17            17      /**< M.2 pin 19             */
+// #define PIN_GPIO18            18      /**< M.2 pin 17             */
+// #define PIN_GPIO19            19      /**< M.2 pin 15             */
+// #define PIN_GPIO20            20      /**< M.2 pin 13             */
+// #define PIN_GPIO21            21      /**< M.2 pin 9              */
+// #define PIN_GPIO22            22      /**< M.2 pin 7              */
+// #define PIN_GPIO23            23      /**< M.2 pin 5              */
+// #define PIN_GPIO24            24      /**< M.2 pin 3              */
 /*  Right side (even pins)                                                    */
-// #define PIN_GPIO25            25      /* M.2 pin 8              */
-// #define PIN_GPIO26            26      /* M.2 pin 6              */
-// #define PIN_GPIO27            27      /* M.2 pin 4              */
-// #define PIN_GPIO37            37      /* M.2 pin 34             */
-// #define PIN_GPIO38            38      /* M.2 pin 36             */
-// #define PIN_GPIO39            39      /* M.2 pin 40             */
-// #define PIN_ADC0              40      /* M.2 pin 46 / ADC0      */
-// #define PIN_ADC1              41      /* M.2 pin 48 / ADC1      */
-// #define PIN_ADC2              42      /* M.2 pin 50 / ADC2      */
-// #define PIN_ADC3              43      /* M.2 pin 52 / ADC3      */
-// #define PIN_ADC4              44      /* M.2 pin 54 / ADC4      */
-// #define PIN_ADC5              45      /* M.2 pin 56 / ADC5      */
+// #define PIN_GPIO25            25      /**< M.2 pin 8              */
+// #define PIN_GPIO26            26      /**< M.2 pin 6              */
+// #define PIN_GPIO27            27      /**< M.2 pin 4              */
+// #define PIN_GPIO37            37      /**< M.2 pin 34             */
+// #define PIN_GPIO38            38      /**< M.2 pin 36             */
+// #define PIN_GPIO39            39      /**< M.2 pin 40             */
+// #define PIN_ADC0              40      /**< M.2 pin 46 / ADC0      */
+// #define PIN_ADC1              41      /**< M.2 pin 48 / ADC1      */
+// #define PIN_ADC2              42      /**< M.2 pin 50 / ADC2      */
+// #define PIN_ADC3              43      /**< M.2 pin 52 / ADC3      */
+// #define PIN_ADC4              44      /**< M.2 pin 54 / ADC4      */
+// #define PIN_ADC5              45      /**< M.2 pin 56 / ADC5      */
 /*  CAN bus signals (directly from TCAN1044, no GPIO)                         */
 // CAN_P                                /* M.2 pin 28             */
 // CAN_N                                /* M.2 pin 30             */
@@ -649,175 +730,337 @@ function Get-ConfigH {
 /* -------------------------------------------------------------------------- */
 /*  SPI1 instance used by MCP2515                                             */
 /* -------------------------------------------------------------------------- */
+/** @brief SPI peripheral wired to the MCP2515. */
 #define CAN_SPI_INSTANCE spi1
-#define CAN_SPI_BAUDRATE (10 * 1000 * 1000) /* 10 MHz               */
+#define CAN_SPI_BAUDRATE (10 * 1000 * 1000) /**< 10 MHz               */
 
 /* -------------------------------------------------------------------------- */
 /*  I2C0 instance used by EEPROM                                              */
 /* -------------------------------------------------------------------------- */
+/** @brief I2C peripheral wired to the onboard EEPROM. */
 #define EEPROM_I2C_INSTANCE i2c0
-#define EEPROM_I2C_ADDR 0x50             /* AT24C256 base address (A0=A1=GND) */
-#define EEPROM_I2C_BAUDRATE (400 * 1000) /* 400 kHz             */
+#define EEPROM_I2C_ADDR 0x50             /**< AT24C256 base address (A0=A1=GND) */
+#define EEPROM_I2C_BAUDRATE (400 * 1000) /**< 400 kHz             */
 
 /* -------------------------------------------------------------------------- */
 /*  Heartbeat LED - PWM configuration                                         */
 /* -------------------------------------------------------------------------- */
 /*  GPIO36 -> PWM slice 2, channel A (RP2354B: slice = (gpio >> 1) & 0xF)    */
+/** @brief Generator PWM example frequency; the RTOS heartbeat uses GPIO toggling. */
 #define HEARTBEAT_PWM_FREQ_HZ 1000
+/** @brief Generator PWM example fade interval; unused by the GPIO heartbeat. */
 #define HEARTBEAT_FADE_STEP_MS 8
 
-#endif /* CONFIG_H */
+/* -------------------------------------------------------------------------- */
+/*  Application task priorities                                                */
+/* -------------------------------------------------------------------------- */
+#define HEARTBEAT_TASK_PRIORITY tskIDLE_PRIORITY     /**< Minimum scheduler priority. */
+#define CAN_TASK_PRIORITY (tskIDLE_PRIORITY + 2)     /**< CAN service task priority. */
+#define EXAMPLE_TASK_PRIORITY (tskIDLE_PRIORITY + 1) /**< Example template task priority. */
+#define INIT_TASK_PRIORITY (tskIDLE_PRIORITY + 3)    /**< Startup init task; highest, runs first. */
+
+/** @name SDK board configuration
+ * @{ */
+#define PICO_RP2350A 0                    /**< RP2354B has 48 GPIO pins. */
+#define PICO_FLASH_SIZE_BYTES 0x200000    /**< Program flash partition capacity. */
+#define PICO_BOOT_STAGE2_CHOOSE_W25Q080 1 /**< Winbond-compatible XIP setup. */
+#define PICO_FLASH_SPI_CLKDIV 4           /**< Conservative program flash clock divider. */
+#define PICO_RP2350_A2_SUPPORTED 1        /**< Support RP2350 A2 silicon. */
+/** @} */
+
+/** @name CAN update wire protocol and flash layout
+ * @{ */
+#define CAN_REQUEST 0x18b00000u    /**< Control request plus 16-bit destination. */
+#define CAN_RESPONSE 0x18b10000u   /**< Acknowledgement plus 16-bit source. */
+#define CAN_IDENTITY 0x18b20000u   /**< Full silicon identifier response. */
+#define CAN_DATA 0x18b30000u       /**< Firmware offset and four data bytes. */
+#define CAN_SELECT 0x18b40000u     /**< Select exactly one complete silicon ID. */
+#define CAN_ENTER 0x18b50000u      /**< Enter bootloader, payload is full silicon ID. */
+#define CAN_CLASS_MASK 0x1fff0000u /**< Protocol class mask, excluding node address. */
+/* Reserved message classes for future object types routed by can_router. Each carries the
+ * 16-bit node address in the low word, matching the existing management classes above. */
+#define CAN_SDO_RX 0x18a00000u /**< SDO request addressed to this node. */
+#define CAN_SDO_TX 0x18a10000u /**< SDO response produced by this node. */
+#define CAN_RPDO 0x18a20000u   /**< Process data consumed by this node. */
+#define CAN_TPDO 0x18a30000u   /**< Process data produced by this node. */
+#define PROTOCOL_VERSION 1u    /**< Wire protocol and persistent manifest version. */
+#define BOARD_TYPE 0x4d353443u /**< BladeCore-M54C compatibility marker. */
+#define APP_OFFSET 0x20000     /**< Application offset in program flash. */
+#define META_OFFSET 0x1f000    /**< Dedicated application validity sector. */
+#define APP_MAX_SIZE (PICO_FLASH_SIZE_BYTES - APP_OFFSET) /**< Application capacity. */
+#define APP_BASE (0x10000000u + APP_OFFSET)               /**< Application XIP vector address. */
+#define META_MAGIC 0x42415245u         /**< Committed image manifest signature. */
+#define BOOT_REQUEST_MAGIC 0xb007ca4eu /**< Watchdog scratch recovery request. */
+#define CAN_CNF1 0x00u                 /**< 16 MHz oscillator, 1 Mbit/s timing. */
+#define CAN_CNF2 0x90u                 /**< Eight time quanta, 62.5 percent sample point. */
+#define CAN_CNF3 0x02u                 /**< Phase segment 2 is three time quanta. */
+#define CAN_TX_TIMEOUT_MS 3u           /**< Maximum controller transmit wait. */
+#define CAN_MODE_TIMEOUT_MS 20u        /**< Maximum operating-mode transition wait. */
+#define CAN_DISCOVERY_WINDOW_MS 50u    /**< Spacing window for discovery responses. */
+/** @} */
+
+/** @name Task timing and watchdog settings
+ * @{ */
+#define SYSTEM_CLOCK_KHZ 150000u       /**< RP2354 system clock in kHz. */
+#define WATCHDOG_TIMEOUT_MS 3000u      /**< Maximum permitted task stall. */
+#define FAULT_RESET_DELAY_MS 100u      /**< Delay before a fault-triggered reset. */
+#define HEARTBEAT_PERIOD_MS 500u       /**< Interval between heartbeat LED transitions. */
+#define HEARTBEAT_STACK_WORDS 256u     /**< Heartbeat task stack in 32-bit words. */
+#define CAN_STACK_WORDS 768u           /**< CAN task stack in 32-bit words. */
+#define INIT_STACK_WORDS 256u          /**< Startup init task stack in 32-bit words. */
+#define EXAMPLE_PERIOD_MS 1000u        /**< Example template task wake interval. */
+#define EXAMPLE_STACK_WORDS 256u       /**< Example template task stack in 32-bit words. */
+#define CAN_RX_BUDGET 32u              /**< Maximum receive frames per service pass. */
+#define CAN_POLL_MS 5u                 /**< Polling fallback for a missed IRQ edge. */
+#define CAN_RETRY_MS 500u              /**< Controller reinitialisation retry interval. */
+#define BOOT_SESSION_TIMEOUT_MS 30000u /**< Abandon a stalled firmware transfer. */
+#define BOOT_HEARTBEAT_PERIOD_MS 100u  /**< Recovery-mode LED interval. */
+/** @} */
 '@
 }
 
 function Get-FreeRTOSConfigH {
-@'
-/*
- * FreeRTOSConfig.h - FreeRTOS configuration for RP2354B (Cortex-M33)
+    @'
+/**
+ * @file src/Software/__PROJECT_NAME__/FreeRTOSConfig.h
+ *
+ * @version 1.0.0
+ * @date 2026-09-18
+ *
+ * @details
+ * Owns the FreeRTOS kernel configuration for the RP2354B Cortex-M33 secure port: interrupt
+ * vector mapping, scheduler, synchronization, memory, hooks, software timers, Cortex-M33 required
+ * defines, Pico SDK interop, the assertion handler, and the optional API includes. Application
+ * task priorities, board pins, and protocol macros are defined separately in CONFIG.h. The
+ * assertion declaration is guarded from the port assembler.
+ *
+ * @project __PROJECT_NAME__ - BladeCore-M54C firmware
+ * @github https://github.com/DvidMakesThings/HW_BladeCore-M54C
  */
-
-#ifndef FREERTOS_CONFIG_H
-#define FREERTOS_CONFIG_H
+#pragma once
+/* Board and project macros (PICO_* SDK config, pins, protocol) must be visible to the
+ * FreeRTOS and SDK translation units that include only this file. */
+#include "CONFIG.h"
 
 /* ISR handlers -- use Pico SDK ISR names */
-#define vPortSVCHandler     isr_svcall
-#define xPortPendSVHandler  isr_pendsv
+/** @brief Map the RTOS supervisor call handler to the SDK vector name. */
+#define vPortSVCHandler isr_svcall
+/** @brief Map the RTOS context-switch handler to the SDK vector name. */
+#define xPortPendSVHandler isr_pendsv
+/** @brief Map the scheduler tick handler to the SDK vector name. */
 #define xPortSysTickHandler isr_systick
-
-/* -------------------------------------------------------------------------- */
-/*  Task priorities                                                           */
-/* -------------------------------------------------------------------------- */
-#define HEARTBEAT_TASK_PRIORITY (tskIDLE_PRIORITY + 1)
 
 /* -------------------------------------------------------------------------- */
 /*  Scheduler                                                                 */
 /* -------------------------------------------------------------------------- */
-#define configUSE_PREEMPTION                    1
-#define configUSE_TIME_SLICING                  1
+/** @brief Allow a higher-priority ready task to preempt the running task. */
+#define configUSE_PREEMPTION 1
+/** @brief Share CPU ticks between ready tasks at equal priority. */
+#define configUSE_TIME_SLICING 1
+/** @brief Use the portable task selection implementation. */
 #define configUSE_PORT_OPTIMISED_TASK_SELECTION 0
-#define configUSE_TICKLESS_IDLE                 0
-#define configCPU_CLOCK_HZ                      150000000UL
-#define configTICK_RATE_HZ                      ((TickType_t)1000)
-#define configMAX_PRIORITIES                    16
-#define configMINIMAL_STACK_SIZE                ((configSTACK_DEPTH_TYPE)256)
-#define configUSE_16_BIT_TICKS                  0
-#define configIDLE_SHOULD_YIELD                 1
-#define configMAX_TASK_NAME_LEN                 16
-#define configTASK_NOTIFICATION_ARRAY_ENTRIES   3
+/** @brief Keep the periodic tick enabled during idle. */
+#define configUSE_TICKLESS_IDLE 0
+/** @brief Processor frequency used to configure the scheduler tick. */
+#define configCPU_CLOCK_HZ 150000000UL
+/** @brief One scheduler tick per millisecond. */
+#define configTICK_RATE_HZ ((TickType_t)1000)
+/** @brief Number of task priority levels, starting at zero. */
+#define configMAX_PRIORITIES 16
+/** @brief Idle task stack allocation in stack words. */
+#define configMINIMAL_STACK_SIZE ((configSTACK_DEPTH_TYPE)256)
+/** @brief Use a 32-bit tick counter. */
+#define configUSE_16_BIT_TICKS 0
+/** @brief Let the idle task yield to the priority-zero heartbeat. */
+#define configIDLE_SHOULD_YIELD 1
+/** @brief Task name storage length including its terminator. */
+#define configMAX_TASK_NAME_LEN 16
+/** @brief Independent notification slots allocated per task. */
+#define configTASK_NOTIFICATION_ARRAY_ENTRIES 3
 
 /* -------------------------------------------------------------------------- */
 /*  Synchronization                                                           */
 /* -------------------------------------------------------------------------- */
-#define configUSE_MUTEXES                       1
-#define configUSE_RECURSIVE_MUTEXES             0
-#define configUSE_COUNTING_SEMAPHORES           1
-#define configUSE_TASK_NOTIFICATIONS            1
-#define configUSE_QUEUE_SETS                    0
-#define configQUEUE_REGISTRY_SIZE               8
-#define configUSE_NEWLIB_REENTRANT              0
-#define configENABLE_BACKWARD_COMPATIBILITY     0
+/** @brief Enable mutexes with priority inheritance. */
+#define configUSE_MUTEXES 1
+/** @brief Exclude recursive mutex support from this template. */
+#define configUSE_RECURSIVE_MUTEXES 0
+/** @brief Enable counting semaphores for future application modules. */
+#define configUSE_COUNTING_SEMAPHORES 1
+/** @brief Enable direct notification from the CAN interrupt. */
+#define configUSE_TASK_NOTIFICATIONS 1
+/** @brief Exclude queue-set support. */
+#define configUSE_QUEUE_SETS 0
+/** @brief Number of queues that may be named for debugging. */
+#define configQUEUE_REGISTRY_SIZE 8
+/** @brief Avoid allocating a separate Newlib reentrancy structure per task. */
+#define configUSE_NEWLIB_REENTRANT 0
+/** @brief Require the current FreeRTOS API names. */
+#define configENABLE_BACKWARD_COMPATIBILITY 0
+/** @brief Per-task pointer slots, including Pico SDK interoperability. */
 #define configNUM_THREAD_LOCAL_STORAGE_POINTERS 5
 
 /* -------------------------------------------------------------------------- */
 /*  System types                                                              */
 /* -------------------------------------------------------------------------- */
-#define configSTACK_DEPTH_TYPE                  uint32_t
-#define configMESSAGE_BUFFER_LENGTH_TYPE        size_t
+/** @brief Type used to express task stack depths. */
+#define configSTACK_DEPTH_TYPE uint32_t
+/** @brief Type used to encode message buffer payload lengths. */
+#define configMESSAGE_BUFFER_LENGTH_TYPE size_t
 
 /* -------------------------------------------------------------------------- */
 /*  Memory allocation                                                         */
 /* -------------------------------------------------------------------------- */
-#define configSUPPORT_STATIC_ALLOCATION         0
-#define configSUPPORT_DYNAMIC_ALLOCATION        1
-#define configAPPLICATION_ALLOCATED_HEAP        0
-#define configTOTAL_HEAP_SIZE                   (64 * 1024)
+/** @brief Use the generated dynamic allocation model. */
+#define configSUPPORT_STATIC_ALLOCATION 0
+/** @brief Enable heap-backed task and queue allocation. */
+#define configSUPPORT_DYNAMIC_ALLOCATION 1
+/** @brief Let heap_4 own its heap storage. */
+#define configAPPLICATION_ALLOCATED_HEAP 0
+/** @brief Bytes reserved for the FreeRTOS heap_4 allocator. */
+#define configTOTAL_HEAP_SIZE (64 * 1024)
 
 /* -------------------------------------------------------------------------- */
 /*  Hooks                                                                     */
 /* -------------------------------------------------------------------------- */
-#define configUSE_IDLE_HOOK                     0
-#define configUSE_TICK_HOOK                     0
-#define configCHECK_FOR_STACK_OVERFLOW          2
-#define configUSE_MALLOC_FAILED_HOOK            1
-#define configUSE_DAEMON_TASK_STARTUP_HOOK      0
+/** @brief No application callback is installed in the idle task. */
+#define configUSE_IDLE_HOOK 0
+/** @brief No application callback is installed in the tick interrupt. */
+#define configUSE_TICK_HOOK 0
+/** @brief Check task stack bounds and the stack sentinel pattern. */
+#define configCHECK_FOR_STACK_OVERFLOW 2
+/** @brief Call the reset hook if an RTOS allocation fails. */
+#define configUSE_MALLOC_FAILED_HOOK 1
+/** @brief No timer-daemon startup callback is installed. */
+#define configUSE_DAEMON_TASK_STARTUP_HOOK 0
 
 /* -------------------------------------------------------------------------- */
 /*  Runtime stats / trace                                                     */
 /* -------------------------------------------------------------------------- */
-#define configGENERATE_RUN_TIME_STATS           0
-#define configUSE_TRACE_FACILITY                0
-#define configUSE_STATS_FORMATTING_FUNCTIONS    0
+/** @brief Disable runtime profiling counters. */
+#define configGENERATE_RUN_TIME_STATS 0
+/** @brief Disable optional scheduler trace metadata. */
+#define configUSE_TRACE_FACILITY 0
+/** @brief Exclude formatted scheduler statistics helpers. */
+#define configUSE_STATS_FORMATTING_FUNCTIONS 0
 
 /* -------------------------------------------------------------------------- */
 /*  Co-routines (disabled)                                                    */
 /* -------------------------------------------------------------------------- */
-#define configUSE_CO_ROUTINES                   0
-#define configMAX_CO_ROUTINE_PRIORITIES         1
+/** @brief Disable legacy cooperative co-routines. */
+#define configUSE_CO_ROUTINES 0
+/** @brief Placeholder priority count while co-routines are disabled. */
+#define configMAX_CO_ROUTINE_PRIORITIES 1
 
 /* -------------------------------------------------------------------------- */
 /*  Software timers                                                           */
 /* -------------------------------------------------------------------------- */
-#define configUSE_TIMERS                        1
-#define configTIMER_TASK_PRIORITY               (tskIDLE_PRIORITY + 2)
-#define configTIMER_QUEUE_LENGTH                10
-#define configTIMER_TASK_STACK_DEPTH            512
+/** @brief Retain the generated software timer service. */
+#define configUSE_TIMERS 1
+/** @brief Priority of the generated software timer service task. */
+#define configTIMER_TASK_PRIORITY (tskIDLE_PRIORITY + 2)
+/** @brief Number of pending software timer commands. */
+#define configTIMER_QUEUE_LENGTH 10
+/** @brief Timer service task stack allocation in words. */
+#define configTIMER_TASK_STACK_DEPTH 512
 
 /* -------------------------------------------------------------------------- */
 /*  Cortex-M33 (RP2350/RP2354) required defines                               */
 /* -------------------------------------------------------------------------- */
-#define configENABLE_FPU                        1
-#define configENABLE_MPU                        0
-#define configENABLE_TRUSTZONE                  0
-#define configRUN_FREERTOS_SECURE_ONLY          1
-#define configNUMBER_OF_CORES                   1
+/** @brief Save floating-point context when tasks use the Cortex-M33 FPU. */
+#define configENABLE_FPU 1
+/** @brief Run the generated port without MPU task regions. */
+#define configENABLE_MPU 0
+/** @brief Do not allocate non-secure task contexts. */
+#define configENABLE_TRUSTZONE 0
+/** @brief Run the scheduler entirely in secure state. */
+#define configRUN_FREERTOS_SECURE_ONLY 1
+/** @brief Schedule application tasks only on core zero. */
+#define configNUMBER_OF_CORES 1
 
-#define configPRIO_BITS                         4
-#define configMAX_SYSCALL_INTERRUPT_PRIORITY    16
+/** @brief Implemented Cortex-M33 interrupt priority bits. */
+#define configPRIO_BITS 4
+/** @brief Highest encoded IRQ priority permitted to call FromISR APIs. */
+#define configMAX_SYSCALL_INTERRUPT_PRIORITY 16
 
 /* -------------------------------------------------------------------------- */
 /*  RP2350 / Pico SDK interop                                                 */
 /* -------------------------------------------------------------------------- */
-#define configSUPPORT_PICO_SYNC_INTEROP         1
-#define configSUPPORT_PICO_TIME_INTEROP         1
+/** @brief Integrate SDK synchronisation with FreeRTOS task scheduling. */
+#define configSUPPORT_PICO_SYNC_INTEROP 1
+/** @brief Integrate SDK timed waits with FreeRTOS task scheduling. */
+#define configSUPPORT_PICO_TIME_INTEROP 1
 
 /* -------------------------------------------------------------------------- */
 /*  Assert                                                                    */
 /* -------------------------------------------------------------------------- */
+#ifndef __ASSEMBLER__
+/**
+ * @brief Reset following a failed runtime assertion.
+ *
+ * @param[in] file Source filename reporting the failure.
+ * @param[in] line Source line reporting the failure.
+ * @return None (void); this function does not return.
+ *
+ * @details
+ * Disables task interrupts and requests a short watchdog reset instead of continuing with a
+ * potentially corrupted scheduler state. The source location is supplied by configASSERT and
+ * remains available to a debugger at the call site. The function then stays in a tight loop
+ * until reset; it must never return to the failed operation.
+ */
 void vAssertCalled(const char *file, int line);
-#define configASSERT(x)                    \
-    if ((x) == 0)                          \
-    {                                      \
-        vAssertCalled(__FILE__, __LINE__); \
+#endif
+/** @brief Reset through vAssertCalled when the supplied condition is false. */
+#define configASSERT(x)                                                                            \
+    if ((x) == 0)                                                                                  \
+    {                                                                                              \
+        vAssertCalled(__FILE__, __LINE__);                                                         \
     }
 
 /* -------------------------------------------------------------------------- */
 /*  Optional API includes                                                     */
 /* -------------------------------------------------------------------------- */
-#define INCLUDE_vTaskPrioritySet             1
-#define INCLUDE_uxTaskPriorityGet            1
-#define INCLUDE_vTaskDelete                  1
-#define INCLUDE_vTaskSuspend                 1
-#define INCLUDE_vTaskDelayUntil              1
-#define INCLUDE_vTaskDelay                   1
-#define INCLUDE_xTimerPendFunctionCall       1
-#define INCLUDE_xTaskGetSchedulerState       1
-#define INCLUDE_xTaskGetCurrentTaskHandle    1
-#define INCLUDE_uxTaskGetStackHighWaterMark  1
+/** @brief Include the vTaskPrioritySet API in the generated RTOS build. */
+#define INCLUDE_vTaskPrioritySet 1
+/** @brief Include the uxTaskPriorityGet API in the generated RTOS build. */
+#define INCLUDE_uxTaskPriorityGet 1
+/** @brief Include the vTaskDelete API in the generated RTOS build. */
+#define INCLUDE_vTaskDelete 1
+/** @brief Include the vTaskSuspend API in the generated RTOS build. */
+#define INCLUDE_vTaskSuspend 1
+/** @brief Include the vTaskDelayUntil API in the generated RTOS build. */
+#define INCLUDE_vTaskDelayUntil 1
+/** @brief Include the vTaskDelay API in the generated RTOS build. */
+#define INCLUDE_vTaskDelay 1
+/** @brief Include the xTimerPendFunctionCall API in the generated RTOS build. */
+#define INCLUDE_xTimerPendFunctionCall 1
+/** @brief Include the xTaskGetSchedulerState API in the generated RTOS build. */
+#define INCLUDE_xTaskGetSchedulerState 1
+/** @brief Include the xTaskGetCurrentTaskHandle API in the generated RTOS build. */
+#define INCLUDE_xTaskGetCurrentTaskHandle 1
+/** @brief Include the uxTaskGetStackHighWaterMark API in the generated RTOS build. */
+#define INCLUDE_uxTaskGetStackHighWaterMark 1
+/** @brief Include the uxTaskGetStackHighWaterMark2 API in the generated RTOS build. */
 #define INCLUDE_uxTaskGetStackHighWaterMark2 1
-#define INCLUDE_xTaskGetIdleTaskHandle       1
-#define INCLUDE_eTaskGetState                1
-#define INCLUDE_xTaskAbortDelay              1
-#define INCLUDE_xTaskGetHandle               1
-#define INCLUDE_xTaskResumeFromISR           1
-#define INCLUDE_xQueueGetMutexHolder         1
-#define INCLUDE_xResumeFromISR               1
-
-#endif /* FREERTOS_CONFIG_H */
+/** @brief Include the xTaskGetIdleTaskHandle API in the generated RTOS build. */
+#define INCLUDE_xTaskGetIdleTaskHandle 1
+/** @brief Include the eTaskGetState API in the generated RTOS build. */
+#define INCLUDE_eTaskGetState 1
+/** @brief Include the xTaskAbortDelay API in the generated RTOS build. */
+#define INCLUDE_xTaskAbortDelay 1
+/** @brief Include the xTaskGetHandle API in the generated RTOS build. */
+#define INCLUDE_xTaskGetHandle 1
+/** @brief Include the xTaskResumeFromISR API in the generated RTOS build. */
+#define INCLUDE_xTaskResumeFromISR 1
+/** @brief Include the xQueueGetMutexHolder API in the generated RTOS build. */
+#define INCLUDE_xQueueGetMutexHolder 1
+/** @brief Include the xResumeFromISR API in the generated RTOS build. */
+#define INCLUDE_xResumeFromISR 1
 '@
 }
 
 function Get-CMakeLists {
-@'
+    @'
 cmake_minimum_required(VERSION 3.13)
 
 set(CMAKE_C_STANDARD 11)
@@ -840,6 +1083,14 @@ endif()
 # ====================================================================================
 set(PICO_BOARD pico2 CACHE STRING "Board type")
 
+# BladeCore-M54C uses the RP2354B (RP2350B package, 48 GPIOs, QFN-80). The
+# stock "pico2" board header targets RP2350A (30 GPIOs); override before
+# pico_sdk_init() so GPIO34-47 (CAN control, I2C0, heartbeat LED) pass the
+# SDK's GPIO bounds checks.
+add_compile_definitions(PICO_RP2350A=0)
+
+set(PICO_PLATFORM rp2350-arm-s CACHE STRING "Processor architecture")
+
 # FreeRTOS kernel path
 set(FREERTOS_KERNEL_PATH ${CMAKE_CURRENT_LIST_DIR}/FreeRTOS-Kernel)
 set(FREERTOS_CONFIG_FILE_DIRECTORY ${CMAKE_CURRENT_LIST_DIR})
@@ -858,11 +1109,19 @@ pico_sdk_init()
 add_executable(__PROJECT_NAME__
     main.c
     # === USER SOURCES BEGIN === (managed by Create_M54C_RTOS.ps1 -Update)
+    incl/Tasks/can_task.c
+    incl/can_router/can_router.c
+    incl/hal/adc/adc.c
+    incl/Tasks/init_task.c
+    incl/Tasks/example_task.c
+    incl/Tasks/heartbeat.c
+    incl/board_can/board_can.c
+    incl/protocol/protocol.c
     # === USER SOURCES END ===
 )
 
 pico_set_program_name(__PROJECT_NAME__ "__PROJECT_NAME__")
-pico_set_program_version(__PROJECT_NAME__ "0.1.0")
+pico_set_program_version(__PROJECT_NAME__ "1.0.0")
 
 pico_enable_stdio_uart(__PROJECT_NAME__ 0)
 pico_enable_stdio_usb(__PROJECT_NAME__ 0)
@@ -871,24 +1130,36 @@ target_include_directories(__PROJECT_NAME__ PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}
     ${CMAKE_CURRENT_LIST_DIR}/incl
     # === USER INCLUDE DIRS BEGIN === (managed by Create_M54C_RTOS.ps1 -Update)
+    ${CMAKE_CURRENT_LIST_DIR}/incl/Tasks
+    ${CMAKE_CURRENT_LIST_DIR}/incl/can_router
+    ${CMAKE_CURRENT_LIST_DIR}/incl/hal/adc
+    ${CMAKE_CURRENT_LIST_DIR}/incl/board_can
+    ${CMAKE_CURRENT_LIST_DIR}/incl/protocol
     # === USER INCLUDE DIRS END ===
 )
 
 target_link_libraries(__PROJECT_NAME__
     pico_stdlib
+    hardware_spi
+    pico_unique_id
     hardware_gpio
     hardware_watchdog
     hardware_clocks
     hardware_timer
+    hardware_adc
     FreeRTOS-Kernel-Heap4
 )
 
+include(${CMAKE_CURRENT_LIST_DIR}/firmware_layout.cmake)
+configure_firmware_layout(__PROJECT_NAME__ default application)
+target_compile_options(__PROJECT_NAME__ PRIVATE -Wall -Wextra -Werror)
+set_target_properties(__PROJECT_NAME__ PROPERTIES PICOTOOL_EXTRA_UF2_ARGS "--platform;rp2350;--abs-block")
 pico_add_extra_outputs(__PROJECT_NAME__)
 '@
 }
 
 function Get-PicoSdkImport {
-@'
+    @'
 # This is a copy of <PICO_SDK_PATH>/external/pico_sdk_import.cmake
 
 # This can be dropped into an external project to help locate this SDK
@@ -991,7 +1262,7 @@ include(${PICO_SDK_INIT_CMAKE_FILE})
 }
 
 function Get-BuildPy {
-@'
+    @'
 #!/usr/bin/env python3
 """
 __PROJECT_NAME__ Firmware Build and Upload Script
@@ -1005,13 +1276,24 @@ Usage:
     python build.py rebuild      # clean, configure, build
     python build.py upload       # build, then flash via picotool (BOOTSEL)
     python build.py size         # show memory usage of last build
+    python build.py adapters     # list detected CAN adapters
+    python build.py discover     # auto-detect adapter, list responding boards
+    python build.py can          # build, auto-detect adapter + board, upload over CAN
+                                 # (.hex/.bin; prompts to choose when several are found)
 """
 import os
+import re
 import sys
 import glob
+import time
+import zlib
+import struct
 import shutil
-import subprocess
+import argparse
 import platform
+import importlib
+import subprocess
+from pathlib import Path
 
 PROJECT_NAME = "__PROJECT_NAME__"
 
@@ -1019,6 +1301,11 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 BUILD_DIR  = os.path.join(SCRIPT_DIR, "build")
 UF2_FILE   = os.path.join(BUILD_DIR, PROJECT_NAME + ".uf2")
 ELF_FILE   = os.path.join(BUILD_DIR, PROJECT_NAME + ".elf")
+HEX_FILE   = os.path.join(BUILD_DIR, PROJECT_NAME + ".hex")
+BIN_FILE   = os.path.join(BUILD_DIR, PROJECT_NAME + ".bin")
+
+CONFIG_H   = os.path.join(SCRIPT_DIR, "CONFIG.h")
+PROTOCOL_H = os.path.join(SCRIPT_DIR, "incl", "protocol", "protocol.h")
 
 if platform.system() == "Windows":
     _USER_HOME = os.environ.get("USERPROFILE", "")
@@ -1176,7 +1463,7 @@ def do_size():
         print("\n=== Memory Usage ===")
         subprocess.run([size, ELF_FILE])
         print("\n=== Output Files ===")
-        for f in (UF2_FILE, ELF_FILE):
+        for f in (UF2_FILE, HEX_FILE, BIN_FILE, ELF_FILE):
             if os.path.isfile(f):
                 print(f"   {os.path.basename(f)}  -  {os.path.getsize(f):,} bytes")
     elif not os.path.isfile(ELF_FILE):
@@ -1196,8 +1483,372 @@ def do_upload():
     print("\n[+] FLASH SUCCESSFUL")
 
 
+# ---------------------------------------------------------------------------
+# CAN bootloader upload (classic CAN, stop-and-wait; accepts Intel HEX or BIN)
+# ---------------------------------------------------------------------------
+# Protocol constants and CMD_* enums are read from this project's own headers so
+# the uploader stays in lockstep with the firmware and needs no external tool.
+CFG = None
+COMMANDS = None
+
+
+def _defines(path):
+    text = Path(path).read_text()
+    result = {}
+    for name, value in re.findall(
+        r"^#define\s+(\w+)\s+(0x[0-9a-fA-F]+|[0-9]+)[uUlL]*\b", text, re.MULTILINE
+    ):
+        result[name] = int(value, 0)
+    return result
+
+
+def _can_config():
+    cfg = _defines(CONFIG_H)
+    required = ("CAN_REQUEST", "CAN_RESPONSE", "CAN_IDENTITY", "CAN_DATA",
+                "CAN_SELECT", "CAN_ENTER", "CAN_CLASS_MASK", "APP_OFFSET",
+                "PICO_FLASH_SIZE_BYTES", "PROTOCOL_VERSION")
+    missing = [name for name in required if name not in cfg]
+    if missing:
+        sys.exit(f"[ERROR] CONFIG.h missing numeric defines: {', '.join(missing)}")
+    return cfg
+
+
+def _can_commands():
+    text = Path(PROTOCOL_H).read_text()
+    commands = {name: int(value)
+                for name, value in re.findall(r"(CMD_\w+)\s*=\s*(\d+)", text)}
+    if not commands:
+        sys.exit(f"[ERROR] No CMD_* enums found in {PROTOCOL_H}")
+    return commands
+
+
+def _parse_intel_hex(text):
+    """Return (base_address, bytes) from Intel HEX, padding address gaps with 0xFF."""
+    cells = {}
+    base = 0
+    for lineno, raw in enumerate(text.splitlines(), 1):
+        line = raw.strip()
+        if not line:
+            continue
+        if not line.startswith(":"):
+            raise ValueError(f"Intel HEX line {lineno}: missing ':' start code")
+        rec = bytes.fromhex(line[1:])
+        count = rec[0]
+        if len(rec) != count + 5:
+            raise ValueError(f"Intel HEX line {lineno}: length mismatch")
+        if (sum(rec) & 0xFF) != 0:
+            raise ValueError(f"Intel HEX line {lineno}: checksum error")
+        offset = (rec[1] << 8) | rec[2]
+        rtype = rec[3]
+        payload = rec[4:4 + count]
+        if rtype == 0x00:
+            for i, byte in enumerate(payload):
+                cells[base + offset + i] = byte
+        elif rtype == 0x01:
+            break
+        elif rtype == 0x04:
+            base = ((payload[0] << 8) | payload[1]) << 16
+        elif rtype == 0x02:
+            base = ((payload[0] << 8) | payload[1]) << 4
+        elif rtype == 0x05:
+            continue
+        else:
+            raise ValueError(f"Intel HEX line {lineno}: unsupported record type {rtype:#04x}")
+    if not cells:
+        raise ValueError("Intel HEX file contained no program data")
+    low, high = min(cells), max(cells)
+    image = bytearray(b"\xff" * (high - low + 1))
+    for addr, byte in cells.items():
+        image[addr - low] = byte
+    return low, bytes(image)
+
+
+def load_application(path):
+    """Load and validate an application image (.hex or .bin) linked for the app XIP base."""
+    cfg = _can_config()
+    app_base = 0x10000000 + cfg["APP_OFFSET"]
+    maximum = cfg["PICO_FLASH_SIZE_BYTES"] - cfg["APP_OFFSET"]
+    if str(path).lower().endswith(".hex"):
+        base, data = _parse_intel_hex(Path(path).read_text())
+        if base != app_base:
+            raise ValueError(
+                f"HEX starts at 0x{base:08x}, expected application base 0x{app_base:08x}")
+    else:
+        data = Path(path).read_bytes()
+    if not 256 <= len(data) <= maximum:
+        raise ValueError(f"Application length must be 256..{maximum} bytes")
+    stack, reset = struct.unpack_from("<II", data)
+    if not (0x20000000 < stack <= 0x20082000 and stack % 8 == 0 and reset & 1
+            and app_base <= (reset & ~1) < app_base + len(data)):
+        raise ValueError(f"Invalid application vectors; build the image for XIP address 0x{app_base:08x}")
+    return data
+
+
+def _can_module():
+    try:
+        return importlib.import_module("can")
+    except ImportError:
+        sys.exit("[ERROR] python-can not installed. Run: python -m pip install -r requirements.txt")
+
+
+class _Device:
+    """One selected silicon identity on one CAN bus; transfers are stop-and-wait."""
+
+    def __init__(self, bus, node, uid, timeout=2.0):
+        self.bus = bus
+        self.node = node
+        self.uid = uid
+        self.timeout = timeout
+        self.transaction = 0
+        self.can = _can_module()
+
+    def send(self, message_class, payload):
+        if len(payload) != 8:
+            raise ValueError("Protocol payload must contain eight bytes")
+        self.bus.send(self.can.Message(arbitration_id=message_class | self.node,
+                                       is_extended_id=True, data=payload), timeout=self.timeout)
+
+    def exchange(self, message_class, payload, command, transaction=0, offset=None):
+        for attempt in range(5):
+            self.send(message_class, payload)
+            deadline = time.monotonic() + self.timeout
+            while time.monotonic() < deadline:
+                frame = self.bus.recv(max(0, deadline - time.monotonic()))
+                if frame is None:
+                    break
+                if (not frame.is_extended_id or frame.is_remote_frame or frame.is_error_frame
+                        or frame.arbitration_id != CFG["CAN_RESPONSE"] | self.node
+                        or len(frame.data) != 8):
+                    continue
+                reply = bytes(frame.data)
+                if reply[0] != command:
+                    continue
+                if offset is not None:
+                    if struct.unpack_from("<I", reply, 4)[0] != offset:
+                        continue
+                elif reply[1] != transaction:
+                    continue
+                if reply[2] != 0:
+                    raise RuntimeError(f"Device rejected command {command}, status {reply[2]}, offset {offset}")
+                return reply
+            print(f"Retry {attempt + 1}/5: command {command}, offset {offset}")
+        raise TimeoutError(f"No acknowledgement from node 0x{self.node:04x}")
+
+    def control(self, name, value=0):
+        self.transaction = (self.transaction + 1) & 255
+        command = COMMANDS[name]
+        payload = struct.pack("<BBI2x", command, self.transaction, value)
+        return self.exchange(CFG["CAN_REQUEST"], payload, command, self.transaction)
+
+    def select(self):
+        self.exchange(CFG["CAN_SELECT"], self.uid, COMMANDS["CMD_SELECT"])
+
+    def enter(self):
+        # A reset can swallow its own acknowledgement; discovery then confirms recovery.
+        self.send(CFG["CAN_ENTER"], self.uid)
+
+    def upload(self, data):
+        self.select()
+        self.control("CMD_BEGIN", len(data))
+        started = time.monotonic()
+        reported = 0
+        for offset in range(0, len(data), 4):
+            payload = struct.pack("<I", offset) + data[offset:offset + 4].ljust(4, b"\xff")
+            self.exchange(CFG["CAN_DATA"], payload, COMMANDS["CMD_DATA"], offset=offset)
+            percent = min(100, (offset + 4) * 100 // len(data))
+            if percent >= reported + 10:
+                print(f"{percent}% ({min(offset + 4, len(data))}/{len(data)} bytes)")
+                reported = percent
+        self.control("CMD_FINISH", zlib.crc32(data))
+        print(f"Flash readback CRC verified and manifest committed in {time.monotonic() - started:.1f}s")
+
+
+def _discover(bus, duration=1.0, node=0):
+    can = _can_module()
+    transaction = int(time.monotonic() * 1000) & 255
+    for _ in range(1024):
+        if bus.recv(0) is None:
+            break
+    bus.send(can.Message(arbitration_id=CFG["CAN_REQUEST"] | node, is_extended_id=True,
+                         data=bytes([COMMANDS["CMD_INFO"], transaction, 0, 0, 0, 0, 0, 0])),
+             timeout=1.0)
+    result = {}
+    deadline = time.monotonic() + duration
+    while time.monotonic() < deadline:
+        frame = bus.recv(max(0, deadline - time.monotonic()))
+        if frame is None:
+            break
+        if (not frame.is_extended_id or frame.is_remote_frame or frame.is_error_frame
+                or len(frame.data) != 8):
+            continue
+        source = frame.arbitration_id & 0xffff
+        message_class = frame.arbitration_id & CFG["CAN_CLASS_MASK"]
+        if message_class not in (CFG["CAN_IDENTITY"], CFG["CAN_RESPONSE"]):
+            continue
+        item = result.setdefault(source, {})
+        if message_class == CFG["CAN_IDENTITY"]:
+            uid = bytes(frame.data)
+            if "uid" in item and item["uid"] != uid:
+                raise RuntimeError(f"Address collision at 0x{source:04x}; isolate the intended device")
+            item["uid"] = uid
+        elif frame.data[0] == COMMANDS["CMD_INFO"] and frame.data[1] == transaction:
+            item.update(mode=frame.data[3], version=frame.data[4], valid=bool(frame.data[5]))
+    return {address: item for address, item in result.items() if "uid" in item and "mode" in item}
+
+
+def _wait_mode(bus, node, uid, mode, attempts=8, settle=0.0):
+    # Let the target finish resetting and initialising CAN before the first poll.
+    if settle:
+        time.sleep(settle)
+    for _ in range(attempts):
+        item = _discover(bus, duration=0.5, node=node).get(node)
+        if item and item["uid"] == uid and item["mode"] == mode:
+            return item
+    raise TimeoutError(f"Node 0x{node:04x} did not enter {'bootloader' if mode else 'application'} mode")
+
+
+def _print_devices(devices):
+    for address, item in devices.items():
+        print(f"node=0x{address:04x} uid={item['uid'].hex()} "
+              f"mode={'bootloader' if item['mode'] else 'application'} "
+              f"protocol={item['version']} valid={item['valid']}")
+
+
+def _open_bus(args):
+    return _can_module().Bus(interface=args.interface, channel=args.channel, bitrate=args.bitrate)
+
+
+def _choose(count, prompt="Select"):
+    """Prompt for a 1-based choice and return the 0-based index."""
+    while True:
+        reply = input(f"{prompt} [1-{count}]: ").strip()
+        if reply.isdigit() and 1 <= int(reply) <= count:
+            return int(reply) - 1
+        print("Invalid selection.")
+
+
+def _select_channel(args):
+    """Return a CAN channel, auto-detecting and prompting only when several exist."""
+    if args.channel:
+        return args.channel
+    configs = list(_can_module().detect_available_configs(interfaces=[args.interface]))
+    configs = [c for c in configs if c.get("channel")]
+    if not configs:
+        sys.exit(f"[ERROR] No {args.interface} adapter detected. Connect one or pass --channel.")
+    if len(configs) == 1:
+        channel = configs[0]["channel"]
+        print(f"[*] Using CAN adapter {channel}")
+        return channel
+    print("Multiple CAN adapters detected:")
+    for index, cfg in enumerate(configs, 1):
+        name = cfg.get("device_name", "")
+        print(f"  {index}) {cfg['channel']}" + (f"  ({name})" if name else ""))
+    return configs[_choose(len(configs), "Select adapter")]["channel"]
+
+
+def _select_device(devices, args):
+    """Return (node, uid, item), auto-selecting or prompting among discovered boards."""
+    if not devices:
+        sys.exit("[ERROR] No compatible devices responded on the bus.")
+    if args.node is not None:
+        item = devices.get(args.node)
+        if not item:
+            sys.exit(f"[ERROR] Node 0x{args.node:04x} not found in discovery.")
+        if args.uid:
+            uid = bytes.fromhex(args.uid)
+            if len(uid) != 8 or item["uid"] != uid:
+                sys.exit("[ERROR] Requested UID did not match discovery; nothing erased.")
+        return args.node, item["uid"], item
+    nodes = list(devices.items())
+    if len(nodes) == 1:
+        address, item = nodes[0]
+        print(f"[*] Using node 0x{address:04x} uid={item['uid'].hex()}")
+        return address, item["uid"], item
+    print("Multiple devices detected:")
+    for index, (address, item) in enumerate(nodes, 1):
+        print(f"  {index}) node=0x{address:04x} uid={item['uid'].hex()} "
+              f"mode={'bootloader' if item['mode'] else 'application'}")
+    address, item = nodes[_choose(len(nodes), "Select board")]
+    return address, item["uid"], item
+
+
+def do_adapters(args):
+    for adapter in _can_module().detect_available_configs(interfaces=[args.interface]):
+        print(adapter)
+
+
+def do_discover(args):
+    global CFG, COMMANDS
+    CFG, COMMANDS = _can_config(), _can_commands()
+    args.channel = _select_channel(args)
+    with _open_bus(args) as bus:
+        devices = _discover(bus)
+        if not devices:
+            print("No compatible devices responded")
+        _print_devices(devices)
+
+
+def do_can(args):
+    global CFG, COMMANDS
+    CFG, COMMANDS = _can_config(), _can_commands()
+    image = args.application or HEX_FILE
+    if not os.path.isfile(image):
+        print(f"[*] {os.path.basename(image)} not found, building first.")
+        do_build()
+    data = load_application(image)
+    args.channel = _select_channel(args)
+    with _open_bus(args) as bus:
+        devices = _discover(bus)
+        _print_devices(devices)
+        node, uid, item = _select_device(devices, args)
+        if item["version"] != CFG["PROTOCOL_VERSION"]:
+            sys.exit("[ERROR] Device protocol did not match this firmware; nothing erased.")
+        print(f"\n[*] Uploading {os.path.basename(image)} ({len(data)} bytes) over CAN "
+              f"to node 0x{node:04x}...")
+        device = _Device(bus, node, uid)
+        if item["mode"] != 1:
+            device.enter()
+            _wait_mode(bus, node, uid, 1)
+        try:
+            device.upload(data)
+        except (Exception, KeyboardInterrupt):
+            # Best-effort abort never commits an incomplete image.
+            try:
+                device.control("CMD_ABORT")
+            except Exception:
+                pass
+            raise
+        if not args.stay:
+            try:
+                device.control("CMD_BOOT")
+            except TimeoutError:
+                pass  # Reset may complete despite a lost final acknowledgement.
+            # Give the app time to boot (reset + FreeRTOS start + CAN self-test/init).
+            _wait_mode(bus, node, uid, 0, attempts=20, settle=1.0)
+            print("Application responded after reboot")
+    print("\n[+] CAN UPLOAD SUCCESSFUL")
+
+
+def _can_args(argv):
+    parser = argparse.ArgumentParser(prog="build.py", add_help=False)
+    parser.add_argument("command")
+    parser.add_argument("--interface", default="pcan")
+    parser.add_argument("--channel", help="Adapter channel; auto-detected when omitted")
+    parser.add_argument("--bitrate", type=int, default=1_000_000)
+    parser.add_argument("--node", type=lambda value: int(value, 0),
+                        help="Target node; auto-selected from discovery when omitted")
+    parser.add_argument("--uid", help="Optional full sixteen-hex-digit identity to pin the target")
+    parser.add_argument("--application", help="Override image path (.hex or .bin)")
+    parser.add_argument("--stay", action="store_true", help="Remain in recovery after upload")
+    return parser.parse_args(argv)
+
+
 def main():
     action = sys.argv[1].lower() if len(sys.argv) > 1 else "build"
+    if action in ("adapters", "discover", "can"):
+        args = _can_args(sys.argv[1:])
+        {"adapters": do_adapters, "discover": do_discover, "can": do_can}[action](args)
+        return
     if action == "clean":
         do_clean()
     elif action == "configure":
@@ -1222,7 +1873,7 @@ if __name__ == "__main__":
 }
 
 function Get-GitIgnore {
-@'
+    @'
 build/
 .vs/
 *.uf2
@@ -1237,7 +1888,7 @@ __pycache__/
 }
 
 function Get-VscodeCmakeKits {
-@'
+    @'
 [
     {
         "name": "Pico",
@@ -1257,7 +1908,7 @@ function Get-VscodeCmakeKits {
 }
 
 function Get-VscodeCppProperties {
-@'
+    @'
 {
     "configurations": [
         {
@@ -1284,7 +1935,7 @@ function Get-VscodeCppProperties {
 }
 
 function Get-VscodeExtensions {
-@'
+    @'
 {
     "recommendations": [
         "marus25.cortex-debug",
@@ -1298,7 +1949,7 @@ function Get-VscodeExtensions {
 }
 
 function Get-VscodeLaunch {
-@'
+    @'
 {
     "version": "0.2.0",
     "configurations": [
@@ -1351,7 +2002,7 @@ function Get-VscodeLaunch {
 }
 
 function Get-VscodeSettings {
-@'
+    @'
 {
     "cmake.showSystemKits": false,
     "cmake.options.statusBarVisibility": "hidden",
@@ -1392,7 +2043,7 @@ function Get-VscodeSettings {
 }
 
 function Get-VscodeTasks {
-@'
+    @'
 {
     "version": "2.0.0",
     "tasks": [
@@ -1492,6 +2143,1799 @@ function Get-VscodeTasks {
 '@
 }
 
+function Get-ObjDictH {
+    @'
+/**
+ * @file src/Software/__PROJECT_NAME__/ObjDict.h
+ *
+ * @version 1.0.0
+ * @date 2026-09-20
+ *
+ * @details
+ * Object dictionary for the CAN application: the command bytes and object indices used by the
+ * SDO, RPDO, and TPDO handlers in can_router.c. Keep every wire-protocol number here so the
+ * firmware and host tools share one list. Add a new object by adding an index define and a
+ * matching case in the relevant router handler.
+ *
+ * @project __PROJECT_NAME__ - BladeCore-M54C firmware
+ * @github https://github.com/DvidMakesThings/HW_BladeCore-M54C
+ */
+#pragma once
+
+/* -------------------------------------------------------------------------- */
+/*  SDO - command bytes (data[0]) and object indices (data[1..2], LE)         */
+/* -------------------------------------------------------------------------- */
+#define SDO_READ 0x40u     /**< Request: read an object. */
+#define SDO_RESPONSE 0x43u /**< Response: object value in data[4..7]. */
+#define SDO_ABORT 0x80u    /**< Response: unknown object or bad request. */
+
+#define OBJ_VUSB_MV 0x2000u /**< USB VBUS sense voltage, millivolts. */
+#define OBJ_VREF_MV 0x2001u /**< 3.00 V reference sense voltage, millivolts. */
+
+/* -------------------------------------------------------------------------- */
+/*  RPDO - inbound process-data object indices                                */
+/* -------------------------------------------------------------------------- */
+/* Add received process-data object indices here. */
+
+/* -------------------------------------------------------------------------- */
+/*  TPDO - outbound process-data object indices                               */
+/* -------------------------------------------------------------------------- */
+/* Add transmitted process-data object indices here. */
+'@
+}
+
+function Get-FirmwareLayout {
+    @'
+# Read flash layout from root CONFIG.h, the single source of project constants.
+function(configure_firmware_layout target binary_type image_role)
+    if(PICO_SDK_VERSION_STRING VERSION_LESS "2.2.0")
+        message(FATAL_ERROR "Pico SDK 2.2.0 or newer is required; set PICO_SDK_PATH.")
+    endif()
+    foreach(key PICO_FLASH_SIZE_BYTES APP_OFFSET META_OFFSET)
+        file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/CONFIG.h" definition REGEX "^#define ${key} +0x[0-9a-fA-F]+")
+        string(REGEX MATCH "0x[0-9a-fA-F]+" ${key} "${definition}")
+        if(NOT ${key})
+            message(FATAL_ERROR "Missing numeric ${key} in CONFIG.h")
+        endif()
+    endforeach()
+    if(image_role STREQUAL "application")
+        math(EXPR image_origin "0x10000000 + ${APP_OFFSET}" OUTPUT_FORMAT HEXADECIMAL)
+        math(EXPR image_length "${PICO_FLASH_SIZE_BYTES} - ${APP_OFFSET}" OUTPUT_FORMAT HEXADECIMAL)
+    else()
+        set(image_origin 0x10000000)
+        set(image_length ${META_OFFSET})
+    endif()
+    file(READ "${PICO_SDK_PATH}/src/rp2_common/pico_crt0/rp2350/memmap_${binary_type}.ld" linker_text)
+    string(REPLACE "INCLUDE \"pico_flash_region.ld\"" "FLASH(rx) : ORIGIN = ${image_origin}, LENGTH = ${image_length}" linker_text "${linker_text}")
+    file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/${target}.ld" "${linker_text}")
+    pico_set_linker_script(${target} "${CMAKE_CURRENT_BINARY_DIR}/${target}.ld")
+    set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/CONFIG.h")
+endfunction()
+'@
+}
+
+function Get-RequirementsTxt {
+    @'
+python-can==4.6.1
+'@
+}
+
+function Get-ApplicationH {
+    @'
+/**
+ * @file src/Software/__PROJECT_NAME__/incl/Tasks/application.h
+ *
+ * @version 1.0.0
+ * @date 2026-09-18
+ *
+ * @details
+ * Declares the two RTOS task entry points and a weak application-level CAN receive hook. It
+ * also defines debugger-visible health counters so commissioning can verify task progress,
+ * controller loopback, frame reception, and error conditions without enabling USB or UART. The
+ * CAN handle is published only for direct notification from its GPIO interrupt.
+ *
+ * @project __PROJECT_NAME__ - BladeCore-M54C firmware
+ * @github https://github.com/DvidMakesThings/HW_BladeCore-M54C
+ */
+#pragma once
+#include "board_can.h"
+#include "FreeRTOS.h"
+#include "task.h"
+
+/** @brief Runtime health counters available over SWD. */
+typedef struct
+{
+    uint32_t heartbeat;   /**< Number of heartbeat LED transitions. */
+    uint32_t can_cycles;  /**< Number of completed CAN service iterations. */
+    uint32_t received;    /**< Frames received in either identifier format. */
+    uint32_t transmitted; /**< Successfully acknowledged transmissions. */
+    uint32_t tx_errors;   /**< Failed or timed-out transmissions. */
+    uint32_t overflows;   /**< Receive overflow events. */
+    uint32_t node;        /**< Sixteen-bit silicon-derived node address. */
+    uint32_t can_ready;   /**< Controller successfully entered normal mode. */
+    uint32_t selftest_ok; /**< Internal MCP2515 loopback test result. */
+    uint32_t last_id;     /**< Most recently received CAN identifier. */
+    uint32_t last_error;  /**< Most recent MCP2515 EFLG value. */
+    uint8_t uid[8];       /**< Full silicon identifier. */
+    uint8_t last_data[8]; /**< Most recent received payload. */
+    uint8_t can_regs[8]; /**< DEBUG: live MCP2515 CANSTAT,CANCTRL,EFLG,TEC,REC,CANINTF,RXB0,RXB1. */
+} application_diagnostics_t;
+
+extern volatile application_diagnostics_t bare_diag; /**< SWD-visible task health. */
+extern TaskHandle_t can_task_handle; /**< Task notified by the controller interrupt. */
+
+/**
+ * @brief One-shot startup task: run all peripheral initialisation, then self-delete.
+ *
+ * @param[in] parameter Unused FreeRTOS task argument; pass NULL.
+ * @return None (void); the task removes itself with vTaskDelete once init completes.
+ *
+ * @details
+ * Runs at the highest priority so it finishes before the service tasks do real work. It powers
+ * and calibrates the ADC, then deletes itself to free its stack. Add further one-time startup
+ * steps here.
+ */
+void init_task(void *parameter);
+
+/**
+ * @brief Toggle the heartbeat at the minimum scheduler priority.
+ *
+ * @param[in] parameter Unused FreeRTOS task argument; pass NULL.
+ * @return None (void); this task never returns.
+ *
+ * @details
+ * Toggles the board heartbeat LED every HEARTBEAT_PERIOD_MS using an absolute FreeRTOS delay
+ * schedule. The task runs at tskIDLE_PRIORITY, the minimum scheduler priority. It feeds the
+ * watchdog only after the CAN service counter has advanced, so a healthy heartbeat proves
+ * progress in both tasks. Each iteration blocks to leave CPU time available to the idle task.
+ */
+void heartbeat_task(void *parameter);
+
+/**
+ * @brief Own SPI1 and service receive traffic and bootloader requests.
+ *
+ * @param[in] parameter Unused FreeRTOS task argument; pass NULL.
+ * @return None (void); this task never returns.
+ *
+ * @details
+ * Runs an internal MCP2515 loopback check, then retries normal controller initialisation
+ * without preventing heartbeat execution. A GPIO interrupt only notifies this task; all SPI
+ * accesses stay in task context. Each service pass handles a bounded receive budget, records
+ * errors, and blocks at least one tick to prevent sustained CAN traffic from starving the
+ * priority-zero heartbeat. A timed polling fallback handles missed or already-asserted
+ * interrupt edges.
+ */
+void can_task(void *parameter);
+
+/**
+ * @brief Periodic example task used as a template for new application tasks.
+ *
+ * @param[in] parameter Unused FreeRTOS task argument; pass NULL.
+ * @return None (void); this task never returns.
+ *
+ * @details
+ * Wakes every EXAMPLE_PERIOD_MS on an absolute schedule and does nothing else. It exists as a
+ * copy-paste starting point that demonstrates a non-returning task loop and periodic
+ * vTaskDelayUntil scheduling. Replace the body with real work and adjust the EXAMPLE_* defines
+ * in CONFIG.h. See example_task.c for the steps to add a new task.
+ */
+void example_task(void *parameter);
+
+/**
+ * @brief Application extension point for received CAN traffic.
+ *
+ * @param[in] frame Borrowed frame valid only during this call.
+ * @return None (void).
+ *
+ * @details
+ * Provides the deliberate extension point for future RTOS applications. The default weak
+ * implementation ignores the borrowed frame. Override it with a strong definition in an incl
+ * source to dispatch application messages, copying data into a queue when processing must
+ * outlive the call. Blocking or long-running handlers would delay the CAN listener and can
+ * trigger the task health watchdog.
+ */
+void application_can_received(const can_frame_t *frame);
+'@
+}
+
+function Get-HeartbeatC {
+    @'
+/**
+ * @file src/Software/__PROJECT_NAME__/incl/Tasks/heartbeat.c
+ *
+ * @version 1.0.0
+ * @date 2026-09-18
+ *
+ * @details
+ * Implements the minimum-priority heartbeat task. The LED changes state on a fixed half-second
+ * schedule, and watchdog feeding requires fresh progress from the CAN task. A stalled or
+ * monopolising higher-priority task therefore cannot be hidden by an independently fed
+ * watchdog. The task blocks on every iteration so the scheduler idle task remains runnable.
+ *
+ * @project __PROJECT_NAME__ - BladeCore-M54C firmware
+ * @github https://github.com/DvidMakesThings/HW_BladeCore-M54C
+ */
+#include "application.h"
+#include "pico/stdlib.h"
+#include "hardware/watchdog.h"
+
+/**
+ * @brief Toggle the heartbeat at the minimum scheduler priority.
+ *
+ * @param[in] parameter Unused FreeRTOS task argument; pass NULL.
+ * @return None (void); this task never returns.
+ *
+ * @details
+ * Toggles the board heartbeat LED every HEARTBEAT_PERIOD_MS using an absolute FreeRTOS delay
+ * schedule. The task runs at tskIDLE_PRIORITY, the minimum scheduler priority. It feeds the
+ * watchdog only after the CAN service counter has advanced, so a healthy heartbeat proves
+ * progress in both tasks. Each iteration blocks to leave CPU time available to the idle task.
+ */
+void heartbeat_task(void *parameter)
+{
+    TickType_t wake_time = xTaskGetTickCount();      /**< Absolute periodic schedule reference. */
+    uint32_t previous_cycles = bare_diag.can_cycles; /**< Last observed CAN progress. */
+    (void)parameter;
+
+    for (;;)
+    {
+        gpio_xor_mask64(1ull << PIN_HEARTBEAT);
+        ++bare_diag.heartbeat;
+        /* Feeding here requires progress from both the CAN and lowest-priority task. */
+        if (bare_diag.can_cycles != previous_cycles)
+        {
+            watchdog_update();
+        }
+        previous_cycles = bare_diag.can_cycles;
+        vTaskDelayUntil(&wake_time, pdMS_TO_TICKS(HEARTBEAT_PERIOD_MS));
+    }
+}
+'@
+}
+
+function Get-CanTaskC {
+    @'
+/**
+ * @file src/Software/__PROJECT_NAME__/incl/Tasks/can_task.c
+ *
+ * @version 1.0.0
+ * @date 2026-09-18
+ *
+ * @details
+ * Owns MCP2515 SPI access in the RTOS application. It runs an internal loopback test,
+ * initialises the bus, drains receive buffers, and forwards each frame to the message router in
+ * can_router.c, which dispatches management, SDO, RPDO, and any future object types by class.
+ * Receive work is bounded per pass and always followed by a blocking delay so the priority-zero
+ * heartbeat can run under sustained traffic.
+ *
+ * @project __PROJECT_NAME__ - BladeCore-M54C firmware
+ * @github https://github.com/DvidMakesThings/HW_BladeCore-M54C
+ */
+#include "application.h"
+#include "can_router.h"
+#include "pico/stdlib.h"
+#include "hardware/irq.h"
+#include <string.h>
+
+/**
+ * @brief Application extension point for received CAN traffic.
+ *
+ * @param[in] frame Borrowed frame valid only during this call.
+ * @return None (void).
+ *
+ * @details
+ * Provides the deliberate extension point for future RTOS applications. The default weak
+ * implementation ignores the borrowed frame. Override it with a strong definition in an incl
+ * source to dispatch application messages, copying data into a queue when processing must
+ * outlive the call. Blocking or long-running handlers would delay the CAN listener and can
+ * trigger the task health watchdog.
+ */
+__attribute__((weak)) void application_can_received(const can_frame_t *frame)
+{
+    /* Implement application-specific CAN dispatch here or override this weak hook. */
+    (void)frame;
+}
+
+/**
+ * @brief Wake the CAN task without using SPI from interrupt context.
+ *
+ * @param[in] gpio GPIO reporting a falling edge.
+ * @param[in] events SDK interrupt event mask.
+ * @return None (void).
+ *
+ * @details
+ * Accepts only interrupts from PIN_CAN_INT and uses a FreeRTOS direct task notification to
+ * wake the CAN owner. If a higher-priority task becomes runnable, the ISR requests a context
+ * switch before exiting. No SPI transactions or frame decoding are performed in interrupt
+ * context; the configured interrupt priority permits FreeRTOS FromISR calls.
+ */
+static void can_interrupt(uint gpio, uint32_t events)
+{
+    (void)events;
+    if (gpio == PIN_CAN_INT && can_task_handle != NULL)
+    {
+        BaseType_t task_woken = pdFALSE; /**< Whether a higher-priority task was unblocked. */
+        vTaskNotifyGiveFromISR(can_task_handle, &task_woken);
+        portYIELD_FROM_ISR(task_woken);
+    }
+}
+
+/**
+ * @brief Record receive traffic and route the frame to its handler.
+ *
+ * @param[in] frame Frame consumed from the MCP2515.
+ * @return None (void).
+ *
+ * @details
+ * Records every received identifier and payload for diagnostics, calls the generic application
+ * extension hook, then hands the frame to the message router. All per-message-type logic lives
+ * in can_router.c, so new object types are added there without touching this task.
+ */
+static void handle_frame(const can_frame_t *frame)
+{
+    ++bare_diag.received;
+    bare_diag.last_id = frame->id;
+    memcpy((void *)bare_diag.last_data, frame->data, sizeof(frame->data));
+    application_can_received(frame);
+    can_router_dispatch(frame);
+}
+
+/**
+ * @brief Own SPI1 and service receive traffic and bootloader requests.
+ *
+ * @param[in] parameter Unused FreeRTOS task argument; pass NULL.
+ * @return None (void); this task never returns.
+ *
+ * @details
+ * Runs an internal MCP2515 loopback check, then retries normal controller initialisation
+ * without preventing heartbeat execution. A GPIO interrupt only notifies this task; all SPI
+ * accesses stay in task context. Each service pass handles a bounded receive budget, records
+ * errors, and blocks at least one tick to prevent sustained CAN traffic from starving the
+ * priority-zero heartbeat. A timed polling fallback handles missed or already-asserted
+ * interrupt edges.
+ */
+void can_task(void *parameter)
+{
+    (void)parameter;
+    /* Initialise the controller exactly once, matching the working bootloader. */
+    while (!(bare_diag.can_ready = board_can_init(false)))
+    {
+        /* Preserve heartbeat operation while reporting a missing controller over SWD. */
+        ++bare_diag.can_cycles;
+        vTaskDelay(pdMS_TO_TICKS(CAN_RETRY_MS));
+    }
+    irq_set_priority(IO_IRQ_BANK0, configMAX_SYSCALL_INTERRUPT_PRIORITY);
+    gpio_set_irq_enabled_with_callback(PIN_CAN_INT, GPIO_IRQ_EDGE_FALL, true, can_interrupt);
+    for (;;)
+    {
+        can_frame_t frame; /**< Next frame to dispatch. */
+        /** @brief Number of receive buffers consumed in this service pass. */
+        for (unsigned count = 0; count < CAN_RX_BUDGET && board_can_receive(&frame); ++count)
+        {
+            handle_frame(&frame);
+        }
+        bare_diag.last_error = board_can_errors();
+        if (bare_diag.last_error & 0xc0)
+        {
+            ++bare_diag.overflows;
+            board_can_clear_overflow();
+        }
+        ++bare_diag.can_cycles;
+
+        /* Always block one tick so a saturated bus cannot starve heartbeat.
+         * Polling also handles an IRQ that was already low before IRQ enabling. */
+        vTaskDelay(pdMS_TO_TICKS(1));
+        ulTaskNotifyTake(pdTRUE, pdMS_TO_TICKS(CAN_POLL_MS));
+    }
+}
+'@
+}
+
+function Get-ExampleTaskC {
+    @'
+/**
+ * @file src/Software/__PROJECT_NAME__/incl/Tasks/example_task.c
+ *
+ * @version 1.0.0
+ * @date 2026-09-18
+ *
+ * @details
+ * Reference task showing how to add a new application task to __PROJECT_NAME__. It does no real work; it
+ * exists as a copy-paste starting point for anyone new to FreeRTOS.
+ *
+ * What it demonstrates:
+ *   - A task is just a function that never returns: it loops forever.
+ *   - Every iteration must block (here vTaskDelayUntil). Blocking hands the CPU back to the
+ *     scheduler so lower-priority tasks and the idle task can run. A task that never blocks
+ *     starves everything below it.
+ *   - vTaskDelayUntil gives a stable period; the wake time is absolute, not "now + delay".
+ *
+ * -----------------------------------------------------------------------------------------------
+ * How to add a new task (this file is already wired in as the worked example):
+ *
+ *   Step                                   This example                     File
+ *   -------------------------------------  -------------------------------  ----------------------
+ *   1. Set priority, stack, and timing     EXAMPLE_TASK_PRIORITY (idle+1),  CONFIG.h
+ *                                          EXAMPLE_PERIOD_MS,
+ *                                          EXAMPLE_STACK_WORDS
+ *   2. Declare the entry point             example_task() incl/Tasks/application.h
+ *   3. Write the task body                 this file incl/Tasks/example_task.c
+ *   4. Create it before the scheduler      xTaskCreate(..., configASSERT)   main.c
+ *   5. Add the source to the build         incl/Tasks/example_task.c        CMakeLists.txt
+ *                                                                           (USER SOURCES block)
+ *
+ * To start your own task, copy this file, rename example_task, and repeat the five steps with
+ * your own MYTASK_* names.
+ * -----------------------------------------------------------------------------------------------
+ *
+ * @project __PROJECT_NAME__ - BladeCore-M54C firmware
+ * @github https://github.com/DvidMakesThings/HW_BladeCore-M54C
+ */
+#include "application.h"
+#include "pico/stdlib.h"
+
+/**
+ * @brief Periodic example task used as a template for new application tasks.
+ *
+ * @param[in] parameter Unused FreeRTOS task argument; pass NULL.
+ * @return None (void); this task never returns.
+ *
+ * @details
+ * Wakes every EXAMPLE_PERIOD_MS on an absolute schedule and does nothing else.
+ *
+ * The pattern to reuse:
+ *   1. Set up any state once, before the loop (here: the wake-time reference).
+ *   2. Loop forever.
+ *   3. Do the per-iteration work.
+ *   4. Block until the next wake so the CPU is free for other tasks.
+ *
+ * For event-driven work instead of a fixed period, drop the delay and block on ulTaskNotifyTake,
+ * and wake the task from an ISR with vTaskNotifyGiveFromISR (see can_task.c).
+ */
+void example_task(void *parameter)
+{
+    TickType_t wake_time = xTaskGetTickCount(); /**< Absolute periodic schedule reference. */
+    (void)parameter;
+
+    for (;;)
+    {
+        /* Step 3: add per-iteration work here. Keep it short and non-blocking; long or
+         * busy-waiting work at this priority would delay lower-priority tasks. */
+
+        /* Step 4: block until the next period so other tasks can run. */
+        vTaskDelayUntil(&wake_time, pdMS_TO_TICKS(EXAMPLE_PERIOD_MS));
+    }
+}
+'@
+}
+
+function Get-InitTaskC {
+    @'
+/**
+ * @file src/Software/__PROJECT_NAME__/incl/Tasks/init_task.c
+ *
+ * @version 1.0.0
+ * @date 2026-09-20
+ *
+ * @details
+ * One-shot startup task. It runs at the highest priority so it completes before the service
+ * tasks do real work, performs all one-time peripheral initialisation, then deletes itself with
+ * vTaskDelete to free its stack. Add further startup steps between the marked lines.
+ *
+ * @project __PROJECT_NAME__ - BladeCore-M54C firmware
+ * @github https://github.com/DvidMakesThings/HW_BladeCore-M54C
+ */
+#include "application.h"
+#include "adc.h"
+#include "pico/stdlib.h"
+
+/**
+ * @brief Run startup initialisation, then remove this task.
+ *
+ * @param[in] parameter Unused FreeRTOS task argument; pass NULL.
+ * @return None (void); the task never returns - it deletes itself.
+ *
+ * @details
+ * Powers the ADC and calibrates it against the known voltage at the VREF pin, so later readings
+ * are gain-corrected. The final vTaskDelete(NULL) releases the task's TCB and stack back to the
+ * heap once initialisation is complete.
+ */
+void init_task(void *parameter)
+{
+    (void)parameter;
+
+    /* --- startup initialisation --- */
+    adc_hal_init();
+    adc_hal_calibrate(PIN_ADC_VREF, ADC_CAL_PIN_MV);
+    /* --- end startup initialisation --- */
+
+    vTaskDelete(NULL);
+}
+'@
+}
+
+function Get-CanRouterC {
+    @'
+/**
+ * @file src/Software/__PROJECT_NAME__/incl/can_router/can_router.c
+ *
+ * @version 1.0.0
+ * @date 2026-09-18
+ *
+ * @details
+ * Implements the CAN message router. A single dispatch table maps each message class to the
+ * handler that services it; the CAN task calls can_router_dispatch for every received frame and
+ * nothing else needs to know about individual message types. Adding a new object type is a two-
+ * step change local to this file: write a handler and add one row to routes[].
+ *
+ * Currently registered:
+ *   - CAN_REQUEST / CAN_ENTER : device management (identity discovery and bootloader entry).
+ *   - CAN_SDO_RX              : SDO requests, forwarded to the application_sdo_request hook.
+ *   - CAN_RPDO               : process data, forwarded to the application_rpdo_received hook.
+ *
+ * @project __PROJECT_NAME__ - BladeCore-M54C firmware
+ * @github https://github.com/DvidMakesThings/HW_BladeCore-M54C
+ */
+#include "can_router.h"
+#include "application.h"
+#include "ObjDict.h"
+#include "adc.h"
+#include <string.h>
+
+/**
+ * @brief Transmit a frame and record the result in the health counters.
+ *
+ * @param[in] frame Frame to transmit.
+ * @return None (void).
+ *
+ * @details
+ * Delegates to the bounded board_can_send routine and increments either the transmitted or the
+ * tx_errors counter. Shared by every handler so transmit accounting stays consistent.
+ */
+static void send_response(const can_frame_t *frame)
+{
+    if (board_can_send(frame))
+    {
+        ++bare_diag.transmitted;
+    }
+    else
+    {
+        ++bare_diag.tx_errors;
+    }
+}
+
+/**
+ * @brief Handle device-management requests: identity discovery and bootloader entry.
+ *
+ * @param[in] frame Borrowed management frame.
+ * @return None (void).
+ *
+ * @details
+ * Accepts only eight-byte extended non-RTR frames. Information requests return the complete
+ * silicon ID and application status; broadcast discovery replies are staggered by the shortened
+ * node address. Entry-to-bootloader requires an exact match of the full UID before acknowledging
+ * and resetting, so a shortened-address collision cannot reset a peer.
+ */
+static void route_management(const can_frame_t *frame)
+{
+    if (!frame->extended || frame->rtr || frame->dlc != 8)
+    {
+        return;
+    }
+    const uint16_t destination = (uint16_t)frame->id;          /**< Low-word device address. */
+    const uint32_t message_class = frame->id & CAN_CLASS_MASK; /**< Protocol message class. */
+    /** @brief Management acknowledgement, mode byte zero means application. */
+    can_frame_t reply = {.id = CAN_RESPONSE | bare_diag.node,
+                         .dlc = 8,
+                         .extended = true,
+                         .data = {CMD_INFO, frame->data[1], STATUS_OK, 0, PROTOCOL_VERSION}};
+
+    /* Full-UID targeting prevents a shortened-address collision from resetting a peer. */
+    if (message_class == CAN_ENTER && destination == bare_diag.node &&
+        memcmp(frame->data, (const void *)bare_diag.uid, 8) == 0)
+    {
+        reply.data[0] = CMD_ENTER;
+        reply.data[1] = 0;
+        send_response(&reply);
+        board_request_bootloader();
+    }
+    else if (message_class == CAN_REQUEST && frame->data[0] == CMD_INFO &&
+             (destination == 0 || destination == bare_diag.node))
+    {
+        /** @brief Full identity returned before the status reply. */
+        can_frame_t identity = {.id = CAN_IDENTITY | bare_diag.node, .dlc = 8, .extended = true};
+        memcpy(identity.data, (const void *)bare_diag.uid, sizeof(identity.data));
+        if (destination == 0)
+        {
+            vTaskDelay(pdMS_TO_TICKS(1 + bare_diag.node % CAN_DISCOVERY_WINDOW_MS));
+        }
+        send_response(&identity);
+        send_response(&reply);
+    }
+}
+
+/**
+ * @brief Answer an SDO read request from the object dictionary.
+ *
+ * @param[in] frame Borrowed SDO request frame.
+ * @return None (void).
+ *
+ * @details
+ * Accepts eight-byte read requests addressed to this node or the broadcast address, decodes the
+ * little-endian object index, and returns its value as little-endian millivolts in an SDO_TX
+ * response. Add a new object by adding an index in ObjDict.h and a case below. Analog objects are
+ * read through the ADC HAL; the on-board sense inputs use a 2:1 divider, so the pin voltage is
+ * doubled.
+ */
+static void route_sdo(const can_frame_t *frame)
+{
+    const uint16_t destination = (uint16_t)frame->id; /**< Low-word device address. */
+    if ((destination != 0 && destination != bare_diag.node) || !frame->extended || frame->rtr ||
+        frame->dlc != 8)
+    {
+        return;
+    }
+    const uint16_t index = (uint16_t)(frame->data[1] | (frame->data[2] << 8)); /**< Object. */
+    can_frame_t reply = {.id = CAN_SDO_TX | bare_diag.node, .dlc = 8, .extended = true};
+    reply.data[0] = SDO_RESPONSE;
+    reply.data[1] = frame->data[1];
+    reply.data[2] = frame->data[2];
+    reply.data[3] = frame->data[3];
+
+    if (frame->data[0] != SDO_READ)
+    {
+        reply.data[0] = SDO_ABORT;
+    }
+    else
+    {
+        switch (index)
+        {
+        case OBJ_VUSB_MV:
+            put_u32(reply.data + 4, (uint32_t)adc_hal_read_mv(PIN_ADC_VUSB) * 2u);
+            break;
+        case OBJ_VREF_MV:
+            put_u32(reply.data + 4, (uint32_t)adc_hal_read_mv(PIN_ADC_VREF) * 2u);
+            break;
+        default:
+            reply.data[0] = SDO_ABORT;
+            break;
+        }
+    }
+    send_response(&reply);
+}
+
+/**
+ * @brief Forward received process data to the application hook.
+ *
+ * @param[in] frame Borrowed RPDO frame.
+ * @return None (void).
+ *
+ * @details
+ * Passes the frame to the weak application_rpdo_received hook. Process data is not addressed or
+ * acknowledged, so the router applies no filtering beyond message class.
+ */
+static void route_rpdo(const can_frame_t *frame)
+{
+    application_rpdo_received(frame);
+}
+
+/** @brief One entry in the message-class dispatch table. */
+typedef struct
+{
+    uint32_t message_class;                    /**< Frame class after CAN_CLASS_MASK. */
+    void (*handler)(const can_frame_t *frame); /**< Handler for a matching class. */
+    const char *name;                          /**< Debug label. */
+} can_route_t;
+
+/**
+ * @brief Message-class dispatch table.
+ *
+ * Add a row here and a matching handler above to service a new object type. Management shares
+ * one handler across its request and enter classes; list each class that should reach it.
+ */
+static const can_route_t routes[] = {
+    {CAN_REQUEST, route_management, "management-request"},
+    {CAN_ENTER, route_management, "management-enter"},
+    {CAN_SDO_RX, route_sdo, "sdo"},
+    {CAN_RPDO, route_rpdo, "rpdo"},
+};
+
+void can_router_dispatch(const can_frame_t *frame)
+{
+    const uint32_t message_class = frame->id & CAN_CLASS_MASK; /**< Class to route on. */
+    for (unsigned index = 0; index < sizeof(routes) / sizeof(routes[0]); ++index)
+    {
+        if (routes[index].message_class == message_class)
+        {
+            routes[index].handler(frame);
+            return;
+        }
+    }
+}
+
+bool can_tpdo_send(const uint8_t *data, uint8_t dlc)
+{
+    if (dlc > 8 || (data == NULL && dlc != 0))
+    {
+        return false;
+    }
+    can_frame_t frame = {.id = CAN_TPDO | bare_diag.node, .dlc = dlc, .extended = true};
+    if (dlc != 0)
+    {
+        memcpy(frame.data, data, dlc);
+    }
+    const bool sent = board_can_send(&frame); /**< Bounded transmit result. */
+    if (sent)
+    {
+        ++bare_diag.transmitted;
+    }
+    else
+    {
+        ++bare_diag.tx_errors;
+    }
+    return sent;
+}
+
+/**
+ * @brief Weak default RPDO handler; override in application code.
+ *
+ * @param[in] frame Borrowed RPDO frame.
+ * @return None (void).
+ */
+__attribute__((weak)) void application_rpdo_received(const can_frame_t *frame)
+{
+    (void)frame;
+}
+'@
+}
+
+function Get-CanRouterH {
+    @'
+/**
+ * @file src/Software/__PROJECT_NAME__/incl/can_router/can_router.h
+ *
+ * @version 1.0.0
+ * @date 2026-09-18
+ *
+ * @details
+ * Declares the CAN message router: the single point that inspects a received frame's message
+ * class and forwards it to the matching handler. The router keeps the CAN task free of any
+ * per-message-type logic, so new object types (SDO, RPDO, TPDO, ...) are added by editing one
+ * dispatch table in can_router.c rather than the receive loop.
+ *
+ * Extension points:
+ *   - SDO objects are served in route_sdo() in can_router.c; add a case per ObjDict.h index.
+ *   - application_rpdo_received() strong-override to consume received process data.
+ *   - can_tpdo_send()            call from any task to publish process data.
+ *
+ * @project __PROJECT_NAME__ - BladeCore-M54C firmware
+ * @github https://github.com/DvidMakesThings/HW_BladeCore-M54C
+ */
+#pragma once
+#include "board_can.h"
+
+/**
+ * @brief Route one received frame to the handler registered for its message class.
+ *
+ * @param[in] frame Frame consumed from the controller; borrowed for the call only.
+ * @return None (void).
+ *
+ * @details
+ * Masks the identifier with CAN_CLASS_MASK and looks the result up in the dispatch table in
+ * can_router.c. The first matching handler is invoked and routing stops. Frames whose class is
+ * not in the table are ignored. Runs in the CAN task context and may transmit replies through
+ * the single-owner board_can interface.
+ */
+void can_router_dispatch(const can_frame_t *frame);
+
+/**
+ * @brief Publish process data as a transmit PDO.
+ *
+ * @param[in] data Payload bytes to send; may be NULL only when dlc is zero.
+ * @param[in] dlc Payload length from zero through eight.
+ * @return True when the controller accepted and transmitted the frame; false otherwise.
+ *
+ * @details
+ * Builds an extended frame with the CAN_TPDO class and this node's address, then sends it
+ * through the bounded board_can_send routine. Call it from a periodic or event-driven task to
+ * emit process data. Additional TPDO classes can be added later for multiple channels.
+ */
+bool can_tpdo_send(const uint8_t *data, uint8_t dlc);
+
+/**
+ * @brief Application hook for a received process-data object (RPDO).
+ *
+ * @param[in] frame Borrowed RPDO frame, valid only during the call.
+ * @return None (void).
+ *
+ * @details
+ * Weak default does nothing. Override it with a strong definition to apply incoming process
+ * data. Copy anything that must outlive the call. Keep the handler short and non-blocking.
+ */
+void application_rpdo_received(const can_frame_t *frame);
+'@
+}
+
+function Get-BoardCanC {
+    @'
+/**
+ * @file src/Software/__PROJECT_NAME__/incl/board_can/board_can.c
+ *
+ * @version 1.0.0
+ * @date 2026-09-18
+ *
+ * @details
+ * Implements MCP2515 reset, timing setup, standard and extended frame decoding, bounded
+ * transmission, and controller diagnostics over SPI1. All board pins come from root CONFIG.h.
+ * The register interface matches the controller used by the eWald reference, but this module
+ * has no eWald application dependency. Identity comes from the RP2354 silicon ID, and a
+ * checked watchdog scratch request enters the independent bootloader.
+ *
+ * @project __PROJECT_NAME__ - BladeCore-M54C firmware
+ * @github https://github.com/DvidMakesThings/HW_BladeCore-M54C
+ */
+#include "board_can.h"
+#include "pico/stdlib.h"
+#include "pico/unique_id.h"
+#include "hardware/spi.h"
+#include "hardware/watchdog.h"
+#include "hardware/structs/watchdog.h"
+#include <string.h>
+
+/**
+ * @brief Execute an instruction under a single chip-select assertion.
+ *
+ * @param[in] transmit Command and outgoing bytes.
+ * @param[out] receive Incoming bytes, or NULL for a write-only transaction.
+ * @param[in] length Number of SPI bytes to transfer.
+ * @return None (void).
+ *
+ * @details
+ * Holds the manually controlled MCP2515 chip-select signal low for the complete instruction. A
+ * non-NULL receive buffer selects full-duplex SPI; otherwise only the transmit bytes are
+ * written. Chip select is released before returning. The caller owns SPI1 exclusively and must
+ * not call this helper from a competing interrupt context.
+ */
+static void transfer(const uint8_t *transmit, uint8_t *receive, size_t length)
+{
+    gpio_put(PIN_CAN_CS, 0);
+    if (receive != NULL)
+    {
+        spi_write_read_blocking(CAN_SPI_INSTANCE, transmit, receive, length);
+    }
+    else
+    {
+        spi_write_blocking(CAN_SPI_INSTANCE, transmit, length);
+    }
+    gpio_put(PIN_CAN_CS, 1);
+}
+
+/**
+ * @brief Read one MCP2515 register.
+ *
+ * @param[in] address Register address.
+ * @return Current register contents.
+ *
+ * @details
+ * Sends the MCP2515 READ opcode, register address, and one dummy byte in one chip-select
+ * transaction. The first two received bytes are discarded and the final byte is returned. No
+ * register side effects are introduced beyond those defined by the controller datasheet.
+ */
+static uint8_t read_register(uint8_t address)
+{
+    const uint8_t transmit[3] = {0x03, address, 0}; /**< READ transaction bytes. */
+    uint8_t receive[3]; /**< SPI reply with the register value in its final byte. */
+    transfer(transmit, receive, sizeof(transmit));
+    return receive[2];
+}
+
+/**
+ * @brief Write one MCP2515 register.
+ *
+ * @param[in] address Register address.
+ * @param[in] value New register contents.
+ * @return None (void).
+ *
+ * @details
+ * Sends the MCP2515 WRITE opcode followed by a register address and replacement value. The
+ * three bytes are transferred under one chip-select assertion. Configuration-mode and register
+ * access restrictions are the responsibility of the higher-level initialisation sequence.
+ */
+static void write_register(uint8_t address, uint8_t value)
+{
+    const uint8_t transmit[3] = {0x02, address, value}; /**< WRITE transaction bytes. */
+    transfer(transmit, NULL, sizeof(transmit));
+}
+
+/**
+ * @brief Atomically modify selected bits in a supported register.
+ *
+ * @param[in] address Register address supporting BIT MODIFY.
+ * @param[in] mask Bits to update.
+ * @param[in] value Values for the selected bits.
+ * @return None (void).
+ *
+ * @details
+ * Sends the MCP2515 BIT MODIFY opcode, register address, mask, and replacement bits under one
+ * chip-select assertion. Only mask-selected bits are changed. This helper is used for
+ * interrupt acknowledgement and transmit cancellation without overwriting unrelated register
+ * bits.
+ */
+static void modify_register(uint8_t address, uint8_t mask, uint8_t value)
+{
+    const uint8_t transmit[4] = {0x05, address, mask, value}; /**< BIT MODIFY transaction. */
+    transfer(transmit, NULL, sizeof(transmit));
+}
+
+/**
+ * @brief Initialise SPI1 and reset the MCP2515 at the configured CAN bitrate.
+ *
+ * @param[in] loopback True selects internal controller loopback instead of the bus.
+ * @return True when the controller confirms the requested mode; false otherwise.
+ *
+ * @details
+ * Initialises the GPIO assignments from root CONFIG.h, asserts controller reset, and
+ * configures SPI mode 0. After oscillator startup it writes the CAN timing registers, enables
+ * both receive buffers with rollover, and requests either normal or loopback mode. Mode
+ * confirmation is bounded by CAN_MODE_TIMEOUT_MS. Call only from the single SPI owner; the
+ * routine resets pending controller traffic.
+ */
+bool board_can_init(bool loopback)
+{
+    /* Set inactive CS before enabling the output to avoid unintended instructions. */
+    gpio_init(PIN_CAN_CS);
+    gpio_put(PIN_CAN_CS, 1);
+    gpio_set_dir(PIN_CAN_CS, GPIO_OUT);
+    gpio_init(PIN_CAN_RST);
+    gpio_put(PIN_CAN_RST, 0);
+    gpio_set_dir(PIN_CAN_RST, GPIO_OUT);
+    gpio_init(PIN_CAN_INT);
+    gpio_set_dir(PIN_CAN_INT, GPIO_IN);
+    gpio_pull_up(PIN_CAN_INT);
+    spi_init(CAN_SPI_INSTANCE, CAN_SPI_BAUDRATE);
+    spi_set_format(CAN_SPI_INSTANCE, 8, SPI_CPOL_0, SPI_CPHA_0, SPI_MSB_FIRST);
+    gpio_set_function(PIN_CAN_MISO, GPIO_FUNC_SPI);
+    gpio_set_function(PIN_CAN_MOSI, GPIO_FUNC_SPI);
+    gpio_set_function(PIN_CAN_SCK, GPIO_FUNC_SPI);
+
+    /* Complete reset and allow the 16 MHz controller oscillator to settle. */
+    sleep_ms(2);
+    gpio_put(PIN_CAN_RST, 1);
+    sleep_ms(10);
+    const uint8_t reset = 0xc0; /**< MCP2515 RESET instruction. */
+    transfer(&reset, NULL, 1);
+    sleep_ms(10);
+    if ((read_register(0x0e) & 0xe0) != 0x80)
+    {
+        return false;
+    }
+
+    write_register(0x2a, CAN_CNF1);
+    write_register(0x29, CAN_CNF2);
+    write_register(0x28, CAN_CNF3);
+    write_register(0x60, 0x64); /* RXB0 accepts both frame formats and rolls into RXB1. */
+    write_register(0x70, 0x60);
+    write_register(0x2b, 0x03); /* Enable both receive interrupt sources. */
+    write_register(0x2c, 0x00);
+
+    const uint8_t mode = loopback ? 0x40 : 0; /**< Requested operating mode. */
+    const absolute_time_t deadline =
+        make_timeout_time_ms(CAN_MODE_TIMEOUT_MS); /**< Mode deadline. */
+    write_register(0x0f, mode | 0x08); /* One-shot mode prevents endless retransmission. */
+    do
+    {
+        if ((read_register(0x0e) & 0xe0) == mode)
+        {
+            return true;
+        }
+    } while (!time_reached(deadline));
+    return false;
+}
+
+/**
+ * @brief Read one available receive buffer without waiting for traffic.
+ *
+ * @param[out] frame Frame destination, written only if a frame is available.
+ * @return True if a receive buffer was consumed; false otherwise.
+ *
+ * @details
+ * Checks RX0 and RX1 pending flags, drains the first available buffer, and decodes standard or
+ * extended identifiers. The READ RX BUFFER instruction clears that buffer interrupt when chip
+ * select rises. DLC is capped at eight bytes, and remote frames are identified for the higher-
+ * level dispatcher. The function never waits for a frame and must run in the single SPI owner
+ * context.
+ */
+bool board_can_receive(can_frame_t *frame)
+{
+    const uint8_t flags = read_register(0x2c);                      /**< Pending receive flags. */
+    const uint8_t buffer = (flags & 1) ? 1 : ((flags & 2) ? 2 : 0); /**< Buffer to drain. */
+    if (buffer == 0)
+    {
+        return false;
+    }
+    uint8_t transmit[14] = {buffer == 1 ? 0x90 : 0x94}; /**< READ RX BUFFER instruction. */
+    uint8_t receive[14]; /**< Register header and eight payload bytes. */
+    transfer(transmit, receive, sizeof(transmit));
+
+    /* READ RX BUFFER clears its interrupt flag on the CS rising edge. */
+    frame->extended = (receive[2] & 8) != 0;
+    frame->id = ((uint32_t)receive[1] << 3) | (receive[2] >> 5);
+    if (frame->extended)
+    {
+        frame->id = (frame->id << 18) | ((uint32_t)(receive[2] & 3) << 16) |
+                    ((uint32_t)receive[3] << 8) | receive[4];
+    }
+    frame->rtr = frame->extended ? (receive[5] & 0x40) != 0 : (receive[2] & 0x10) != 0;
+    frame->dlc = receive[5] & 15;
+    if (frame->dlc > 8)
+    {
+        frame->dlc = 8;
+    }
+    memcpy(frame->data, receive + 6, sizeof(frame->data));
+    return true;
+}
+
+/**
+ * @brief Send one frame with a bounded completion wait.
+ *
+ * @param[in] frame Frame to transmit; DLC must not exceed eight.
+ * @return True only after successful transmission is reported by the controller; false otherwise.
+ *
+ * @details
+ * Validates the identifier and DLC before loading transmit buffer zero. A previous completion
+ * flag is cleared before the request-to-send command. The controller uses one-shot mode, and
+ * the function waits at most CAN_TX_TIMEOUT_MS for successful transmission; an unacknowledged
+ * frame is aborted. Bus arbitration loss or missing acknowledgement is reported to the caller
+ * for bounded retry.
+ */
+bool board_can_send(const can_frame_t *frame)
+{
+    if (frame->dlc > 8 || frame->id > (frame->extended ? 0x1fffffffu : 0x7ffu))
+    {
+        return false;
+    }
+    if (read_register(0x30) & 8)
+    {
+        return false; /* Never overwrite a transmitter-owned buffer. */
+    }
+    uint8_t transmit[14] = {0x40}; /**< LOAD TX BUFFER 0 instruction and encoded frame. */
+    modify_register(0x2c, 4, 0);
+    if (frame->extended)
+    {
+        transmit[1] = frame->id >> 21;
+        transmit[2] = ((frame->id >> 13) & 0xe0) | 8 | ((frame->id >> 16) & 3);
+        transmit[3] = frame->id >> 8;
+        transmit[4] = frame->id;
+    }
+    else
+    {
+        transmit[1] = frame->id >> 3;
+        transmit[2] = (frame->id & 7) << 5;
+    }
+    transmit[5] = frame->dlc | (frame->rtr ? 0x40 : 0);
+    memcpy(transmit + 6, frame->data, frame->dlc);
+    transfer(transmit, NULL, 6 + frame->dlc);
+
+    const uint8_t request = 0x81; /**< Request transmission from TX buffer 0. */
+    const absolute_time_t deadline = make_timeout_time_ms(CAN_TX_TIMEOUT_MS); /**< TX deadline. */
+    transfer(&request, NULL, 1);
+    while (!time_reached(deadline))
+    {
+        if (!(read_register(0x30) & 8))
+        {
+            return (read_register(0x2c) & 4) != 0;
+        }
+    }
+    modify_register(0x30, 8, 0); /* Abort a frame that cannot be acknowledged. */
+    return false;
+}
+
+/**
+ * @brief Read the MCP2515 error flags.
+ *
+ * @par Parameters
+ * None (void).
+ * @return Contents of EFLG, including receive overflow and bus-off flags.
+ *
+ * @details
+ * Reads the MCP2515 EFLG register through SPI without modifying the controller state. The
+ * caller can record bus-off, error-passive, and receive-overflow conditions before applying
+ * its own recovery policy. This function is not safe to call concurrently with other SPI
+ * controller operations.
+ */
+uint8_t board_can_errors(void)
+{
+    return read_register(0x2d);
+}
+
+/* DEBUG: snapshot key controller status registers for SWD inspection. */
+void board_can_snapshot(uint8_t out[8])
+{
+    out[0] = read_register(0x0e); /* CANSTAT  */
+    out[1] = read_register(0x0f); /* CANCTRL  */
+    out[2] = read_register(0x2d); /* EFLG     */
+    out[3] = read_register(0x1c); /* TEC      */
+    out[4] = read_register(0x1d); /* REC      */
+    out[5] = read_register(0x2c); /* CANINTF  */
+    out[6] = read_register(0x60); /* RXB0CTRL */
+    out[7] = read_register(0x70); /* RXB1CTRL */
+}
+
+/**
+ * @brief Clear receive overflow flags after recording the event.
+ *
+ * @par Parameters
+ * None (void).
+ * @return None (void).
+ *
+ * @details
+ * Uses MCP2515 BIT MODIFY to clear only RX0OVR and RX1OVR in EFLG. Other error indicators are
+ * preserved. Record the overflow in diagnostics first, because clearing these flags
+ * acknowledges that one or more frames may have been lost.
+ */
+void board_can_clear_overflow(void)
+{
+    modify_register(0x2d, 0xc0, 0);
+}
+
+/**
+ * @brief Check SPI and both CAN frame directions using internal loopback.
+ *
+ * @par Parameters
+ * None (void).
+ * @return True if identifier, DLC, and payload match the transmitted test frame; false otherwise.
+ *
+ * @details
+ * Resets the controller into internal loopback and sends a known eight-byte extended frame.
+ * Identifier, frame format, DLC, and all payload bytes must match on receive. No test traffic
+ * reaches the physical CAN bus. The function leaves the controller in loopback, so normal
+ * initialisation must follow regardless of the test result.
+ */
+bool board_can_selftest(void)
+{
+    if (!board_can_init(true))
+    {
+        return false;
+    }
+    /** @brief Known extended frame kept off the physical bus. */
+    const can_frame_t transmit = {.id = CAN_REQUEST | 0x1234,
+                                  .data = {0x12, 0x34, 0x56, 0x78, 0x9a, 0xbc, 0xde, 0xf0},
+                                  .dlc = 8,
+                                  .extended = true};
+    can_frame_t receive; /**< Frame returned by the internal loopback path. */
+    return board_can_send(&transmit) && board_can_receive(&receive) && receive.extended &&
+           !receive.rtr && receive.id == transmit.id && receive.dlc == 8 &&
+           memcmp(receive.data, transmit.data, sizeof(receive.data)) == 0;
+}
+
+/**
+ * @brief Read the RP2354 silicon ID and derive a stable sixteen-bit address.
+ *
+ * @param[out] uid Eight-byte destination for the complete identifier.
+ * @return Address from one through 65534; zero and 65535 are reserved.
+ *
+ * @details
+ * Uses the Pico SDK identity service, which reads the RP2350 silicon identifier through the
+ * boot ROM. The complete eight-byte identifier is copied to the caller and reduced by IEEE
+ * CRC-32 into the inclusive address range 1..65534. Zero is reserved for discovery.
+ * Destructive requests additionally select the complete UID because shortened addresses can
+ * collide.
+ */
+uint16_t board_identity(uint8_t uid[8])
+{
+    pico_unique_board_id_t identity; /**< RP2354 silicon identifier supplied by the ROM API. */
+    pico_get_unique_board_id(&identity);
+    memcpy(uid, identity.id, 8);
+    /* Full-UID selection resolves possible collisions in the shortened address. */
+    return (uint16_t)(1u + crc32(uid, 8) % 65534u);
+}
+
+/**
+ * @brief Request recovery through checked watchdog scratch values and reset.
+ *
+ * @par Parameters
+ * None (void).
+ * @return None (void); this function never returns.
+ *
+ * @details
+ * Stores a magic value and its complement in watchdog scratch registers zero and one, then
+ * requests a watchdog reset. The resident bootloader consumes and clears the pair at startup.
+ * This resets out of FreeRTOS before the SRAM-resident flash updater runs, preventing
+ * application tasks from accessing XIP during erase or programming.
+ */
+void board_request_bootloader(void)
+{
+    /* A complementary pair distinguishes a request from stale scratch contents. */
+    watchdog_hw->scratch[0] = BOOT_REQUEST_MAGIC;
+    watchdog_hw->scratch[1] = ~BOOT_REQUEST_MAGIC;
+    watchdog_reboot(0, 0, 10);
+    while (true)
+    {
+        tight_loop_contents();
+    }
+}
+'@
+}
+
+function Get-BoardCanH {
+    @'
+/**
+ * @file src/Software/__PROJECT_NAME__/incl/board_can/board_can.h
+ *
+ * @version 1.0.0
+ * @date 2026-09-18
+ *
+ * @details
+ * Defines the single-owner interface to the MCP2515 CAN controller and RP2354 silicon identity
+ * services. The application calls it from its CAN task and the bootloader calls it from its
+ * recovery loop. SPI access is deliberately excluded from the GPIO ISR. Internal loopback
+ * diagnostics and bounded transmission waits support commissioning without a serial console.
+ *
+ * @project __PROJECT_NAME__ - BladeCore-M54C firmware
+ * @github https://github.com/DvidMakesThings/HW_BladeCore-M54C
+ */
+#pragma once
+#include "protocol.h"
+
+/**
+ * @brief Initialise SPI1 and reset the MCP2515 at the configured CAN bitrate.
+ *
+ * @param[in] loopback True selects internal controller loopback instead of the bus.
+ * @return True when the controller confirms the requested mode; false otherwise.
+ *
+ * @details
+ * Initialises the GPIO assignments from root CONFIG.h, asserts controller reset, and
+ * configures SPI mode 0. After oscillator startup it writes the CAN timing registers, enables
+ * both receive buffers with rollover, and requests either normal or loopback mode. Mode
+ * confirmation is bounded by CAN_MODE_TIMEOUT_MS. Call only from the single SPI owner; the
+ * routine resets pending controller traffic.
+ */
+bool board_can_init(bool loopback);
+
+/**
+ * @brief Read one available receive buffer without waiting for traffic.
+ *
+ * @param[out] frame Frame destination, written only if a frame is available.
+ * @return True if a receive buffer was consumed; false otherwise.
+ *
+ * @details
+ * Checks RX0 and RX1 pending flags, drains the first available buffer, and decodes standard or
+ * extended identifiers. The READ RX BUFFER instruction clears that buffer interrupt when chip
+ * select rises. DLC is capped at eight bytes, and remote frames are identified for the higher-
+ * level dispatcher. The function never waits for a frame and must run in the single SPI owner
+ * context.
+ */
+bool board_can_receive(can_frame_t *frame);
+
+/**
+ * @brief Send one frame with a bounded completion wait.
+ *
+ * @param[in] frame Frame to transmit; DLC must not exceed eight.
+ * @return True only after successful transmission is reported by the controller; false otherwise.
+ *
+ * @details
+ * Validates the identifier and DLC before loading transmit buffer zero. A previous completion
+ * flag is cleared before the request-to-send command. The controller uses one-shot mode, and
+ * the function waits at most CAN_TX_TIMEOUT_MS for successful transmission; an unacknowledged
+ * frame is aborted. Bus arbitration loss or missing acknowledgement is reported to the caller
+ * for bounded retry.
+ */
+bool board_can_send(const can_frame_t *frame);
+
+/**
+ * @brief Read the MCP2515 error flags.
+ *
+ * @par Parameters
+ * None (void).
+ * @return Contents of EFLG, including receive overflow and bus-off flags.
+ *
+ * @details
+ * Reads the MCP2515 EFLG register through SPI without modifying the controller state. The
+ * caller can record bus-off, error-passive, and receive-overflow conditions before applying
+ * its own recovery policy. This function is not safe to call concurrently with other SPI
+ * controller operations.
+ */
+uint8_t board_can_errors(void);
+
+/* DEBUG: read CANSTAT,CANCTRL,EFLG,TEC,REC,CANINTF,RXB0CTRL,RXB1CTRL into out[8]. */
+void board_can_snapshot(uint8_t out[8]);
+
+/**
+ * @brief Clear receive overflow flags after recording the event.
+ *
+ * @par Parameters
+ * None (void).
+ * @return None (void).
+ *
+ * @details
+ * Uses MCP2515 BIT MODIFY to clear only RX0OVR and RX1OVR in EFLG. Other error indicators are
+ * preserved. Record the overflow in diagnostics first, because clearing these flags
+ * acknowledges that one or more frames may have been lost.
+ */
+void board_can_clear_overflow(void);
+
+/**
+ * @brief Check SPI and both CAN frame directions using internal loopback.
+ *
+ * @par Parameters
+ * None (void).
+ * @return True if identifier, DLC, and payload match the transmitted test frame; false otherwise.
+ *
+ * @details
+ * Resets the controller into internal loopback and sends a known eight-byte extended frame.
+ * Identifier, frame format, DLC, and all payload bytes must match on receive. No test traffic
+ * reaches the physical CAN bus. The function leaves the controller in loopback, so normal
+ * initialisation must follow regardless of the test result.
+ */
+bool board_can_selftest(void);
+
+/**
+ * @brief Read the RP2354 silicon ID and derive a stable sixteen-bit address.
+ *
+ * @param[out] uid Eight-byte destination for the complete identifier.
+ * @return Address from one through 65534; zero and 65535 are reserved.
+ *
+ * @details
+ * Uses the Pico SDK identity service, which reads the RP2350 silicon identifier through the
+ * boot ROM. The complete eight-byte identifier is copied to the caller and reduced by IEEE
+ * CRC-32 into the inclusive address range 1..65534. Zero is reserved for discovery.
+ * Destructive requests additionally select the complete UID because shortened addresses can
+ * collide.
+ */
+uint16_t board_identity(uint8_t uid[8]);
+
+/**
+ * @brief Request recovery through checked watchdog scratch values and reset.
+ *
+ * @par Parameters
+ * None (void).
+ * @return None (void); this function never returns.
+ *
+ * @details
+ * Stores a magic value and its complement in watchdog scratch registers zero and one, then
+ * requests a watchdog reset. The resident bootloader consumes and clears the pair at startup.
+ * This resets out of FreeRTOS before the SRAM-resident flash updater runs, preventing
+ * application tasks from accessing XIP during erase or programming.
+ */
+void board_request_bootloader(void);
+'@
+}
+
+function Get-ProtocolC {
+    @'
+/**
+ * @file src/Software/__PROJECT_NAME__/incl/protocol/protocol.c
+ *
+ * @version 1.0.0
+ * @date 2026-09-18
+ *
+ * @details
+ * Implements explicit little-endian conversions, reflected IEEE CRC-32, and structural checks
+ * for persistent manifests and XIP application vectors. These helpers are shared as
+ * independent source copies by the RTOS application and standalone loader. They contain no
+ * scheduler or peripheral dependencies and are also compiled into the native fault-injection
+ * tests.
+ *
+ * @project __PROJECT_NAME__ - BladeCore-M54C firmware
+ * @github https://github.com/DvidMakesThings/HW_BladeCore-M54C
+ */
+#include "protocol.h"
+
+/**
+ * @brief Decode an unaligned little-endian word.
+ *
+ * @param[in] bytes At least four readable bytes.
+ * @return Decoded unsigned word.
+ *
+ * @details
+ * Combines four bytes explicitly, starting with the least significant byte. This avoids
+ * alignment-dependent word loads when decoding CAN payloads or flash image headers. The caller
+ * must provide four accessible bytes; this helper does not perform bounds checking.
+ */
+uint32_t get_u32(const uint8_t *bytes)
+{
+    /* Byte-wise decoding also works on unaligned CAN payloads. */
+    return (uint32_t)bytes[0] | ((uint32_t)bytes[1] << 8) | ((uint32_t)bytes[2] << 16) |
+           ((uint32_t)bytes[3] << 24);
+}
+
+/**
+ * @brief Encode an unaligned little-endian word.
+ *
+ * @param[out] bytes At least four writable bytes.
+ * @param[in] value Word to encode.
+ * @return None (void).
+ *
+ * @details
+ * Writes the least significant byte first using byte-sized stores. This helper is used for CAN
+ * offsets and image metadata so host and device agree on byte order regardless of pointer
+ * alignment. The destination must provide four writable bytes.
+ */
+void put_u32(uint8_t *bytes, uint32_t value)
+{
+    for (unsigned index = 0; index < 4; ++index) /**< Output byte position. */
+    {
+        bytes[index] = (uint8_t)(value >> (index * 8));
+    }
+}
+
+/**
+ * @brief Calculate reflected IEEE CRC-32 with initial and final XOR 0xFFFFFFFF.
+ *
+ * @param[in] data Input bytes; NULL is permitted only when length is zero.
+ * @param[in] length Number of bytes to process.
+ * @return The checksum, compatible with Python zlib.crc32.
+ *
+ * @details
+ * Processes each input byte using the reflected IEEE polynomial 0xEDB88320. The initial
+ * accumulator and final XOR are both 0xFFFFFFFF, matching zlib.crc32 on the host. The table-
+ * free implementation has no lookup table that could remain in XIP flash during recovery.
+ */
+uint32_t crc32(const void *data, size_t length)
+{
+    const uint8_t *bytes = data;     /**< Next byte to process. */
+    uint32_t checksum = 0xffffffffu; /**< Reflected CRC accumulator. */
+
+    /* A table-free implementation needs no flash-resident lookup table. */
+    while (length--)
+    {
+        checksum ^= *bytes++;
+        for (unsigned bit = 0; bit < 8; ++bit) /**< Current bit position. */
+        {
+            checksum = (checksum >> 1) ^ (0xedb88320u & (0u - (checksum & 1u)));
+        }
+    }
+    return ~checksum;
+}
+
+/**
+ * @brief Check manifest identity, bounds, and header checksum.
+ *
+ * @param[in] manifest Aligned manifest object copied from flash.
+ * @return True if its fields are safe to use for image validation; false otherwise.
+ *
+ * @details
+ * Checks the commit signature, format version, board compatibility marker, and firmware length
+ * before accepting the stored header checksum. This is only structural manifest validation;
+ * application_valid additionally checks the image vectors and the complete application CRC
+ * before allowing a boot.
+ */
+bool manifest_valid(const image_manifest_t *manifest)
+{
+    /* Validate length before callers use it to read application flash. */
+    return manifest->magic == META_MAGIC && manifest->version == PROTOCOL_VERSION &&
+           manifest->board == BOARD_TYPE && manifest->length >= 256 &&
+           manifest->length <= APP_MAX_SIZE &&
+           manifest->header_crc == crc32(manifest, offsetof(image_manifest_t, header_crc));
+}
+
+/**
+ * @brief Check that an XIP application's initial vectors lie in valid memory.
+ *
+ * @param[in] image Start of the application image.
+ * @param[in] length Exact application length.
+ * @return True if MSP is aligned in SRAM and the Thumb reset handler is in the image; false
+ * otherwise.
+ *
+ * @details
+ * Checks the initial main stack pointer against the RP2354 SRAM range and requires eight-byte
+ * alignment. The reset vector must have its Thumb bit set and point inside the declared XIP
+ * application image. This rejects images linked at the bootloader address or for an
+ * incompatible memory layout; it is not cryptographic authentication.
+ */
+bool image_vectors_valid(const uint8_t *image, uint32_t length)
+{
+    if (length < 256 || length > APP_MAX_SIZE)
+    {
+        return false;
+    }
+    const uint32_t stack = get_u32(image);     /**< Initial main stack pointer. */
+    const uint32_t reset = get_u32(image + 4); /**< Thumb reset handler. */
+
+    /* The stack may equal the top of SRAM; reset must address an image byte. */
+    return stack > 0x20000000u && stack <= 0x20082000u && !(stack & 7u) && (reset & 1u) &&
+           (reset & ~1u) >= APP_BASE && (reset & ~1u) < APP_BASE + length;
+}
+'@
+}
+
+function Get-ProtocolH {
+    @'
+/**
+ * @file src/Software/__PROJECT_NAME__/incl/protocol/protocol.h
+ *
+ * @version 1.0.0
+ * @date 2026-09-18
+ *
+ * @details
+ * Declares the scheduler-independent CAN frame format, management commands, result codes, and
+ * persistent image manifest. The protocol uses classic eight-byte CAN frames with extended
+ * identifiers. Full silicon identity selection precedes destructive operations; abbreviated
+ * node addresses alone are not sufficient. Numeric protocol and flash-layout macros remain in
+ * root CONFIG.h.
+ *
+ * @project __PROJECT_NAME__ - BladeCore-M54C firmware
+ * @github https://github.com/DvidMakesThings/HW_BladeCore-M54C
+ */
+#pragma once
+#include "CONFIG.h"
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+
+/** @brief Command byte used by control requests and acknowledgements. */
+typedef enum
+{
+    CMD_INFO = 1,   /**< Discover identity, operating mode, and protocol version. */
+    CMD_ENTER = 2,  /**< Acknowledge transition into recovery mode. */
+    CMD_BEGIN = 3,  /**< Invalidate the previous image and accept a new length. */
+    CMD_DATA = 4,   /**< Acknowledge an offset-addressed data frame. */
+    CMD_FINISH = 5, /**< Verify the complete image and commit its manifest. */
+    CMD_BOOT = 6,   /**< Restart into a verified application. */
+    CMD_ABORT = 7,  /**< Abandon an incomplete transfer. */
+    CMD_SELECT = 8  /**< Acknowledge selection by complete silicon ID. */
+} protocol_command_t;
+
+/** @brief Update operation result. */
+typedef enum
+{
+    STATUS_OK = 0,       /**< Operation succeeded. */
+    STATUS_ARGUMENT = 1, /**< Invalid command or size. */
+    STATUS_STATE = 2,    /**< No active transfer or incomplete image. */
+    STATUS_SEQUENCE = 3, /**< Unexpected offset or conflicting retransmission. */
+    STATUS_FLASH = 4,    /**< Flash erase, programming, or readback failed. */
+    STATUS_CRC = 5,      /**< Image checksum did not match. */
+    STATUS_IMAGE = 6     /**< Invalid image structure or persistent manifest. */
+} protocol_status_t;
+
+/** @brief Persistent image validity record, committed last. */
+typedef struct
+{
+    uint32_t magic;      /**< Required META_MAGIC signature. */
+    uint32_t version;    /**< Manifest layout version. */
+    uint32_t board;      /**< Board compatibility marker. */
+    uint32_t length;     /**< Exact application byte count before page padding. */
+    uint32_t crc;        /**< IEEE CRC-32 of the application. */
+    uint32_t header_crc; /**< IEEE CRC-32 over the preceding five words. */
+} image_manifest_t;
+
+/** @brief Classic CAN frame independent of the scheduler and SPI driver. */
+typedef struct
+{
+    uint32_t id;     /**< Eleven-bit or twenty-nine-bit arbitration identifier. */
+    uint8_t data[8]; /**< Payload storage. */
+    uint8_t dlc;     /**< Payload length from zero through eight. */
+    bool extended;   /**< True for twenty-nine-bit identifiers. */
+    bool rtr;        /**< True for a remote transmission request. */
+} can_frame_t;
+
+/**
+ * @brief Decode an unaligned little-endian word.
+ *
+ * @param[in] bytes At least four readable bytes.
+ * @return Decoded unsigned word.
+ *
+ * @details
+ * Combines four bytes explicitly, starting with the least significant byte. This avoids
+ * alignment-dependent word loads when decoding CAN payloads or flash image headers. The caller
+ * must provide four accessible bytes; this helper does not perform bounds checking.
+ */
+uint32_t get_u32(const uint8_t *bytes);
+
+/**
+ * @brief Encode an unaligned little-endian word.
+ *
+ * @param[out] bytes At least four writable bytes.
+ * @param[in] value Word to encode.
+ * @return None (void).
+ *
+ * @details
+ * Writes the least significant byte first using byte-sized stores. This helper is used for CAN
+ * offsets and image metadata so host and device agree on byte order regardless of pointer
+ * alignment. The destination must provide four writable bytes.
+ */
+void put_u32(uint8_t *bytes, uint32_t value);
+
+/**
+ * @brief Calculate reflected IEEE CRC-32 with initial and final XOR 0xFFFFFFFF.
+ *
+ * @param[in] data Input bytes; NULL is permitted only when length is zero.
+ * @param[in] length Number of bytes to process.
+ * @return The checksum, compatible with Python zlib.crc32.
+ *
+ * @details
+ * Processes each input byte using the reflected IEEE polynomial 0xEDB88320. The initial
+ * accumulator and final XOR are both 0xFFFFFFFF, matching zlib.crc32 on the host. The table-
+ * free implementation has no lookup table that could remain in XIP flash during recovery.
+ */
+uint32_t crc32(const void *data, size_t length);
+
+/**
+ * @brief Check manifest identity, bounds, and header checksum.
+ *
+ * @param[in] manifest Aligned manifest object copied from flash.
+ * @return True if its fields are safe to use for image validation; false otherwise.
+ *
+ * @details
+ * Checks the commit signature, format version, board compatibility marker, and firmware length
+ * before accepting the stored header checksum. This is only structural manifest validation;
+ * application_valid additionally checks the image vectors and the complete application CRC
+ * before allowing a boot.
+ */
+bool manifest_valid(const image_manifest_t *manifest);
+
+/**
+ * @brief Check that an XIP application's initial vectors lie in valid memory.
+ *
+ * @param[in] image Start of the application image.
+ * @param[in] length Exact application length.
+ * @return True if MSP is aligned in SRAM and the Thumb reset handler is in the image; false
+ * otherwise.
+ *
+ * @details
+ * Checks the initial main stack pointer against the RP2354 SRAM range and requires eight-byte
+ * alignment. The reset vector must have its Thumb bit set and point inside the declared XIP
+ * application image. This rejects images linked at the bootloader address or for an
+ * incompatible memory layout; it is not cryptographic authentication.
+ */
+bool image_vectors_valid(const uint8_t *image, uint32_t length);
+'@
+}
+
+function Get-AdcC {
+    @'
+/**
+ * @file src/Software/__PROJECT_NAME__/incl/hal/adc/adc.c
+ *
+ * @version 1.0.0
+ * @date 2026-09-20
+ *
+ * @details
+ * Chip-level ADC HAL for the RP2354B. Wraps the Pico SDK ADC calls so the rest of the firmware
+ * reads a pin voltage in millivolts without touching hardware registers. Board-specific scaling
+ * (for example sense dividers) is the caller's job.
+ *
+ * @project __PROJECT_NAME__ - BladeCore-M54C firmware
+ * @github https://github.com/DvidMakesThings/HW_BladeCore-M54C
+ */
+#include "adc.h"
+#include "hardware/adc.h"
+
+#define ADC_GPIO_BASE 40u   /**< RP2354B maps ADC channel N to GPIO(40 + N). */
+#define ADC_MAX_COUNT 4096u /**< 12-bit conversion range. */
+#define ADC_REF_MV 3000u    /**< ADC full-scale reference: on-board 3.00 V precision ref. */
+#define ADC_DUMMY_NUM 2u    /**< First conversions after a channel switch are discarded. */
+#define AVG_ADC_NUM 4u      /**< Conversions averaged per reading. */
+
+/** @brief Effective full-scale reference; adjusted by adc_hal_calibrate. */
+static uint16_t adc_ref_mv = ADC_REF_MV;
+
+/**
+ * @brief Power up the on-chip ADC.
+ *
+ * @par Parameters
+ * None (void).
+ * @return None (void).
+ *
+ * @details
+ * Enables the ADC block through the Pico SDK. Call once before any read; the init task runs it
+ * at startup. Per-channel pin setup and selection happen inside each read.
+ */
+void adc_hal_init(void)
+{
+    adc_init();
+}
+
+/**
+ * @brief Read the voltage on an analog GPIO.
+ *
+ * @param[in] gpio Analog-capable GPIO (GPIO40..47 on the RP2354B).
+ * @return Voltage at the pin in millivolts.
+ *
+ * @details
+ * Configures the pin for analog input and selects its ADC channel, discards ADC_DUMMY_NUM
+ * settling conversions, then averages AVG_ADC_NUM conversions. The averaged count is scaled to
+ * millivolts using the calibrated reference maintained by adc_hal_calibrate.
+ */
+uint16_t adc_hal_read_mv(unsigned gpio)
+{
+    adc_gpio_init(gpio);
+    adc_select_input(gpio - ADC_GPIO_BASE);
+    for (unsigned i = 0; i < ADC_DUMMY_NUM; ++i)
+    {
+        (void)adc_read();
+    }
+    uint32_t sum = 0; /**< Accumulated conversions for averaging. */
+    for (unsigned i = 0; i < AVG_ADC_NUM; ++i)
+    {
+        sum += adc_read();
+    }
+    const uint16_t raw = (uint16_t)(sum / AVG_ADC_NUM); /**< Averaged 12-bit result. */
+    return (uint16_t)((uint32_t)raw * adc_ref_mv / ADC_MAX_COUNT);
+}
+
+/**
+ * @brief Single-point gain calibration against a known pin voltage.
+ *
+ * @param[in] gpio Analog GPIO carrying the calibration reference.
+ * @param[in] known_pin_mv True voltage at that pin, in millivolts.
+ * @return None (void).
+ *
+ * @details
+ * Reads the reference pin with the nominal reference, then sets the effective full-scale so the
+ * reading equals known_pin_mv. Every later adc_hal_read_mv uses that corrected reference, which
+ * cancels the ADC's gain and reference error across all channels. A zero reading is ignored so a
+ * disconnected reference cannot divide by zero.
+ */
+void adc_hal_calibrate(unsigned gpio, uint16_t known_pin_mv)
+{
+    adc_ref_mv = ADC_REF_MV; /* Measure against the nominal reference first. */
+    const uint16_t measured = adc_hal_read_mv(gpio);
+    if (measured != 0)
+    {
+        adc_ref_mv = (uint16_t)((uint32_t)ADC_REF_MV * known_pin_mv / measured);
+    }
+}
+'@
+}
+
+function Get-AdcH {
+    @'
+/**
+ * @file src/Software/__PROJECT_NAME__/incl/hal/adc/adc.h
+ *
+ * @version 1.0.0
+ * @date 2026-09-20
+ *
+ * @details
+ * Thin HAL over the RP2354B on-chip ADC. It exposes only chip-level operations: power the ADC
+ * and read the voltage present on an analog GPIO. It knows nothing about CAN or the board's
+ * sense dividers; callers apply any board scaling.
+ *
+ * @project __PROJECT_NAME__ - BladeCore-M54C firmware
+ * @github https://github.com/DvidMakesThings/HW_BladeCore-M54C
+ */
+#pragma once
+#include <stdint.h>
+
+/**
+ * @brief Power up the on-chip ADC.
+ *
+ * @par Parameters
+ * None (void).
+ * @return None (void).
+ */
+void adc_hal_init(void);
+
+/**
+ * @brief Read the voltage on an analog GPIO.
+ *
+ * @param[in] gpio Analog-capable GPIO (GPIO40..47 on the RP2354B).
+ * @return Voltage at the pin in millivolts.
+ *
+ * @details
+ * Configures the pin for analog input and selects its channel, discards a few settling
+ * conversions, then averages several and scales the result to millivolts using the calibrated
+ * reference.
+ */
+uint16_t adc_hal_read_mv(unsigned gpio);
+
+/**
+ * @brief Single-point gain calibration against a known pin voltage.
+ *
+ * @param[in] gpio Analog GPIO carrying the calibration reference.
+ * @param[in] known_pin_mv True voltage at that pin, in millivolts.
+ * @return None (void).
+ *
+ * @details
+ * Samples the reference pin with the nominal reference, then adjusts the effective full-scale so
+ * the reading matches known_pin_mv. The correction applies to every later adc_hal_read_mv call,
+ * cancelling the ADC's gain and reference error. Call once after adc_hal_init.
+ */
+void adc_hal_calibrate(unsigned gpio, uint16_t known_pin_mv);
+'@
+}
+
 # ---------------------------------------------------------------------------
 # File writer
 # ---------------------------------------------------------------------------
@@ -1571,25 +4015,27 @@ function Update-ProjectCMake {
 
     $sources = @(
         Get-ChildItem -Path $incl -Recurse -File -Filter '*.c' -ErrorAction SilentlyContinue |
-            ForEach-Object { (_RelPath $_.FullName).Replace('\', '/') } |
-            Sort-Object
+        ForEach-Object { (_RelPath $_.FullName).Replace('\', '/') } |
+        Sort-Object
     )
     $inclRoot = (Resolve-Path $incl).Path.TrimEnd('\')
     $headerDirs = @(
         Get-ChildItem -Path $incl -Recurse -File -Filter '*.h' -ErrorAction SilentlyContinue |
-            ForEach-Object { $_.Directory.FullName.TrimEnd('\') } |
-            Sort-Object -Unique |
-            Where-Object { $_ -ne $inclRoot } |
-            ForEach-Object { '${CMAKE_CURRENT_LIST_DIR}/' + (_RelPath $_).Replace('\', '/') }
+        ForEach-Object { $_.Directory.FullName.TrimEnd('\') } |
+        Sort-Object -Unique |
+        Where-Object { $_ -ne $inclRoot } |
+        ForEach-Object { '${CMAKE_CURRENT_LIST_DIR}/' + (_RelPath $_).Replace('\', '/') }
     )
 
     $srcBlock = if ($sources.Count -gt 0) {
         ($sources | ForEach-Object { "    $_" }) -join "`n"
-    } else { '' }
+    }
+    else { '' }
 
     $incBlock = if ($headerDirs.Count -gt 0) {
         ($headerDirs | ForEach-Object { "    $_" }) -join "`n"
-    } else { '' }
+    }
+    else { '' }
 
     $text = [System.IO.File]::ReadAllText($cmakePath)
 
@@ -1661,33 +4107,52 @@ if (Test-Path $TargetPath) {
     if ($entries -and -not $Force) {
         throw "Target path '$TargetPath' is not empty. Use -Force to overwrite."
     }
-} else {
+}
+else {
     New-Item -ItemType Directory -Path $TargetPath -Force | Out-Null
 }
 
 if (-not $SkipToolInstall) {
     Install-AllTools
-} else {
+}
+else {
     Write-Warn2 'Skipping tool detection/install (-SkipToolInstall).'
 }
 
 Write-Step 'Generating project files...'
 
-Write-ProjectFile -Path (Join-Path $TargetPath 'main.c')                  -Content (Get-MainC)             -Name $ProjectName
-Write-ProjectFile -Path (Join-Path $TargetPath 'CONFIG.h')                -Content (Get-ConfigH)           -Name $ProjectName
-Write-ProjectFile -Path (Join-Path $TargetPath 'FreeRTOSConfig.h')        -Content (Get-FreeRTOSConfigH)   -Name $ProjectName
-Write-ProjectFile -Path (Join-Path $TargetPath 'CMakeLists.txt')          -Content (Get-CMakeLists)        -Name $ProjectName
-Write-ProjectFile -Path (Join-Path $TargetPath 'pico_sdk_import.cmake')   -Content (Get-PicoSdkImport)     -Name $ProjectName
-Write-ProjectFile -Path (Join-Path $TargetPath 'build.py')                -Content (Get-BuildPy)           -Name $ProjectName
-Write-ProjectFile -Path (Join-Path $TargetPath '.gitignore')              -Content (Get-GitIgnore)         -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'main.c') -Content (Get-MainC) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'CONFIG.h') -Content (Get-ConfigH) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'FreeRTOSConfig.h') -Content (Get-FreeRTOSConfigH) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'ObjDict.h') -Content (Get-ObjDictH) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'CMakeLists.txt') -Content (Get-CMakeLists) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'firmware_layout.cmake') -Content (Get-FirmwareLayout) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'pico_sdk_import.cmake') -Content (Get-PicoSdkImport) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'build.py') -Content (Get-BuildPy) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'requirements.txt') -Content (Get-RequirementsTxt) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath '.gitignore') -Content (Get-GitIgnore) -Name $ProjectName
+
+Write-ProjectFile -Path (Join-Path $TargetPath 'incl\Tasks\application.h') -Content (Get-ApplicationH) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'incl\Tasks\heartbeat.c') -Content (Get-HeartbeatC) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'incl\Tasks\can_task.c') -Content (Get-CanTaskC) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'incl\Tasks\example_task.c') -Content (Get-ExampleTaskC) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'incl\Tasks\init_task.c') -Content (Get-InitTaskC) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'incl\can_router\can_router.c') -Content (Get-CanRouterC) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'incl\can_router\can_router.h') -Content (Get-CanRouterH) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'incl\board_can\board_can.c') -Content (Get-BoardCanC) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'incl\board_can\board_can.h') -Content (Get-BoardCanH) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'incl\protocol\protocol.c') -Content (Get-ProtocolC) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'incl\protocol\protocol.h') -Content (Get-ProtocolH) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'incl\hal\adc\adc.c') -Content (Get-AdcC) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $TargetPath 'incl\hal\adc\adc.h') -Content (Get-AdcH) -Name $ProjectName
 
 $vs = Join-Path $TargetPath '.vscode'
-Write-ProjectFile -Path (Join-Path $vs 'cmake-kits.json')       -Content (Get-VscodeCmakeKits)      -Name $ProjectName
-Write-ProjectFile -Path (Join-Path $vs 'c_cpp_properties.json') -Content (Get-VscodeCppProperties)  -Name $ProjectName
-Write-ProjectFile -Path (Join-Path $vs 'extensions.json')       -Content (Get-VscodeExtensions)     -Name $ProjectName
-Write-ProjectFile -Path (Join-Path $vs 'launch.json')           -Content (Get-VscodeLaunch)         -Name $ProjectName
-Write-ProjectFile -Path (Join-Path $vs 'settings.json')         -Content (Get-VscodeSettings)       -Name $ProjectName
-Write-ProjectFile -Path (Join-Path $vs 'tasks.json')            -Content (Get-VscodeTasks)          -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $vs 'cmake-kits.json') -Content (Get-VscodeCmakeKits) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $vs 'c_cpp_properties.json') -Content (Get-VscodeCppProperties) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $vs 'extensions.json') -Content (Get-VscodeExtensions) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $vs 'launch.json') -Content (Get-VscodeLaunch) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $vs 'settings.json') -Content (Get-VscodeSettings) -Name $ProjectName
+Write-ProjectFile -Path (Join-Path $vs 'tasks.json') -Content (Get-VscodeTasks) -Name $ProjectName
 
 Add-InclFolder      -ProjectDir $TargetPath
 Add-FreeRTOSKernel  -ProjectDir $TargetPath

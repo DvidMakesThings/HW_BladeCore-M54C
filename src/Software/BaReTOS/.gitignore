@@ -1,0 +1,12 @@
+build/
+.vs/
+*.uf2
+*.elf
+*.bin
+*.hex
+*.dis
+*.map
+__pycache__/
+*.pyc
+FreeRTOS-Kernel/
+.venv/

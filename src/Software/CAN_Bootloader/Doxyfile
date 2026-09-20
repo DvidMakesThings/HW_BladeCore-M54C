@@ -1,0 +1,23 @@
+PROJECT_NAME = "CAN_Bootloader"
+PROJECT_NUMBER = 1.0.0
+OUTPUT_DIRECTORY = build/documentation
+INPUT = main.c CONFIG.h incl
+FILE_PATTERNS = *.c *.h
+RECURSIVE = YES
+EXTRACT_ALL = YES
+EXTRACT_STATIC = YES
+GENERATE_HTML = YES
+GENERATE_LATEX = NO
+QUIET = YES
+WARN_IF_DOC_ERROR = YES
+WARN_LOGFILE = build/doxygen-warnings.log
+ALIASES += "project=\par Project:"
+ALIASES += "github=\par GitHub:"
+
+# Expand GNU attributes so function signatures remain visible to Doxygen.
+ENABLE_PREPROCESSING = YES
+MACRO_EXPANSION = YES
+EXPAND_ONLY_PREDEF = YES
+PREDEFINED = "__attribute__(x)="
+GENERATE_XML = YES
+EXCLUDE = incl/update_test.c

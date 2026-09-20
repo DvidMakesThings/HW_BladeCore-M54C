@@ -7037,16 +7037,6 @@
 	)
 	(wire
 		(pts
-			(xy 316.23 85.09) (xy 316.23 69.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "584c154d-ca11-43ab-8def-37c844a1dd89")
-	)
-	(wire
-		(pts
 			(xy 143.51 127) (xy 162.56 127)
 		)
 		(stroke
@@ -7157,7 +7147,7 @@
 	)
 	(wire
 		(pts
-			(xy 318.77 67.31) (xy 339.09 67.31)
+			(xy 316.23 67.31) (xy 339.09 67.31)
 		)
 		(stroke
 			(width 0)
@@ -7667,7 +7657,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 85.09) (xy 316.23 85.09)
+			(xy 226.06 85.09) (xy 318.77 85.09)
 		)
 		(stroke
 			(width 0)
@@ -8327,16 +8317,6 @@
 	)
 	(wire
 		(pts
-			(xy 318.77 87.63) (xy 318.77 67.31)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f80b8d66-1125-4729-af74-635c4e285f21")
-	)
-	(wire
-		(pts
 			(xy 102.87 231.14) (xy 102.87 229.87)
 		)
 		(stroke
@@ -8385,6 +8365,16 @@
 		)
 		(uuid "3000d119-8cff-465b-b648-96c69b320ba9")
 	)
+	(label "SWCLK"
+		(at 316.23 69.85 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "32129656-ed75-4d9e-ab02-8a365b0a157a")
+	)
 	(label "XIN"
 		(at 229.87 95.25 0)
 		(effects
@@ -8396,12 +8386,12 @@
 		(uuid "63e995dd-efe3-407a-8697-47341f3e20ac")
 	)
 	(label "SWDIO"
-		(at 229.87 85.09 0)
+		(at 318.77 85.09 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
 		(uuid "7298b8cb-6c08-4739-bba1-04128fa667cb")
 	)
@@ -8464,6 +8454,16 @@
 			(justify left bottom)
 		)
 		(uuid "acb2f0ac-f97a-484b-8faf-512ff2e9ca11")
+	)
+	(label "SWDIO"
+		(at 316.23 67.31 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "b05c066f-f667-4455-a21e-7c49fddd6859")
 	)
 	(label "QSPI_SS"
 		(at 228.6 114.3 0)
@@ -8536,12 +8536,12 @@
 		(uuid "fc2c7c78-d4d7-4cdd-85a5-958fc713344d")
 	)
 	(label "SWCLK"
-		(at 229.87 87.63 0)
+		(at 318.77 87.63 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
 		(uuid "ff63399c-3964-4c11-88d2-1c2545c91f4d")
 	)
