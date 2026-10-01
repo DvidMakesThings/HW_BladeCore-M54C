@@ -1,21 +1,22 @@
 /**
- * @file src/Software/CAN_Bootloader/CONFIG.h
+ * @file src/Software/BaReTOS/CONFIG.h
  *
  * @version 1.0.0
  * @date 2026-09-18
  *
  * @details
- * Owns the board pin map generated for BladeCore-M54C and every project-defined preprocessor
- * macro. Protocol identifiers, application flash boundaries, controller timing, and task
- * settings are kept here so the firmware and host tools share one configuration source. The
- * file is also consumed by the Pico SDK board adapter and therefore protects C declarations
- * from assembler preprocessing.
+ * Owns the board pin map, peripheral instances, application task priorities and timing, CAN
+ * protocol identifiers, and application flash-layout macros for BladeCore-M54C, so the firmware
+ * and host tools share one configuration source. FreeRTOS kernel configuration lives separately
+ * in FreeRTOSConfig.h. This file is macro-only and safe for the Pico SDK board adapter's
+ * assembler preprocessing.
  *
- * @project CAN_Bootloader - BladeCore-M54C firmware
+ * @project BaReTOS - BladeCore-M54C firmware
  * @github https://github.com/DvidMakesThings/HW_BladeCore-M54C
  */
 
 #pragma once
+#include "FreeRTOSConfig.h"
 
 /* -------------------------------------------------------------------------- */
 /*  CAN bus speed selector                                                    */
@@ -56,6 +57,8 @@
 /* -------------------------------------------------------------------------- */
 #define PIN_ADC_VUSB 46 /**< GPIO46/ADC6 - USB VBUS sense (5.1K-5.1K divider) */
 #define PIN_ADC_VREF 47 /**< GPIO47/ADC7 - 3.00V 0.1% ref (10K-10K divider)   */
+/** @brief Measured true voltage at the VREF ADC pin (3.004 V ref through the 2:1 divider). */
+#define ADC_CAL_PIN_MV 1500u
 
 /* -------------------------------------------------------------------------- */
 /*  Unused GPIOs - M.2 Connector (directly access through M.2 edge connector) */
@@ -127,6 +130,14 @@
 /** @brief Generator PWM example fade interval; unused by the GPIO heartbeat. */
 #define HEARTBEAT_FADE_STEP_MS 8
 
+/* -------------------------------------------------------------------------- */
+/*  Application task priorities                                                */
+/* -------------------------------------------------------------------------- */
+#define HEARTBEAT_TASK_PRIORITY tskIDLE_PRIORITY     /**< Minimum scheduler priority. */
+#define CAN_TASK_PRIORITY (tskIDLE_PRIORITY + 2)     /**< CAN service task priority. */
+#define EXAMPLE_TASK_PRIORITY (tskIDLE_PRIORITY + 1) /**< Example template task priority. */
+#define INIT_TASK_PRIORITY (tskIDLE_PRIORITY + 3)    /**< Startup init task; highest, runs first. */
+
 /** @name SDK board configuration
  * @{ */
 #define PICO_RP2350A 0                    /**< RP2354B has 48 GPIO pins. */
@@ -138,17 +149,23 @@
 
 /** @name CAN update wire protocol and flash layout
  * @{ */
-#define CAN_REQUEST 0x18b00000u    /**< Control request plus 16-bit destination. */
-#define CAN_RESPONSE 0x18b10000u   /**< Acknowledgement plus 16-bit source. */
-#define CAN_IDENTITY 0x18b20000u   /**< Full silicon identifier response. */
-#define CAN_DATA 0x18b30000u       /**< Firmware offset and four data bytes. */
-#define CAN_SELECT 0x18b40000u     /**< Select exactly one complete silicon ID. */
-#define CAN_ENTER 0x18b50000u      /**< Enter bootloader, payload is full silicon ID. */
-#define CAN_CLASS_MASK 0x1fff0000u /**< Protocol class mask, excluding node address. */
-#define PROTOCOL_VERSION 1u        /**< Wire protocol and persistent manifest version. */
-#define BOARD_TYPE 0x4d353443u     /**< BladeCore-M54C compatibility marker. */
-#define APP_OFFSET 0x20000         /**< Application offset in program flash. */
-#define META_OFFSET 0x1f000        /**< Dedicated application validity sector. */
+/* 11-bit identifiers: 4-bit class in bits 10..7, 7-bit node address in bits 6..0. */
+#define CAN_REQUEST    0x080u /**< Class 1, control request plus destination. */
+#define CAN_RESPONSE   0x100u /**< Class 2, acknowledgement plus source. */
+#define CAN_IDENTITY   0x180u /**< Class 3, full silicon identifier response. */
+#define CAN_DATA       0x200u /**< Class 4, firmware offset and four data bytes. */
+#define CAN_SELECT     0x280u /**< Class 5, select by complete silicon ID. */
+#define CAN_ENTER      0x300u /**< Class 6, enter bootloader. */
+#define CAN_SDO_RX     0x380u /**< Class 7, SDO request addressed to this node. */
+#define CAN_SDO_TX     0x400u /**< Class 8, SDO response produced by this node. */
+#define CAN_RPDO       0x480u /**< Class 9, process data consumed by this node. */
+#define CAN_TPDO       0x500u /**< Class 10, process data produced by this node. */
+#define CAN_CLASS_MASK 0x780u /**< Bits selecting the message class. */
+#define CAN_NODE_MASK  0x07fu /**< Bits selecting the node address. */
+#define PROTOCOL_VERSION 1u    /**< Wire protocol and persistent manifest version. */
+#define BOARD_TYPE 0x4d353443u /**< BladeCore-M54C compatibility marker. */
+#define APP_OFFSET 0x20000     /**< Application offset in program flash. */
+#define META_OFFSET 0x1f000    /**< Dedicated application validity sector. */
 #define APP_MAX_SIZE (PICO_FLASH_SIZE_BYTES - APP_OFFSET) /**< Application capacity. */
 #define APP_BASE (0x10000000u + APP_OFFSET)               /**< Application XIP vector address. */
 #define META_MAGIC 0x42415245u         /**< Committed image manifest signature. */
@@ -180,6 +197,9 @@
 #define HEARTBEAT_PERIOD_MS 500u       /**< Interval between heartbeat LED transitions. */
 #define HEARTBEAT_STACK_WORDS 256u     /**< Heartbeat task stack in 32-bit words. */
 #define CAN_STACK_WORDS 768u           /**< CAN task stack in 32-bit words. */
+#define INIT_STACK_WORDS 256u          /**< Startup init task stack in 32-bit words. */
+#define EXAMPLE_PERIOD_MS 1000u        /**< Example template task wake interval. */
+#define EXAMPLE_STACK_WORDS 256u       /**< Example template task stack in 32-bit words. */
 #define CAN_RX_BUDGET 32u              /**< Maximum receive frames per service pass. */
 #define CAN_POLL_MS 5u                 /**< Polling fallback for a missed IRQ edge. */
 #define CAN_RETRY_MS 500u              /**< Controller reinitialisation retry interval. */

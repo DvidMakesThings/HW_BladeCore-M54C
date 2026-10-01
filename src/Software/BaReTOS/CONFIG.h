@@ -19,6 +19,15 @@
 #include "FreeRTOSConfig.h"
 
 /* -------------------------------------------------------------------------- */
+/*  CAN bus speed selector                                                    */
+/* -------------------------------------------------------------------------- */
+#define CAN_SPEED_1M 1000u
+#define CAN_SPEED_500K 500u
+#define CAN_SPEED_250K 250u
+#define CAN_SPEED_125K 125u
+#define CAN_SPEED CAN_SPEED_500K /**< Active CAN bitrate in kbit/s. */
+
+/* -------------------------------------------------------------------------- */
 /*  MCP2515 CAN Controller (SPI1)                                             */
 /* -------------------------------------------------------------------------- */
 #define PIN_CAN_MISO 28 /**< SPI1 RX  - MCP2515 SO             */
@@ -161,7 +170,18 @@
 #define APP_BASE (0x10000000u + APP_OFFSET)               /**< Application XIP vector address. */
 #define META_MAGIC 0x42415245u         /**< Committed image manifest signature. */
 #define BOOT_REQUEST_MAGIC 0xb007ca4eu /**< Watchdog scratch recovery request. */
-#define CAN_CNF1 0x00u                 /**< 16 MHz oscillator, 1 Mbit/s timing. */
+
+#if CAN_SPEED == CAN_SPEED_1M
+#define CAN_CNF1 0x00u /**< 16 MHz oscillator, BRP=0, 1 Mbit/s. */
+#elif CAN_SPEED == CAN_SPEED_500K
+#define CAN_CNF1 0x01u /**< 16 MHz oscillator, BRP=1, 500 kbit/s. */
+#elif CAN_SPEED == CAN_SPEED_250K
+#define CAN_CNF1 0x03u /**< 16 MHz oscillator, BRP=3, 250 kbit/s. */
+#elif CAN_SPEED == CAN_SPEED_125K
+#define CAN_CNF1 0x07u /**< 16 MHz oscillator, BRP=7, 125 kbit/s. */
+#else
+#error "Unsupported CAN_SPEED value"
+#endif
 #define CAN_CNF2 0x90u                 /**< Eight time quanta, 62.5 percent sample point. */
 #define CAN_CNF3 0x02u                 /**< Phase segment 2 is three time quanta. */
 #define CAN_TX_TIMEOUT_MS 3u           /**< Maximum controller transmit wait. */
