@@ -283,10 +283,33 @@ def do_swd():
 # ---------------------------------------------------------------------------
 # CAN bootloader upload (classic CAN, stop-and-wait; accepts Intel HEX or BIN)
 # ---------------------------------------------------------------------------
-# Protocol constants and CMD_* enums are read from this project's own headers so
-# the uploader stays in lockstep with the firmware and needs no external tool.
+# The application runs on 11-bit standard CAN frames. The bootloader is a
+# separate project kept at the historical 29-bit extended wire protocol; its
+# identifiers are listed here so this script needs no cross-project file paths.
 CFG = None
 COMMANDS = None
+
+_APP_CFG = {
+    "CAN_REQUEST":    0x080,
+    "CAN_RESPONSE":   0x100,
+    "CAN_IDENTITY":   0x180,
+    "CAN_DATA":       0x200,
+    "CAN_SELECT":     0x280,
+    "CAN_ENTER":      0x300,
+    "CAN_CLASS_MASK": 0x780,
+    "CAN_NODE_MASK":  0x07f,
+}
+
+_BOOT_CFG = {
+    "CAN_REQUEST":    0x18b00000,
+    "CAN_RESPONSE":   0x18b10000,
+    "CAN_IDENTITY":   0x18b20000,
+    "CAN_DATA":       0x18b30000,
+    "CAN_SELECT":     0x18b40000,
+    "CAN_ENTER":      0x18b50000,
+    "CAN_CLASS_MASK": 0x1fff0000,
+    "CAN_NODE_MASK":  0x0000ffff,
+}
 
 
 def _defines(path):
@@ -301,12 +324,11 @@ def _defines(path):
 
 def _can_config():
     cfg = _defines(CONFIG_H)
-    required = ("CAN_REQUEST", "CAN_RESPONSE", "CAN_IDENTITY", "CAN_DATA",
-                "CAN_SELECT", "CAN_ENTER", "CAN_CLASS_MASK", "APP_OFFSET",
-                "PICO_FLASH_SIZE_BYTES", "PROTOCOL_VERSION")
+    required = ("APP_OFFSET", "PICO_FLASH_SIZE_BYTES", "PROTOCOL_VERSION")
     missing = [name for name in required if name not in cfg]
     if missing:
         sys.exit(f"[ERROR] CONFIG.h missing numeric defines: {', '.join(missing)}")
+    cfg.update(_APP_CFG)
     return cfg
 
 
@@ -389,12 +411,13 @@ def _can_module():
 
 
 class _Device:
-    """One selected silicon identity on one CAN bus; transfers are stop-and-wait."""
+    """One selected silicon identity talking to the bootloader; stop-and-wait."""
 
-    def __init__(self, bus, node, uid, timeout=2.0):
+    def __init__(self, bus, node, uid, cfg=_BOOT_CFG, timeout=2.0):
         self.bus = bus
         self.node = node
         self.uid = uid
+        self.cfg = cfg
         self.timeout = timeout
         self.transaction = 0
         self.can = _can_module()
@@ -414,7 +437,7 @@ class _Device:
                 if frame is None:
                     break
                 if (not frame.is_extended_id or frame.is_remote_frame or frame.is_error_frame
-                        or frame.arbitration_id != CFG["CAN_RESPONSE"] | self.node
+                        or frame.arbitration_id != self.cfg["CAN_RESPONSE"] | self.node
                         or len(frame.data) != 8):
                     continue
                 reply = bytes(frame.data)
@@ -435,14 +458,10 @@ class _Device:
         self.transaction = (self.transaction + 1) & 255
         command = COMMANDS[name]
         payload = struct.pack("<BBI2x", command, self.transaction, value)
-        return self.exchange(CFG["CAN_REQUEST"], payload, command, self.transaction)
+        return self.exchange(self.cfg["CAN_REQUEST"], payload, command, self.transaction)
 
     def select(self):
-        self.exchange(CFG["CAN_SELECT"], self.uid, COMMANDS["CMD_SELECT"])
-
-    def enter(self):
-        # A reset can swallow its own acknowledgement; discovery then confirms recovery.
-        self.send(CFG["CAN_ENTER"], self.uid)
+        self.exchange(self.cfg["CAN_SELECT"], self.uid, COMMANDS["CMD_SELECT"])
 
     def upload(self, data):
         self.select()
@@ -451,7 +470,7 @@ class _Device:
         reported = 0
         for offset in range(0, len(data), 4):
             payload = struct.pack("<I", offset) + data[offset:offset + 4].ljust(4, b"\xff")
-            self.exchange(CFG["CAN_DATA"], payload, COMMANDS["CMD_DATA"], offset=offset)
+            self.exchange(self.cfg["CAN_DATA"], payload, COMMANDS["CMD_DATA"], offset=offset)
             percent = min(100, (offset + 4) * 100 // len(data))
             if percent >= reported + 10:
                 print(f"{percent}% ({min(offset + 4, len(data))}/{len(data)} bytes)")
@@ -460,13 +479,22 @@ class _Device:
         print(f"Flash readback CRC verified and manifest committed in {time.monotonic() - started:.1f}s")
 
 
-def _discover(bus, duration=1.0, node=0):
+def _trigger_enter(bus, node, uid, cfg, timeout=2.0):
+    """Send CMD_ENTER as a standard frame to the running application."""
+    bus.send(_can_module().Message(
+        arbitration_id=cfg["CAN_ENTER"] | (node & cfg["CAN_NODE_MASK"]),
+        is_extended_id=False, data=uid), timeout=timeout)
+
+
+def _discover(bus, cfg, extended, duration=1.0, node=0):
     can = _can_module()
+    node_mask = cfg["CAN_NODE_MASK"]
     transaction = int(time.monotonic() * 1000) & 255
     for _ in range(1024):
         if bus.recv(0) is None:
             break
-    bus.send(can.Message(arbitration_id=CFG["CAN_REQUEST"] | node, is_extended_id=True,
+    bus.send(can.Message(arbitration_id=cfg["CAN_REQUEST"] | (node & node_mask),
+                         is_extended_id=extended,
                          data=bytes([COMMANDS["CMD_INFO"], transaction, 0, 0, 0, 0, 0, 0])),
              timeout=1.0)
     result = {}
@@ -475,15 +503,15 @@ def _discover(bus, duration=1.0, node=0):
         frame = bus.recv(max(0, deadline - time.monotonic()))
         if frame is None:
             break
-        if (not frame.is_extended_id or frame.is_remote_frame or frame.is_error_frame
+        if (frame.is_extended_id != extended or frame.is_remote_frame or frame.is_error_frame
                 or len(frame.data) != 8):
             continue
-        source = frame.arbitration_id & 0xffff
-        message_class = frame.arbitration_id & CFG["CAN_CLASS_MASK"]
-        if message_class not in (CFG["CAN_IDENTITY"], CFG["CAN_RESPONSE"]):
+        source = frame.arbitration_id & node_mask
+        message_class = frame.arbitration_id & cfg["CAN_CLASS_MASK"]
+        if message_class not in (cfg["CAN_IDENTITY"], cfg["CAN_RESPONSE"]):
             continue
         item = result.setdefault(source, {})
-        if message_class == CFG["CAN_IDENTITY"]:
+        if message_class == cfg["CAN_IDENTITY"]:
             uid = bytes(frame.data)
             if "uid" in item and item["uid"] != uid:
                 raise RuntimeError(f"Address collision at 0x{source:04x}; isolate the intended device")
@@ -493,15 +521,24 @@ def _discover(bus, duration=1.0, node=0):
     return {address: item for address, item in result.items() if "uid" in item and "mode" in item}
 
 
-def _wait_mode(bus, node, uid, mode, attempts=8, settle=0.0):
-    # Let the target finish resetting and initialising CAN before the first poll.
+def _wait_mode(bus, uid, mode, cfg, extended, attempts=8, settle=0.0):
+    # Match by UID: the visible node value changes with CAN_NODE_MASK between the
+    # standard app (7-bit) and the extended bootloader (16-bit).
     if settle:
         time.sleep(settle)
     for _ in range(attempts):
-        item = _discover(bus, duration=0.5, node=node).get(node)
-        if item and item["uid"] == uid and item["mode"] == mode:
-            return item
-    raise TimeoutError(f"Node 0x{node:04x} did not enter {'bootloader' if mode else 'application'} mode")
+        for address, item in _discover(bus, cfg=cfg, extended=extended, duration=0.5).items():
+            if item["uid"] == uid and item["mode"] == mode:
+                return address, item
+    raise TimeoutError(f"Node uid={uid.hex()} did not enter {'bootloader' if mode else 'application'} mode")
+
+
+def _discover_any(bus, duration=1.0):
+    """Standard app first, then extended bootloader. Returns the device dict."""
+    devices = _discover(bus, cfg=CFG, extended=False, duration=duration)
+    if devices:
+        return devices
+    return _discover(bus, cfg=_BOOT_CFG, extended=True, duration=duration)
 
 
 def _print_devices(devices):
@@ -579,7 +616,7 @@ def do_discover(args):
     CFG, COMMANDS = _can_config(), _can_commands()
     args.channel = _select_channel(args)
     with _open_bus(args) as bus:
-        devices = _discover(bus)
+        devices = _discover_any(bus)
         if not devices:
             print("No compatible devices responded")
         _print_devices(devices)
@@ -595,17 +632,17 @@ def do_can(args):
     data = load_application(image)
     args.channel = _select_channel(args)
     with _open_bus(args) as bus:
-        devices = _discover(bus)
+        devices = _discover_any(bus)
         _print_devices(devices)
         node, uid, item = _select_device(devices, args)
         if item["version"] != CFG["PROTOCOL_VERSION"]:
             sys.exit("[ERROR] Device protocol did not match this firmware; nothing erased.")
         print(f"\n[*] Uploading {os.path.basename(image)} ({len(data)} bytes) over CAN "
               f"to node 0x{node:04x}...")
-        device = _Device(bus, node, uid)
         if item["mode"] != 1:
-            device.enter()
-            _wait_mode(bus, node, uid, 1)
+            _trigger_enter(bus, node, uid, CFG)
+            node, _ = _wait_mode(bus, uid, 1, cfg=_BOOT_CFG, extended=True)
+        device = _Device(bus, node, uid)
         try:
             device.upload(data)
         except (Exception, KeyboardInterrupt):
@@ -620,8 +657,8 @@ def do_can(args):
                 device.control("CMD_BOOT")
             except TimeoutError:
                 pass  # Reset may complete despite a lost final acknowledgement.
-            # Give the app time to boot (reset + FreeRTOS start + CAN self-test/init).
-            _wait_mode(bus, node, uid, 0, attempts=20, settle=1.0)
+            node, _ = _wait_mode(bus, uid, 0, cfg=CFG, extended=False,
+                                 attempts=20, settle=1.0)
             print("Application responded after reboot")
     print("\n[+] CAN UPLOAD SUCCESSFUL")
 
